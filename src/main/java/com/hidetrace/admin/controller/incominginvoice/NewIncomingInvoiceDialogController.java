@@ -5,19 +5,13 @@
  */
 package com.hidetrace.admin.controller.incominginvoice;
 
-import com.hidetrace.admin.common.HideTypeEnum;
-import com.hidetrace.admin.common.HideTypeValues;
-import com.hidetrace.admin.common.incominginvoice.IncomingCertificateEnum;
-import com.hidetrace.admin.common.incominginvoice.IncomingCertificateValues;
+import com.hidetrace.admin.common.*;
+import com.hidetrace.admin.common.incominginvoice.*;
 import com.hidetrace.admin.helper.incominginvoice.NewIncomingInvoiceDialogHelper;
-import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceCertificateModel;
-import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceHideTypeModel;
-import com.hidetrace.admin.model.incominginvoice.IncomingLegalEntityInvoiceModel;
 import com.hidetrace.admin.model.LegalEntityModel;
-import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceCertificateService;
-import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceHideTypeService;
-import com.hidetrace.admin.service.incominginvoice.IncomingLegalEntityInvoiceService;
+import com.hidetrace.admin.model.incominginvoice.*;
 import com.hidetrace.admin.service.LegalEntityService;
+import com.hidetrace.admin.service.incominginvoice.*;
 import com.hidetrace.admin.view.incominginvoice.NewIncomingInvoiceDialogView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
