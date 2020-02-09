@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hidetrace.admin.view;
+package com.hidetrace.admin.view.incominginvoice;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

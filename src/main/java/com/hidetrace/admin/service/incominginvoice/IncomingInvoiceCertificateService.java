@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hidetrace.admin.service;
+package com.hidetrace.admin.service.incominginvoice;
 
-import com.hidetrace.admin.model.IncomingInvoiceCertificateModel;
-import com.hidetrace.admin.repository.IncomingInvoiceCertificateRepository;
+import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceCertificateModel;
+import com.hidetrace.admin.repository.incominginvoice.IncomingInvoiceCertificateRepository;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

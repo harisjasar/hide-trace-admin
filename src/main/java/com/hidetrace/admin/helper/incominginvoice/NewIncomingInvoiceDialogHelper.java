@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hidetrace.admin.helper;
+package com.hidetrace.admin.helper.incominginvoice;
 
-import com.hidetrace.admin.controller.NewIncomingInvoiceDialogController;
+import com.hidetrace.admin.controller.incominginvoice.NewIncomingInvoiceDialogController;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;

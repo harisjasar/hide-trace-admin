@@ -5,6 +5,7 @@
  */
 package com.hidetrace.admin.controller;
 
+import com.hidetrace.admin.controller.incominginvoice.NewIncomingInvoiceDialogController;
 import com.hidetrace.admin.view.AdminView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

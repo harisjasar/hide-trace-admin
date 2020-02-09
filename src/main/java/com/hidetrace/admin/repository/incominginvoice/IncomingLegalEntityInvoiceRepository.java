@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hidetrace.admin.repository;
+package com.hidetrace.admin.repository.incominginvoice;
 
-import com.hidetrace.admin.model.IncomingLegalEntityInvoiceModel;
+import com.hidetrace.admin.model.incominginvoice.IncomingLegalEntityInvoiceModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
