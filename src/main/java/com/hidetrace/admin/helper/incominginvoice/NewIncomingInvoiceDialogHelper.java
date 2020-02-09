@@ -99,7 +99,7 @@ public class NewIncomingInvoiceDialogHelper {
      * @param title
      * @param messageType
      */
-    private void showMessageDialog(Component parentComponent,
+    public void showMessageDialog(Component parentComponent,
             Object message, String title, int messageType) {
 
         JOptionPane.showMessageDialog((java.awt.Component) parentComponent, message, title, messageType);

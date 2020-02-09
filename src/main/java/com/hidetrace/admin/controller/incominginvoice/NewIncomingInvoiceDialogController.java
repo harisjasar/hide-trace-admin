@@ -202,16 +202,22 @@ public class NewIncomingInvoiceDialogController {
     }
 
     public void saveInvoice() {
-        int newInvoiceId = newInvoiceInfo().getInvId();
-        IncomingInvoiceCertificateModel incomingInvoiceCertModel = newIncomingInvoiceCertificateInfo();
-        incomingInvoiceCertModel.setIncomingInvoiceId(newInvoiceId);
-        incomingInvoiceCertificateService.saveIncomingInvoiceCertificate(incomingInvoiceCertModel);
-        newIncomingInvoiceHideTypeInfo().stream().map((model) -> {
-            model.setIncomingInvoiceId(newInvoiceId);
-            return model;
-        }).forEachOrdered((model) -> {
-            incomingInvoiceHideTypeService.saveIncomingInvoiceHideType(model);
-        });
+        IncomingLegalEntityInvoiceModel invoiceModel = newInvoiceInfo();
+        int newInvoiceId = invoiceModel != null ? invoiceModel.getInvId() : -1;
+
+        if (newInvoiceId != -1) {
+            IncomingInvoiceCertificateModel incomingInvoiceCertModel = newIncomingInvoiceCertificateInfo();
+            incomingInvoiceCertModel.setIncomingInvoiceId(newInvoiceId);
+            incomingInvoiceCertificateService.saveIncomingInvoiceCertificate(incomingInvoiceCertModel);
+            newIncomingInvoiceHideTypeInfo().stream().map((model) -> {
+                model.setIncomingInvoiceId(newInvoiceId);
+                return model;
+            }).forEachOrdered((model) -> {
+                incomingInvoiceHideTypeService.saveIncomingInvoiceHideType(model);
+            });
+        } else {
+            helper.showMessageDialog(null, "Greška\n\nFaktura nije kreirana", "Pažnja", 3);
+        }
 
     }
 
