@@ -204,19 +204,19 @@ public class NewIncomingInvoiceDialogController {
     public void saveInvoice() {
         IncomingLegalEntityInvoiceModel invoiceModel = newInvoiceInfo();
         int newInvoiceId = invoiceModel != null ? invoiceModel.getInvId() : -1;
-
-        if (newInvoiceId != -1) {
+        if (invoiceModel != null) {
             IncomingInvoiceCertificateModel incomingInvoiceCertModel = newIncomingInvoiceCertificateInfo();
             incomingInvoiceCertModel.setIncomingInvoiceId(newInvoiceId);
             incomingInvoiceCertificateService.saveIncomingInvoiceCertificate(incomingInvoiceCertModel);
             newIncomingInvoiceHideTypeInfo().stream().map((model) -> {
                 model.setIncomingInvoiceId(newInvoiceId);
                 return model;
-            }).forEachOrdered((model) -> {
-                incomingInvoiceHideTypeService.saveIncomingInvoiceHideType(model);
-            });
+            }).forEachOrdered(incomingInvoiceHideTypeService::saveIncomingInvoiceHideType);
+
+            helper.showMessageDialog(null, "Faktura:   " + invoiceModel.getInvName() + "   uspješno kreirana", "Poruka", 1);
+
         } else {
-            helper.showMessageDialog(null, "Greška\n\nFaktura nije kreirana", "Pažnja", 3);
+            helper.showMessageDialog(null, "Greška\n\nFaktura nije kreirana", "Pažnja", 0);
         }
 
     }
@@ -339,7 +339,17 @@ public class NewIncomingInvoiceDialogController {
     }
 
     public void completeSave() {
-        view.dispose();
+        //view.dispose();
+        for (JTextField field : getAllTextFields()) {
+            field.setText("");
+        }
+        for (JToggleButton btn : getArticleToggleBtns()) {
+            btn.setSelected(false);
+        }
+        view.getCommentTextField().setText("");
+        view.getBulltxtField().setEnabled(false);
+        view.getCowtxtField().setEnabled(false);
+        view.getCalftxtField().setEnabled(false);
     }
 
     private double differenceGrossNet(double salt, double weightDifference, double abroadReduced, double abroadWeight) {
