@@ -36,8 +36,9 @@ public class NewIncomingInvoiceDialogHelper {
 
             if (notTypeSelected) {
                 if (notTypePriceEntered) {
-                    controller.saveInvoice();
-                    controller.completeSave();
+                    if (controller.saveInvoice()) {
+                        controller.completeSave();
+                    }
                 } else {
                     showMessageDialog(null, "Unesite cijenu za odabranu vrstu", "Pažnja", 3);
                 }

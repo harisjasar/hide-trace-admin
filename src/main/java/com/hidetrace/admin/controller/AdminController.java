@@ -6,6 +6,7 @@
 package com.hidetrace.admin.controller;
 
 import com.hidetrace.admin.controller.incominginvoice.NewIncomingInvoiceDialogController;
+import com.hidetrace.admin.controller.outgoinginvoice.NewOutgoingInvoiceDialogController;
 import com.hidetrace.admin.view.AdminView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,6 +41,9 @@ public class AdminController {
         if (view.getNewIncomingInvoiceButton().getActionListeners().length == 0) {
             view.getNewIncomingInvoiceButton().addActionListener(appContext.getBean(NewIncomingInvoiceButtonListener.class));
         }
+        if (view.getNewOutgoingInvoiceButton().getActionListeners().length == 0) {
+            view.getNewOutgoingInvoiceButton().addActionListener(appContext.getBean(NewOutgoingInvoiceButtonListener.class));
+        }
     }
 
     public void start() {
@@ -57,5 +61,19 @@ public class AdminController {
         public void actionPerformed(ActionEvent e) {
             appContext.getBean(NewIncomingInvoiceDialogController.class).start();
         }
+    }
+
+    @Component
+    private static class NewOutgoingInvoiceButtonListener implements ActionListener {
+
+        @Autowired
+        private ApplicationContext appContext;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            appContext.getBean(NewOutgoingInvoiceDialogController.class).start();
+
+        }
+
     }
 }

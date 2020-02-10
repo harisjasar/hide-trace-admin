@@ -46,10 +46,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="newIncomingInvoiceButton" min="-2" pref="120" max="-2" attributes="0"/>
-                  <EmptySpace pref="250" max="32767" attributes="0"/>
+                  <EmptySpace pref="120" max="32767" attributes="0"/>
+                  <Component id="newOutgoingInvoiceButton" min="-2" pref="120" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -57,7 +59,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="newIncomingInvoiceButton" min="-2" pref="48" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="newIncomingInvoiceButton" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="newOutgoingInvoiceButton" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace pref="219" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -67,6 +72,11 @@
         <Component class="javax.swing.JButton" name="newIncomingInvoiceButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ulaz"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="newOutgoingInvoiceButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Izlaz"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -27,6 +27,7 @@ import org.decimal4j.util.DoubleRounder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.UnexpectedRollbackException;
 
 /**
  *
@@ -57,10 +58,12 @@ public class NewIncomingInvoiceDialogController {
     @Autowired
     private IncomingInvoiceHideTypeService incomingInvoiceHideTypeService;
 
-    public NewIncomingInvoiceDialogController(NewIncomingInvoiceDialogView view) {
-        this.view = view;
-    }
+    @Autowired
+    SaveException exception;
 
+//    public NewIncomingInvoiceDialogController(NewIncomingInvoiceDialogView view) {
+//        this.view = view;
+//    }
     private void initView() {
         for (JTextField field : getArticleTextFields()) {
             field.setEnabled(false);
@@ -132,27 +135,34 @@ public class NewIncomingInvoiceDialogController {
 
         List<IncomingInvoiceHideTypeModel> list = new ArrayList<>();
 
-        for (JToggleButton tglBtn : tglBtns) {
-            if (tglBtn.isSelected()) {
-                JTextField field = ((JTextField) hydeTypeHashMap.get(tglBtn));
-                if (!field.getText().isEmpty()) {
-                    IncomingInvoiceHideTypeModel model = new IncomingInvoiceHideTypeModel();
-                    model.setPrice(Double.parseDouble(field.getText()));
-                    String hideType = tglBtn.getText();
-                    if (hideType.equals(HideTypeEnum.COW.getValue())) {
-                        model.setHideTypeId(HideTypeValues.COW);
-                    } else if (hideType.equals(HideTypeEnum.BULL.getValue())) {
-                        model.setHideTypeId(HideTypeValues.BULL);
-                    } else {
-                        model.setHideTypeId(HideTypeValues.CALF);
-                    }
+        try {
+            for (JToggleButton tglBtn : tglBtns) {
+                if (tglBtn.isSelected()) {
+                    JTextField field = ((JTextField) hydeTypeHashMap.get(tglBtn));
+                    if (!field.getText().isEmpty()) {
+                        IncomingInvoiceHideTypeModel model = new IncomingInvoiceHideTypeModel();
+                        model.setPrice(Double.parseDouble(field.getText()));
+                        String hideType = tglBtn.getText();
+                        if (hideType.equals(HideTypeEnum.COW.getValue())) {
+                            model.setHideTypeId(HideTypeValues.COW);
+                        } else if (hideType.equals(HideTypeEnum.BULL.getValue())) {
+                            model.setHideTypeId(HideTypeValues.BULL);
+                        } else {
+                            model.setHideTypeId(HideTypeValues.CALF);
+                        }
 
-                    list.add(model);
+                        list.add(model);
+                    }
                 }
             }
+            return list;
+        } catch (NumberFormatException ex) {
+            if (!exception.isRaised()) {
+                helper.showMessageDialog(null, "Neispravan format", "Pažnja", 0);
+                exception.setRaised(true);
+            }
         }
-
-        return list;
+        return null;
     }
 
     public IncomingInvoiceCertificateModel newIncomingInvoiceCertificateInfo() {
@@ -171,54 +181,67 @@ public class NewIncomingInvoiceDialogController {
 
     public IncomingLegalEntityInvoiceModel newInvoiceInfo() {
         IncomingLegalEntityInvoiceModel model = new IncomingLegalEntityInvoiceModel();
-        int LegalEntityID = ((LegalEntityModel) view.getLegalEntityDropDown().getSelectedItem()).getLegalEntityID();
-        model.setInvLegalEntityId(LegalEntityID);
+        try {
+            int LegalEntityID = ((LegalEntityModel) view.getLegalEntityDropDown().getSelectedItem()).getLegalEntityID();
+            model.setInvLegalEntityId(LegalEntityID);
 
-        String InvoiceName = view.getInvoiceIdTextField().getText();
-        model.setInvName(InvoiceName);
+            String InvoiceName = view.getInvoiceIdTextField().getText();
+            model.setInvName(InvoiceName);
 
-        double InvGrossWeight = Double.parseDouble(view.getControlWeightInvoicegrossTextField().getText());
-        model.setInvGrossWeight(InvGrossWeight);
+            double InvGrossWeight = Double.parseDouble(view.getControlWeightInvoicegrossTextField().getText());
+            model.setInvGrossWeight(InvGrossWeight);
 
-        double InvNetWeight = Double.parseDouble(view.getControlWeightCompanyGrossTextField().getText());
-        model.setInvNetWeight(InvNetWeight);
+            double InvNetWeight = Double.parseDouble(view.getControlWeightCompanyGrossTextField().getText());
+            model.setInvNetWeight(InvNetWeight);
 
-        double InvAbroadReduced = Double.parseDouble(view.getAbroadReducedTextField().getText());
-        model.setInvAbroadReduced(InvAbroadReduced);
+            double InvAbroadReduced = Double.parseDouble(view.getAbroadReducedTextField().getText());
+            model.setInvAbroadReduced(InvAbroadReduced);
 
-        double InvSalt = Double.parseDouble(view.getSaltControlTextField().getText());
-        model.setInvSalt(InvSalt);
+            double InvSalt = Double.parseDouble(view.getSaltControlTextField().getText());
+            model.setInvSalt(InvSalt);
 
-        String InvDescription = view.getCommentTextField().getText();
-        model.setInvDescription(InvDescription);
+            String InvDescription = view.getCommentTextField().getText();
+            model.setInvDescription(InvDescription);
 
-        model.setInvDifference(DoubleRounder.round(differenceGrossNet(InvSalt, (InvGrossWeight - InvNetWeight), InvAbroadReduced, InvGrossWeight), 3));
+            model.setInvDifference(DoubleRounder.round(differenceGrossNet(InvSalt, (InvGrossWeight - InvNetWeight), InvAbroadReduced, InvGrossWeight), 3));
 
-        model.setInvTimeStamp(new java.sql.Timestamp(new java.util.Date().getTime()));
-        model.setInvTotalLoad(DoubleRounder.round(calculateTotalLoad(InvSalt, (InvGrossWeight - InvNetWeight), InvGrossWeight), 3));
+            model.setInvTimeStamp(new java.sql.Timestamp(new java.util.Date().getTime()));
+            model.setInvTotalLoad(DoubleRounder.round(calculateTotalLoad(InvSalt, (InvGrossWeight - InvNetWeight), InvGrossWeight), 3));
 
-        return incomingLegalEntityInvoiceService.saveIncomingInvoice(model);
-
+            IncomingLegalEntityInvoiceModel model_ = incomingLegalEntityInvoiceService.saveIncomingInvoice(model);
+            return model_;
+        } catch (NumberFormatException | UnexpectedRollbackException ex) {
+            if (!exception.isRaised()) {
+                helper.showMessageDialog(null, "Neispravan format", "Pažnja", 0);
+                exception.setRaised(true);
+            }
+        }
+        return null;
     }
 
-    public void saveInvoice() {
-        IncomingLegalEntityInvoiceModel invoiceModel = newInvoiceInfo();
+    public boolean saveInvoice() {
+        List<IncomingInvoiceHideTypeModel> newIncomingInvoiceHideTypeInfo = newIncomingInvoiceHideTypeInfo();
+        IncomingLegalEntityInvoiceModel invoiceModel = null;
+        if (!exception.isRaised()) {
+            invoiceModel = newInvoiceInfo();
+        }
         int newInvoiceId = invoiceModel != null ? invoiceModel.getInvId() : -1;
         if (invoiceModel != null) {
             IncomingInvoiceCertificateModel incomingInvoiceCertModel = newIncomingInvoiceCertificateInfo();
             incomingInvoiceCertModel.setIncomingInvoiceId(newInvoiceId);
             incomingInvoiceCertificateService.saveIncomingInvoiceCertificate(incomingInvoiceCertModel);
-            newIncomingInvoiceHideTypeInfo().stream().map((model) -> {
+            newIncomingInvoiceHideTypeInfo.stream().map((model) -> {
                 model.setIncomingInvoiceId(newInvoiceId);
                 return model;
             }).forEachOrdered(incomingInvoiceHideTypeService::saveIncomingInvoiceHideType);
 
             helper.showMessageDialog(null, "Faktura:   " + invoiceModel.getInvName() + "   uspješno kreirana", "Poruka", 1);
-
+            return true;
         } else {
             helper.showMessageDialog(null, "Greška\n\nFaktura nije kreirana", "Pažnja", 0);
+            exception.setRaised(false);
         }
-
+        return false;
     }
 
     @Component
