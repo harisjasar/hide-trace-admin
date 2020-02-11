@@ -59,11 +59,11 @@ public class NewIncomingInvoiceDialogController {
     private IncomingInvoiceHideTypeService incomingInvoiceHideTypeService;
 
     @Autowired
-    SaveException exception;
+    private SaveException exception;
 
-//    public NewIncomingInvoiceDialogController(NewIncomingInvoiceDialogView view) {
-//        this.view = view;
-//    }
+    @Autowired
+    private MessageDialog messageDialog;
+
     private void initView() {
         for (JTextField field : getArticleTextFields()) {
             field.setEnabled(false);
@@ -158,7 +158,7 @@ public class NewIncomingInvoiceDialogController {
             return list;
         } catch (NumberFormatException ex) {
             if (!exception.isRaised()) {
-                helper.showMessageDialog(null, "Neispravan format", "Pažnja", 0);
+                messageDialog.showMessageDialog(null, "Neispravan format", "Pažnja", 0);
                 exception.setRaised(true);
             }
         }
@@ -179,7 +179,7 @@ public class NewIncomingInvoiceDialogController {
         return model;
     }
 
-    public IncomingLegalEntityInvoiceModel newInvoiceInfo() {
+    private IncomingLegalEntityInvoiceModel newInvoiceInfo() {
         IncomingLegalEntityInvoiceModel model = new IncomingLegalEntityInvoiceModel();
         try {
             int LegalEntityID = ((LegalEntityModel) view.getLegalEntityDropDown().getSelectedItem()).getLegalEntityID();
@@ -212,7 +212,7 @@ public class NewIncomingInvoiceDialogController {
             return model_;
         } catch (NumberFormatException | UnexpectedRollbackException ex) {
             if (!exception.isRaised()) {
-                helper.showMessageDialog(null, "Neispravan format", "Pažnja", 0);
+                messageDialog.showMessageDialog(null, "Neispravan format", "Pažnja", 0);
                 exception.setRaised(true);
             }
         }
@@ -235,10 +235,10 @@ public class NewIncomingInvoiceDialogController {
                 return model;
             }).forEachOrdered(incomingInvoiceHideTypeService::saveIncomingInvoiceHideType);
 
-            helper.showMessageDialog(null, "Faktura:   " + invoiceModel.getInvName() + "   uspješno kreirana", "Poruka", 1);
+            messageDialog.showMessageDialog(null, "Faktura:   " + invoiceModel.getInvName() + "   uspješno kreirana", "Poruka", 1);
             return true;
         } else {
-            helper.showMessageDialog(null, "Greška\n\nFaktura nije kreirana", "Pažnja", 0);
+            messageDialog.showMessageDialog(null, "Greška\n\nFaktura nije kreirana", "Pažnja", 0);
             exception.setRaised(false);
         }
         return false;
@@ -263,9 +263,6 @@ public class NewIncomingInvoiceDialogController {
 
     @Component
     private static class AddInvoiceButtonListener implements ActionListener {
-
-        @Autowired
-        private ApplicationContext appContext;
 
         @Autowired
         private NewIncomingInvoiceDialogHelper helper;
@@ -362,7 +359,6 @@ public class NewIncomingInvoiceDialogController {
     }
 
     public void completeSave() {
-        //view.dispose();
         for (JTextField field : getAllTextFields()) {
             field.setText("");
         }

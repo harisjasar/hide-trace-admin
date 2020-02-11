@@ -5,9 +5,9 @@
  */
 package com.hidetrace.admin.helper.incominginvoice;
 
+import com.hidetrace.admin.common.MessageDialog;
 import com.hidetrace.admin.controller.incominginvoice.NewIncomingInvoiceDialogController;
 import java.util.HashMap;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,15 @@ public class NewIncomingInvoiceDialogHelper {
     @Autowired
     NewIncomingInvoiceDialogController controller;
 
+    @Autowired
+    MessageDialog messageDialog;
+
     public void addInvoice() {
 
         boolean emptyField = isFieldEmpty(controller.arrayOfTextFields());
 
         if (emptyField) {
-            showMessageDialog(null, "Polje ne može biti prazno", "Pažnja", 3);
+            messageDialog.showMessageDialog(null, "Polje ne može biti prazno", "Pažnja", 3);
         } else {
             boolean[] articleState = articleState(controller.getArticleTextFields(), controller.getArticleToggleBtns());
             boolean notTypeSelected = articleState[0];
@@ -40,10 +43,10 @@ public class NewIncomingInvoiceDialogHelper {
                         controller.completeSave();
                     }
                 } else {
-                    showMessageDialog(null, "Unesite cijenu za odabranu vrstu", "Pažnja", 3);
+                    messageDialog.showMessageDialog(null, "Unesite cijenu za odabranu vrstu", "Pažnja", 3);
                 }
             } else {
-                showMessageDialog(null, "Odaberi vrstu", "Pažnja", 3);
+                messageDialog.showMessageDialog(null, "Odaberi vrstu", "Pažnja", 3);
             }
         }
 
@@ -88,22 +91,6 @@ public class NewIncomingInvoiceDialogHelper {
         boolean[] articleState = {notTypeSelected, notTypePriceEntered};
 
         return articleState;
-
-    }
-
-    /**
-     * ERROR_MESSAGE = 0; INFORMATION_MESSAGE = 1; WARNING_MESSAGE = 2;
-     * QUESTION_MESSAGE = 3; PLAIN_MESSAGE = -1;
-     *
-     * @param parentComponent
-     * @param message
-     * @param title
-     * @param messageType
-     */
-    public void showMessageDialog(Component parentComponent,
-            Object message, String title, int messageType) {
-
-        JOptionPane.showMessageDialog((java.awt.Component) parentComponent, message, title, messageType);
 
     }
 }
