@@ -29,7 +29,7 @@ public class NewOutgoingInvoiceDialogHelper {
         boolean emptyField = isFieldEmpty(controller.arrayOfTextFields());
 
         if (emptyField) {
-            messageDialog.showMessageDialog(null, "Polje ne može biti prazno", "Pažnja", 3);
+            messageDialog.EmptyFieldForbidden();
         } else {
 
             if (controller.saveInvoice()) {

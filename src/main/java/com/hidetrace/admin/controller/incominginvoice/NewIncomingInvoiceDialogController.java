@@ -158,7 +158,7 @@ public class NewIncomingInvoiceDialogController {
             return list;
         } catch (NumberFormatException ex) {
             if (!exception.isRaised()) {
-                messageDialog.showMessageDialog(null, "Neispravan format", "Pažnja", 0);
+                messageDialog.WrongFormat();
                 exception.setRaised(true);
             }
         }
@@ -212,7 +212,7 @@ public class NewIncomingInvoiceDialogController {
             return model_;
         } catch (NumberFormatException | UnexpectedRollbackException ex) {
             if (!exception.isRaised()) {
-                messageDialog.showMessageDialog(null, "Neispravan format", "Pažnja", 0);
+                messageDialog.WrongFormat();
                 exception.setRaised(true);
             }
         }
@@ -235,10 +235,10 @@ public class NewIncomingInvoiceDialogController {
                 return model;
             }).forEachOrdered(incomingInvoiceHideTypeService::saveIncomingInvoiceHideType);
 
-            messageDialog.showMessageDialog(null, "Faktura:   " + invoiceModel.getInvName() + "   uspješno kreirana", "Poruka", 1);
+            messageDialog.InvoiceSuccessfullyCreated(invoiceModel.getInvName());
             return true;
         } else {
-            messageDialog.showMessageDialog(null, "Greška\n\nFaktura nije kreirana", "Pažnja", 0);
+            messageDialog.ErrorCreatingInvoice();
             exception.setRaised(false);
         }
         return false;

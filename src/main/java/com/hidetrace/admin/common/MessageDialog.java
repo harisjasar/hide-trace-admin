@@ -24,10 +24,43 @@ public class MessageDialog {
      * @param title
      * @param messageType
      */
-    public void showMessageDialog(Component parentComponent,
+    private void showMessageDialog(Component parentComponent,
             Object message, String title, int messageType) {
 
         JOptionPane.showMessageDialog((java.awt.Component) parentComponent, message, title, messageType);
+
+    }
+
+    public void EmptyFieldForbidden() {
+        showMessageDialog(null, "Polje ne može biti prazno", "Pažnja", 0);
+    }
+
+    public void EnterPriceForSelectedType() {
+        showMessageDialog(null, "Unesite cijenu za odabranu vrstu", "Pažnja", 0);
+    }
+
+    public void SelectType() {
+        showMessageDialog(null, "Odaberi vrstu", "Pažnja", 3);
+    }
+
+    public void InvoiceSuccessfullyCreated(String invName) {
+        showMessageDialog(null, "Faktura:   " + invName + "   uspješno kreirana", "Poruka", 1);
+    }
+
+    public void ErrorCreatingInvoice() {
+        showMessageDialog(null, "Greška\n\nFaktura nije kreirana", "Pažnja", 0);
+    }
+
+    public void WrongFormat() {
+        showMessageDialog(null, "Neispravan format", "Pažnja", 0);
+    }
+
+    public void AlreadyExist(String name) {
+        showMessageDialog(null, "Greška " + name + " već postoji", "Pažnja", 0);
+    }
+
+    public void LegalEntitySuccessfullyCreated(String name) {
+        showMessageDialog(null, "Pravno lice:   " + name + "   uspješno kreirano", "Poruka", 1);
 
     }
 

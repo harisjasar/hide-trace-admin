@@ -94,10 +94,10 @@ public class NewOutgoingInvoiceDialogController {
         }
         if (invoiceModel != null) {
 
-            messageDialog.showMessageDialog(null, "Faktura:   " + invoiceModel.getName() + "   uspješno kreirana", "Poruka", 1);
+            messageDialog.InvoiceSuccessfullyCreated(invoiceModel.getName());
             return true;
         } else {
-            messageDialog.showMessageDialog(null, "Greška\n\nFaktura nije kreirana", "Pažnja", 0);
+            messageDialog.ErrorCreatingInvoice();
             exception.setRaised(false);
         }
         return false;
@@ -119,7 +119,7 @@ public class NewOutgoingInvoiceDialogController {
 
         } catch (NumberFormatException | UnexpectedRollbackException ex) {
             if (!exception.isRaised()) {
-                messageDialog.showMessageDialog(null, "Neispravan format", "Pažnja", 0);
+                messageDialog.WrongFormat();
                 exception.setRaised(true);
             }
         }

@@ -31,7 +31,7 @@ public class NewIncomingInvoiceDialogHelper {
         boolean emptyField = isFieldEmpty(controller.arrayOfTextFields());
 
         if (emptyField) {
-            messageDialog.showMessageDialog(null, "Polje ne može biti prazno", "Pažnja", 3);
+            messageDialog.EmptyFieldForbidden();
         } else {
             boolean[] articleState = articleState(controller.getArticleTextFields(), controller.getArticleToggleBtns());
             boolean notTypeSelected = articleState[0];
@@ -43,10 +43,10 @@ public class NewIncomingInvoiceDialogHelper {
                         controller.completeSave();
                     }
                 } else {
-                    messageDialog.showMessageDialog(null, "Unesite cijenu za odabranu vrstu", "Pažnja", 3);
+                    messageDialog.EnterPriceForSelectedType();
                 }
             } else {
-                messageDialog.showMessageDialog(null, "Odaberi vrstu", "Pažnja", 3);
+                messageDialog.SelectType();
             }
         }
 
