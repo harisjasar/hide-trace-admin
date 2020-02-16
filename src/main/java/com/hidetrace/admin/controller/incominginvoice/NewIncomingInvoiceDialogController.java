@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *
+ * Contributors:
+ *    Jashar
  */
 package com.hidetrace.admin.controller.incominginvoice;
 
@@ -20,8 +20,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.UIManager;
 import lombok.Data;
 import org.decimal4j.util.DoubleRounder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +66,9 @@ public class NewIncomingInvoiceDialogController {
 
     @Autowired
     private MessageDialog messageDialog;
+
+    @Autowired
+    NewOutgoingInvoiceConfirmationMessagePanelController confirmMessagePanelController;
 
     private void initView() {
         for (JTextField field : getArticleTextFields()) {
@@ -377,5 +383,82 @@ public class NewIncomingInvoiceDialogController {
 
     private Double calculateTotalLoad(Double salt, Double weightDifference, Double wrossWeight) {
         return salt + ((weightDifference * 100) / wrossWeight);
+    }
+
+    public HashMap getConfirmInvoiceData() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("legalEntity", ((LegalEntityModel) view.getLegalEntityDropDown().getSelectedItem()).getName());
+        map.put("legalEntityLabel", view.getLegalEntityLabel().getText());
+        map.put("invoiceId", view.getInvoiceIdTextField().getText());
+        map.put("invoiceIdLabel", view.getInvoiceIdLabel().getText());
+        map.put("grossWeight", view.getControlWeightInvoicegrossTextField().getText());
+        map.put("grossWeightLabel", view.getGrossWeightLabel().getText());
+        map.put("netWeight", view.getControlWeightCompanyGrossTextField().getText());
+        map.put("netWeightLabel", view.getNetWeightLabel().getText());
+        map.put("abroadReduced", view.getAbroadReducedTextField().getText());
+        map.put("abroadReducedLabel", view.getAbroadReducedLabel().getText());
+        map.put("salt", view.getSaltControlTextField().getText());
+        map.put("saltLabel", view.getSaltLabel().getText());
+        map.put("comment", view.getCommentTextField().getText());
+        map.put("commentLabel", view.getCommentLabel().getText());
+        map.put("certificateLabel", view.getCertficateDropDown().getSelectedItem().toString());
+        map.put("certificate", view.getCertificateTextField().getText());
+        if (view.getCowArticleTglBtn().isSelected()) {
+            map.put("cowLabel", view.getCowArticleTglBtn().getText());
+            map.put("cow", view.getCowtxtField().getText());
+        }
+        if (view.getBullArticleTglBtn().isSelected()) {
+            map.put("bullLabel", view.getBullArticleTglBtn().getText());
+            map.put("bull", view.getBulltxtField().getText());
+        }
+        if (view.getCalfArticleTglBtn().isSelected()) {
+            map.put("calfLabel", view.getCalfArticleTglBtn().getText());
+            map.put("calf", view.getCalftxtField().getText());
+        }
+
+        return map;
+    }
+
+    public boolean confirmData() {
+
+        HashMap<String, String> data = getConfirmInvoiceData();
+        HashMap<String, Object> objects = confirmMessagePanelController.getData();
+        ((JLabel) objects.get("legalEntityLabel")).setText(data.get("legalEntityLabel"));
+        ((JLabel) objects.get("legalEntity")).setText(data.get("legalEntity"));
+        ((JLabel) objects.get("invoiceIdLabel")).setText(data.get("invoiceIdLabel"));
+        ((JLabel) objects.get("invoiceId")).setText(data.get("invoiceId"));
+        ((JLabel) objects.get("grossWeightLabel")).setText(data.get("grossWeightLabel"));
+        ((JLabel) objects.get("grossWeight")).setText(data.get("grossWeight"));
+        ((JLabel) objects.get("netWeightLabel")).setText(data.get("netWeightLabel"));
+        ((JLabel) objects.get("netWeight")).setText(data.get("netWeight"));
+        ((JLabel) objects.get("abroadReducedLabel")).setText(data.get("abroadReducedLabel"));
+        ((JLabel) objects.get("abroadReduced")).setText(data.get("abroadReduced"));
+        ((JLabel) objects.get("saltLabel")).setText(data.get("saltLabel"));
+        ((JLabel) objects.get("salt")).setText(data.get("salt"));
+        ((JLabel) objects.get("certificateLabel")).setText(data.get("certificateLabel"));
+        ((JLabel) objects.get("certificate")).setText(data.get("certificate"));
+        ((JLabel) objects.get("cowLabel")).setText(data.get("cowLabel") != null ? data.get("cowLabel") : "");
+        ((JLabel) objects.get("cow")).setText(data.get("cow") != null ? data.get("cow") : "");
+        ((JLabel) objects.get("bullLabel")).setText(data.get("bullLabel") != null ? data.get("bullLabel") : "");
+        ((JLabel) objects.get("bull")).setText(data.get("bull") != null ? data.get("bull") : "");
+        ((JLabel) objects.get("calfLabel")).setText(data.get("calfLabel") != null ? data.get("calfLabel") : "");
+        ((JLabel) objects.get("calf")).setText(data.get("calf") != null ? data.get("calf") : "");
+        ((JLabel) objects.get("commentLabel")).setText(data.get("commentLabel"));
+
+        StringBuilder comment = new StringBuilder();
+
+        comment.append("<html>");
+        comment.append(data.get("comment"));
+        comment.append("</html>");
+        ((JLabel) objects.get("comment")).setText(comment.toString());
+
+        UIManager.put("OptionPane.yesButtonText", "Da");
+        UIManager.put("OptionPane.noButtonText", "Ne");
+        UIManager.put("OptionPane.cancelButtonText", "Otkaži");
+        int dialogButton = 0;
+        int dialogResult = JOptionPane.showConfirmDialog(null, confirmMessagePanelController.getConfirmationPanel(),
+                "Potvrda", dialogButton);
+
+        return dialogResult == JOptionPane.YES_OPTION;
     }
 }

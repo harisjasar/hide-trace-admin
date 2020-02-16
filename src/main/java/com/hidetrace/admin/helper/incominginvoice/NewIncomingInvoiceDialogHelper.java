@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Contributors:
+ *    Jashar
  */
 package com.hidetrace.admin.helper.incominginvoice;
 
@@ -39,8 +38,10 @@ public class NewIncomingInvoiceDialogHelper {
 
             if (notTypeSelected) {
                 if (notTypePriceEntered) {
-                    if (controller.saveInvoice()) {
-                        controller.completeSave();
+                    if (controller.confirmData()) {
+                        if (controller.saveInvoice()) {
+                            controller.completeSave();
+                        }
                     }
                 } else {
                     messageDialog.EnterPriceForSelectedType();
