@@ -18,7 +18,11 @@ import com.hidetrace.admin.service.LegalEntityService;
 import com.hidetrace.admin.view.legalentity.NewLegalEntityDialogView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -47,6 +51,9 @@ public class NewLegalEntityDialogController {
 
     @Autowired
     private SaveException exception;
+
+    @Autowired
+    private NewLegalEntityConfirmationMessagePanelController confirmMessagePanelController;
 
     public void start() {
         initListeners();
@@ -130,6 +137,39 @@ public class NewLegalEntityDialogController {
             helper.addLegalEntity();
         }
 
+    }
+
+    public HashMap getConfirmInvoiceData() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("legalEntityNameLabel", view.getLegalEntityNameLabel().getText());
+        map.put("legalEntityName", view.getLegalEntityNameTxtField().getText());
+        map.put("legalEntityAddressLabel", view.getLegalEntityAddressLabel().getText());
+        map.put("legalEntityAddress", view.getLegalEntityAddressTxtField().getText());
+        map.put("legalEntityPhoneNumberLabel", view.getLegalEntityPhoneNumberLabel().getText());
+        map.put("legalEntityPhoneNumber", view.getLegalEntityPhoneNumberTxtField().getText());
+
+        return map;
+    }
+
+    public boolean confirmData() {
+
+        HashMap<String, String> data = getConfirmInvoiceData();
+        HashMap<String, Object> objects = confirmMessagePanelController.getData();
+        ((JLabel) objects.get("legalEntityNameLabel")).setText(data.get("legalEntityNameLabel"));
+        ((JLabel) objects.get("legalEntityName")).setText(data.get("legalEntityName"));
+        ((JLabel) objects.get("legalEntityAddressLabel")).setText(data.get("legalEntityAddressLabel"));
+        ((JLabel) objects.get("legalEntityAddress")).setText(data.get("legalEntityAddress"));
+        ((JLabel) objects.get("legalEntityPhoneNumberLabel")).setText(data.get("legalEntityPhoneNumberLabel"));
+        ((JLabel) objects.get("legalEntityPhoneNumber")).setText(data.get("legalEntityPhoneNumber"));
+
+        UIManager.put("OptionPane.yesButtonText", "Da");
+        UIManager.put("OptionPane.noButtonText", "Ne");
+        UIManager.put("OptionPane.cancelButtonText", "Otkaži");
+        int dialogButton = 0;
+        int dialogResult = JOptionPane.showConfirmDialog(null, confirmMessagePanelController.getConfirmationPanel(),
+                "Potvrda", dialogButton);
+
+        return dialogResult == JOptionPane.YES_OPTION;
     }
 
 }

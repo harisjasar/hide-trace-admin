@@ -36,10 +36,11 @@ public class NewLegalEntityDialogHelper {
         if (emptyField) {
             messageDialog.EmptyFieldForbidden();
         } else {
+            if (controller.confirmData()) {
+                if (controller.saveLegalEntity()) {
+                    controller.completeSave();
 
-            if (controller.saveLegalEntity()) {
-                controller.completeSave();
-
+                }
             }
         }
     }
