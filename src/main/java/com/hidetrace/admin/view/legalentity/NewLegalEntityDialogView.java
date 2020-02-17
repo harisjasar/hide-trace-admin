@@ -63,6 +63,7 @@ public class NewLegalEntityDialogView extends javax.swing.JDialog {
         LegalEntityNameLabel.setText("Naziv Firme");
 
         LegalEntityNameTxtField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LegalEntityNameTxtField.setNextFocusableComponent(LegalEntityAddressTxtField);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -89,6 +90,7 @@ public class NewLegalEntityDialogView extends javax.swing.JDialog {
         LegalEntityAddressLabel.setText("Adresa Firme");
 
         LegalEntityAddressTxtField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LegalEntityAddressTxtField.setNextFocusableComponent(LegalEntityPhoneNumberTxtField);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);

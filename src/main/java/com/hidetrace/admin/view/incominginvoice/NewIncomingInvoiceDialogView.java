@@ -79,6 +79,7 @@ public class NewIncomingInvoiceDialogView extends javax.swing.JDialog {
         legalEntityDropDown.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
         invoiceIdTextField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        invoiceIdTextField.setNextFocusableComponent(controlWeightInvoicegrossTextField);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -113,13 +114,16 @@ public class NewIncomingInvoiceDialogView extends javax.swing.JDialog {
         grossWeightLabel.setText("Kontrola težine faktura bruto:");
 
         controlWeightInvoicegrossTextField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        controlWeightInvoicegrossTextField.setNextFocusableComponent(controlWeightCompanyGrossTextField);
 
         controlWeightCompanyGrossTextField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        controlWeightCompanyGrossTextField.setNextFocusableComponent(abroadReducedTextField);
 
         netWeightLabel.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         netWeightLabel.setText("Kontrola težine ulaz bruto:");
 
         saltControlTextField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        saltControlTextField.setNextFocusableComponent(commentTextField);
 
         saltLabel.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         saltLabel.setText("Kontrola soli:");
@@ -128,6 +132,7 @@ public class NewIncomingInvoiceDialogView extends javax.swing.JDialog {
         abroadReducedLabel.setText("Na terenu odbijeno:");
 
         abroadReducedTextField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        abroadReducedTextField.setNextFocusableComponent(saltControlTextField);
 
         commentLabel.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         commentLabel.setText("Komentar:");
@@ -135,6 +140,7 @@ public class NewIncomingInvoiceDialogView extends javax.swing.JDialog {
         commentTextField.setColumns(20);
         commentTextField.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N
         commentTextField.setRows(5);
+        commentTextField.setNextFocusableComponent(certificateTextField);
         commentTextField.setLineWrap(true);
         jScrollPane1.setViewportView(commentTextField);
 
@@ -194,20 +200,25 @@ public class NewIncomingInvoiceDialogView extends javax.swing.JDialog {
         cowArticleTglBtn.setText("KRAVA");
         cowArticleTglBtn.setMaximumSize(new java.awt.Dimension(105, 15));
         cowArticleTglBtn.setMinimumSize(new java.awt.Dimension(105, 15));
+        cowArticleTglBtn.setNextFocusableComponent(cowtxtField);
 
         cowtxtField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        cowtxtField.setNextFocusableComponent(bullArticleTglBtn);
 
         bullArticleTglBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         bullArticleTglBtn.setText("BIK");
         bullArticleTglBtn.setMaximumSize(new java.awt.Dimension(105, 15));
         bullArticleTglBtn.setMinimumSize(new java.awt.Dimension(105, 15));
+        bullArticleTglBtn.setNextFocusableComponent(bulltxtField);
 
         bulltxtField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bulltxtField.setNextFocusableComponent(calfArticleTglBtn);
 
         calfArticleTglBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         calfArticleTglBtn.setText("TELE");
         calfArticleTglBtn.setMaximumSize(new java.awt.Dimension(105, 15));
         calfArticleTglBtn.setMinimumSize(new java.awt.Dimension(105, 15));
+        calfArticleTglBtn.setNextFocusableComponent(calftxtField);
 
         calftxtField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
@@ -248,6 +259,7 @@ public class NewIncomingInvoiceDialogView extends javax.swing.JDialog {
         certficateDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ZVUD", "VS-B2" }));
 
         certificateTextField.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        certificateTextField.setNextFocusableComponent(cowArticleTglBtn);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
