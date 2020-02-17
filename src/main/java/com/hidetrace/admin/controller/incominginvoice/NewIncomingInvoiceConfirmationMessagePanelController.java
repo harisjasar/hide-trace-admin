@@ -5,7 +5,7 @@
  */
 package com.hidetrace.admin.controller.incominginvoice;
 
-import com.hidetrace.admin.view.incominginvoice.NewOutgoingInvoiceConfirmationMessagePanelView;
+import com.hidetrace.admin.view.incominginvoice.NewIncomingInvoiceConfirmationMessagePanelView;
 import java.util.HashMap;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,10 +19,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Data
-public class NewOutgoingInvoiceConfirmationMessagePanelController {
+public class NewIncomingInvoiceConfirmationMessagePanelController {
 
     @Autowired
-    NewOutgoingInvoiceConfirmationMessagePanelView panel;
+    NewIncomingInvoiceConfirmationMessagePanelView panel;
 
     public HashMap getData() {
 

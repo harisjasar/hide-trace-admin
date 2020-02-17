@@ -16,8 +16,12 @@ import com.hidetrace.admin.view.outgoinginvoice.NewOutgoingInvoiceDialogView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -50,6 +54,9 @@ public class NewOutgoingInvoiceDialogController {
     @Autowired
     private ApplicationContext appContext;
 
+    @Autowired
+    private NewOutgoingInvoiceConfirmationMessagePanelController confirmMessagePanelController;
+
     private void initView() {
         view.setResizable(false);
         view.setLocationRelativeTo(null);
@@ -64,8 +71,8 @@ public class NewOutgoingInvoiceDialogController {
     }
 
     private void initListeners() {
-        if (view.getAddInvoice().getActionListeners().length == 0) {
-            view.getAddInvoice().addActionListener(appContext.getBean(AddInvoiceButtonListener.class));
+        if (view.getAddInvoiceButton().getActionListeners().length == 0) {
+            view.getAddInvoiceButton().addActionListener(appContext.getBean(AddInvoiceButtonListener.class));
 
         }
     }
@@ -142,6 +149,35 @@ public class NewOutgoingInvoiceDialogController {
             helper.addInvoice();
         }
 
+    }
+
+    public HashMap getConfirmInvoiceData() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("legalEntity", ((LegalEntityModel) view.getLegalEntityDropDown().getSelectedItem()).getName());
+        map.put("legalEntityLabel", view.getLegalEntityLabel().getText());
+        map.put("invoiceId", view.getInvoiceIdTextField().getText());
+        map.put("invoiceIdLabel", view.getInvoiceIdLabel().getText());
+
+        return map;
+    }
+
+    public boolean confirmData() {
+
+        HashMap<String, String> data = getConfirmInvoiceData();
+        HashMap<String, Object> objects = confirmMessagePanelController.getData();
+        ((JLabel) objects.get("legalEntityLabel")).setText(data.get("legalEntityLabel"));
+        ((JLabel) objects.get("legalEntity")).setText(data.get("legalEntity"));
+        ((JLabel) objects.get("invoiceIdLabel")).setText(data.get("invoiceIdLabel"));
+        ((JLabel) objects.get("invoiceId")).setText(data.get("invoiceId"));
+
+        UIManager.put("OptionPane.yesButtonText", "Da");
+        UIManager.put("OptionPane.noButtonText", "Ne");
+        UIManager.put("OptionPane.cancelButtonText", "Otkaži");
+        int dialogButton = 0;
+        int dialogResult = JOptionPane.showConfirmDialog(null, confirmMessagePanelController.getConfirmationPanel(),
+                "Potvrda", dialogButton);
+
+        return dialogResult == JOptionPane.YES_OPTION;
     }
 
 }

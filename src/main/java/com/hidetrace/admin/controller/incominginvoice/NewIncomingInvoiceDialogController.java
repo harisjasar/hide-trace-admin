@@ -71,7 +71,7 @@ public class NewIncomingInvoiceDialogController {
     private MessageDialog messageDialog;
 
     @Autowired
-    NewOutgoingInvoiceConfirmationMessagePanelController confirmMessagePanelController;
+    NewIncomingInvoiceConfirmationMessagePanelController confirmMessagePanelController;
 
     private void initView() {
         for (JTextField field : getArticleTextFields()) {
@@ -118,13 +118,13 @@ public class NewIncomingInvoiceDialogController {
             view.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e) {
-                    appContext.getBean(CheckFormatCorrect.class).stop();
+                    appContext.getBean(CheckFormatCorrectIncomingInvoice.class).stop();
                 }
             });
         }
 
-        appContext.getBean(CheckFormatCorrect.class).start();
-        Thread t1 = new Thread(appContext.getBean(CheckFormatCorrect.class), "T1");
+        appContext.getBean(CheckFormatCorrectIncomingInvoice.class).start();
+        Thread t1 = new Thread(appContext.getBean(CheckFormatCorrectIncomingInvoice.class), "T1");
         t1.start();
     }
 
@@ -392,7 +392,7 @@ public class NewIncomingInvoiceDialogController {
         view.getCowtxtField().setEnabled(false);
         view.getCalftxtField().setEnabled(false);
 
-        Thread t1 = new Thread(appContext.getBean(CheckFormatCorrect.class), "T1");
+        Thread t1 = new Thread(appContext.getBean(CheckFormatCorrectIncomingInvoice.class), "T1");
         t1.start();
     }
 
@@ -482,7 +482,7 @@ public class NewIncomingInvoiceDialogController {
     }
 
     @Component
-    public class CheckFormatCorrect implements Runnable {
+    public class CheckFormatCorrectIncomingInvoice implements Runnable {
 
         @Autowired
         private NewIncomingInvoiceDialogView view;
@@ -536,6 +536,6 @@ public class NewIncomingInvoiceDialogController {
     }
 
     public void StopCheckFormatCorrect() {
-        appContext.getBean(CheckFormatCorrect.class).stop();
+        appContext.getBean(CheckFormatCorrectIncomingInvoice.class).stop();
     }
 }

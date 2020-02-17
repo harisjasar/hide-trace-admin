@@ -15,12 +15,12 @@ import org.springframework.stereotype.Component;
 @Component
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class NewOutgoingInvoiceConfirmationMessagePanelView extends javax.swing.JPanel {
+public class NewIncomingInvoiceConfirmationMessagePanelView extends javax.swing.JPanel {
 
     /**
      * Creates new form NewJPanel
      */
-    public NewOutgoingInvoiceConfirmationMessagePanelView() {
+    public NewIncomingInvoiceConfirmationMessagePanelView() {
         initComponents();
     }
 

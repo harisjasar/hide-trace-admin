@@ -57,8 +57,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="InvoiceIdLabel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="LegalEntityLabel" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -75,11 +75,11 @@
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="legalEntityDropDown" alignment="0" pref="49" max="32767" attributes="0"/>
-                      <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="LegalEntityLabel" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
+                      <Component id="InvoiceIdLabel" alignment="0" max="32767" attributes="0"/>
                       <Component id="invoiceIdTextField" alignment="0" pref="42" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -88,7 +88,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="LegalEntityLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="18" style="0"/>
@@ -96,7 +96,7 @@
             <Property name="text" type="java.lang.String" value="Firma:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel8">
+        <Component class="javax.swing.JLabel" name="InvoiceIdLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="18" style="0"/>
@@ -133,7 +133,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="addInvoice" min="-2" pref="122" max="-2" attributes="0"/>
+                  <Component id="addInvoiceButton" min="-2" pref="122" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -142,16 +142,16 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="addInvoice" min="-2" pref="54" max="-2" attributes="0"/>
+                  <Component id="addInvoiceButton" min="-2" pref="54" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="addInvoice">
+        <Component class="javax.swing.JButton" name="addInvoiceButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Dodaj Fakturu"/>
+            <Property name="text" type="java.lang.String" value="Dodaj fakturu"/>
           </Properties>
         </Component>
       </SubComponents>

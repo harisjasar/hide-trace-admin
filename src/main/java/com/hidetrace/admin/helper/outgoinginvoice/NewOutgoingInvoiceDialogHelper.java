@@ -31,9 +31,10 @@ public class NewOutgoingInvoiceDialogHelper {
         if (emptyField) {
             messageDialog.EmptyFieldForbidden();
         } else {
-
-            if (controller.saveInvoice()) {
-                controller.completeSave();
+            if (controller.confirmData()) {
+                if (controller.saveInvoice()) {
+                    controller.completeSave();
+                }
             }
 
         }
