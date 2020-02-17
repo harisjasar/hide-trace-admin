@@ -16,7 +16,10 @@ import com.hidetrace.admin.view.incominginvoice.NewIncomingInvoiceDialogView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -82,7 +85,6 @@ public class NewIncomingInvoiceDialogController {
         }
 
         view.getCommentTextField().setText("");
-        view.getInfoLabel().setText("");
 
         view.setResizable(false);
         view.setLocationRelativeTo(null);
@@ -111,6 +113,19 @@ public class NewIncomingInvoiceDialogController {
             }
 
         }
+
+        if (view.getWindowListeners().length == 0) {
+            view.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    appContext.getBean(CheckFormatCorrect.class).stop();
+                }
+            });
+        }
+
+        appContext.getBean(CheckFormatCorrect.class).start();
+        Thread t1 = new Thread(appContext.getBean(CheckFormatCorrect.class), "T1");
+        t1.start();
     }
 
     private void initData() {
@@ -260,9 +275,10 @@ public class NewIncomingInvoiceDialogController {
         public void keyReleased(java.awt.event.KeyEvent evt) {
             try {
                 double j = Double.parseDouble(((JTextField) evt.getComponent()).getText());
-                view.infoLabel.setText("");
+                ((JTextField) evt.getComponent()).setBackground(new java.awt.Color(255, 255, 255));
             } catch (NumberFormatException ex) {
-                view.infoLabel.setText("neispravan format");
+                ((JTextField) evt.getComponent()).setBackground(new java.awt.Color(255, 51, 51));
+
             }
         }
     }
@@ -375,6 +391,9 @@ public class NewIncomingInvoiceDialogController {
         view.getBulltxtField().setEnabled(false);
         view.getCowtxtField().setEnabled(false);
         view.getCalftxtField().setEnabled(false);
+
+        Thread t1 = new Thread(appContext.getBean(CheckFormatCorrect.class), "T1");
+        t1.start();
     }
 
     private double differenceGrossNet(double salt, double weightDifference, double abroadReduced, double abroadWeight) {
@@ -460,5 +479,63 @@ public class NewIncomingInvoiceDialogController {
                 "Potvrda", dialogButton);
 
         return dialogResult == JOptionPane.YES_OPTION;
+    }
+
+    @Component
+    public class CheckFormatCorrect implements Runnable {
+
+        @Autowired
+        private NewIncomingInvoiceDialogView view;
+
+        private volatile boolean correct = false;
+
+        @Override
+        public void run() {
+            List<JTextField> list = new ArrayList<>();
+            JTextField[] fields = getArticleTextFields();
+            list.addAll(Arrays.asList(fields));
+            list.add(view.getControlWeightCompanyGrossTextField());
+            list.add(view.getControlWeightInvoicegrossTextField());
+            list.add(view.getAbroadReducedTextField());
+            list.add(view.getSaltControlTextField());
+
+            while (!correct) {
+                boolean good = true;
+                for (JTextField field : list) {
+                    if (field.isEnabled()) {
+                        if (!checkCorrect(field.getText())) {
+                            good = false;
+                        }
+                    }
+                }
+                if (!good) {
+                    view.getAddInvoiceButton().setEnabled(false);
+                } else {
+                    view.getAddInvoiceButton().setEnabled(true);
+                }
+            }
+
+        }
+
+        public boolean checkCorrect(String a) {
+            try {
+                double n = Double.parseDouble(a);
+            } catch (NumberFormatException ex) {
+                return false;
+            }
+            return true;
+        }
+
+        public void stop() {
+            correct = true;
+        }
+
+        public void start() {
+            correct = false;
+        }
+    }
+
+    public void StopCheckFormatCorrect() {
+        appContext.getBean(CheckFormatCorrect.class).stop();
     }
 }
