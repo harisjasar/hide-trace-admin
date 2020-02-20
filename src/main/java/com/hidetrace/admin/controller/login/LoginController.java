@@ -13,6 +13,8 @@ import com.hidetrace.admin.service.login.LoginService;
 import com.hidetrace.admin.view.login.LoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.nio.charset.StandardCharsets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -52,6 +54,16 @@ public class LoginController {
         if (view.getLoginButton().getActionListeners().length == 0) {
             view.getLoginButton().addActionListener(appContext.getBean(LoginButtonButtonListener.class));
 
+        }
+
+        if (view.getWindowListeners().length == 0) {
+            view.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    // appContext.getBean(CheckFormatCorrectIncomingInvoice.class).stop();
+                    System.exit(0);
+                }
+            });
         }
     }
 
