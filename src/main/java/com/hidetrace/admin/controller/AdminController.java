@@ -8,6 +8,7 @@ package com.hidetrace.admin.controller;
 import com.hidetrace.admin.controller.incominginvoice.NewIncomingInvoiceDialogController;
 import com.hidetrace.admin.controller.legalentity.NewLegalEntityDialogController;
 import com.hidetrace.admin.controller.outgoinginvoice.NewOutgoingInvoiceDialogController;
+import com.hidetrace.admin.model.OperatorModel;
 import com.hidetrace.admin.view.AdminView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +28,9 @@ public class AdminController {
 
     @Autowired
     private ApplicationContext appContext;
+
+    @Autowired
+    OperatorModel operModel;
 
     public AdminController(AdminView view) {
         this.view = view;
@@ -53,7 +57,12 @@ public class AdminController {
 
     public void start() {
         initListeners();
+        initData();
         initView();
+    }
+
+    private void initData() {
+        view.getCurrentLoggedOnUserLabel().setText("Dobrodošli, " + operModel.getFirstName());
     }
 
     @Component

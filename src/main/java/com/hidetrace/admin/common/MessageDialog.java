@@ -64,4 +64,9 @@ public class MessageDialog {
 
     }
 
+    public void WrongLoginCredentials() {
+        showMessageDialog(null, "Nemate pravo pristupa", "Greška", 2);
+
+    }
+
 }

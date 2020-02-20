@@ -1,6 +1,6 @@
 package com.hidetrace.admin;
 
-import com.hidetrace.admin.controller.AdminController;
+import com.hidetrace.admin.controller.login.LoginController;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -41,7 +41,9 @@ public class AdminApplication {
         //</editor-fold>
         //</editor-fold>
         ConfigurableApplicationContext context = new SpringApplicationBuilder(AdminApplication.class).headless(false).run(args);
-        context.getBean(AdminController.class).start();
+        LoginController loginController = context.getBean(LoginController.class);
+        loginController.start();
+
     }
 
 }
