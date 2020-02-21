@@ -60,7 +60,6 @@ public class LoginController {
             view.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e) {
-                    // appContext.getBean(CheckFormatCorrectIncomingInvoice.class).stop();
                     System.exit(0);
                 }
             });
