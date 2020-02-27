@@ -8,9 +8,9 @@ package com.hidetrace.admin.service;
 import com.hidetrace.admin.model.CertificateModel;
 import com.hidetrace.admin.repository.incominginvoice.CertificateRepository;
 import java.util.List;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
