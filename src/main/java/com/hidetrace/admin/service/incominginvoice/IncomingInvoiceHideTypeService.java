@@ -7,6 +7,7 @@ package com.hidetrace.admin.service.incominginvoice;
 
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceHideTypeModel;
 import com.hidetrace.admin.repository.incominginvoice.IncomingInvoiceHideTypeRepository;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,10 @@ public class IncomingInvoiceHideTypeService {
     @Transactional
     public IncomingInvoiceHideTypeModel saveIncomingInvoiceHideType(IncomingInvoiceHideTypeModel model) {
         return repo.save(model);
+    }
+
+    @Transactional
+    public List<IncomingInvoiceHideTypeModel> findAllByIncomingInvoiceId(int id) {
+        return repo.findAllByIncomingInvoiceId(id);
     }
 }

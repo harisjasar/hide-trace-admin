@@ -8,6 +8,7 @@ package com.hidetrace.admin.service.incominginvoice;
 import com.hidetrace.admin.common.SaveException;
 import com.hidetrace.admin.model.incominginvoice.IncomingLegalEntityInvoiceModel;
 import com.hidetrace.admin.repository.incominginvoice.IncomingLegalEntityInvoiceRepository;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,15 @@ public class IncomingLegalEntityInvoiceService {
             }
         }
         return null;
+    }
+
+    @Transactional
+    public List<IncomingLegalEntityInvoiceModel> getAllInvoices() {
+        return repo.findAll();
+    }
+
+    @Transactional
+    public List<IncomingLegalEntityInvoiceModel> findByLegalEntityId(int id) {
+        return repo.findAllByInvLegalEntityId(id);
     }
 }

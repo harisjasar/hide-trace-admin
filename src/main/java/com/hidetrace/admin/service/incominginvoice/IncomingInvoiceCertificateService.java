@@ -25,4 +25,9 @@ public class IncomingInvoiceCertificateService {
     public IncomingInvoiceCertificateModel saveIncomingInvoiceCertificate(IncomingInvoiceCertificateModel model) {
         return repo.save(model);
     }
+
+    @Transactional
+    public IncomingInvoiceCertificateModel findByIncomingInvoiceId(int id) {
+        return repo.findByIncomingInvoiceId(id);
+    }
 }
