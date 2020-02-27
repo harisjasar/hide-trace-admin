@@ -77,4 +77,12 @@ public class MessageDialog {
         showMessageDialog(null, "Ažuriranje nije uspjelo", "Info", 0);
     }
 
+    public void DeletionNotSuccessful() {
+        showMessageDialog(null, "Brisanje nije uspjelo. Moguća referenca na stavku", "Greška", 0);
+    }
+
+    public void DeletionSuccessful() {
+        showMessageDialog(null, "Brisanje uspjelo", "Info", 1);
+    }
+
 }
