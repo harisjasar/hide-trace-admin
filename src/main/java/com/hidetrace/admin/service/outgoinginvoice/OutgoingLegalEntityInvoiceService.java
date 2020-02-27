@@ -9,11 +9,11 @@ import com.hidetrace.admin.common.SaveException;
 import com.hidetrace.admin.model.outgoinginvoice.OutgoingLegalEntityInvoiceModel;
 import com.hidetrace.admin.repository.outgoinginvoice.OutgoingLegalEntityInvoiceRepository;
 import javax.swing.JOptionPane;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.UnexpectedRollbackException;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
