@@ -71,7 +71,10 @@ public class NewIncomingInvoiceDialogController {
     private MessageDialog messageDialog;
 
     @Autowired
-    NewIncomingInvoiceConfirmationMessagePanelController confirmMessagePanelController;
+    private NewIncomingInvoiceConfirmationMessagePanelController confirmMessagePanelController;
+
+    @Autowired
+    private CalculateInvoiceData calculateInvoiceData;
 
     private void initView() {
         for (JTextField field : getArticleTextFields()) {
@@ -224,10 +227,10 @@ public class NewIncomingInvoiceDialogController {
             String InvDescription = view.getCommentTextField().getText();
             model.setInvDescription(InvDescription);
 
-            model.setInvDifference(DoubleRounder.round(differenceGrossNet(InvSalt, (InvGrossWeight - InvNetWeight), InvAbroadReduced, InvGrossWeight), 3));
+            model.setInvDifference(DoubleRounder.round(calculateInvoiceData.differenceGrossNet(InvSalt, (InvGrossWeight - InvNetWeight), InvAbroadReduced, InvGrossWeight), 3));
 
             model.setInvTimeStamp(new java.sql.Timestamp(new java.util.Date().getTime()));
-            model.setInvTotalLoad(DoubleRounder.round(calculateTotalLoad(InvSalt, (InvGrossWeight - InvNetWeight), InvGrossWeight), 3));
+            model.setInvTotalLoad(DoubleRounder.round(calculateInvoiceData.calculateTotalLoad(InvSalt, (InvGrossWeight - InvNetWeight), InvGrossWeight), 3));
 
             IncomingLegalEntityInvoiceModel model_ = incomingLegalEntityInvoiceService.saveIncomingInvoice(model);
             return model_;
@@ -394,14 +397,6 @@ public class NewIncomingInvoiceDialogController {
 
         Thread t1 = new Thread(appContext.getBean(CheckFormatCorrectIncomingInvoice.class), "T1");
         t1.start();
-    }
-
-    private double differenceGrossNet(double salt, double weightDifference, double abroadReduced, double abroadWeight) {
-        return (salt + ((weightDifference * 100) / abroadWeight)) - abroadReduced;
-    }
-
-    private Double calculateTotalLoad(Double salt, Double weightDifference, Double wrossWeight) {
-        return salt + ((weightDifference * 100) / wrossWeight);
     }
 
     public HashMap getConfirmInvoiceData() {
