@@ -5,6 +5,7 @@
  */
 package com.hidetrace.admin.controller.incominginvoice;
 
+import com.hidetrace.admin.common.CalculateInvoiceData;
 import com.hidetrace.admin.model.CertificateModel;
 import com.hidetrace.admin.model.LegalEntityModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceCertificateModel;
@@ -21,7 +22,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextField;
 import lombok.Data;
+import org.decimal4j.util.DoubleRounder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -55,6 +58,9 @@ public class IncomingInvoiceUpdateController {
     @Autowired
     private CertificateService certificateService;
 
+    @Autowired
+    private CalculateInvoiceData calculateInvoiceData;
+
     private void initView() {
         view.setResizable(false);
         view.setLocationRelativeTo(null);
@@ -70,7 +76,9 @@ public class IncomingInvoiceUpdateController {
         if (view.getLegalEntityDropDown().getActionListeners().length == 0) {
             view.getLegalEntityDropDown().addActionListener(appContext.getBean(LegalEntityDropDownActionListener.class));
         }
-
+        if (view.getUpdateInvoiceInfoButton().getActionListeners().length == 0) {
+            view.getUpdateInvoiceInfoButton().addActionListener(appContext.getBean(UpdateInvoiceInfoButtonActionListener.class));
+        }
     }
 
     private void initData() {
@@ -134,6 +142,20 @@ public class IncomingInvoiceUpdateController {
 
     }
 
+    @Component
+    private static class UpdateInvoiceInfoButtonActionListener implements ActionListener {
+
+        @Autowired
+        private IncomingInvoiceUpdateHelper incomingInvoiceUpdateHelper;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            incomingInvoiceUpdateHelper.updateInvoice();
+
+        }
+
+    }
+
     private void populateInvoiceData() {
         if (view.getLegalEntityInvoiceDropDown().getSelectedItem() != null) {
             IncomingLegalEntityInvoiceModel model = (IncomingLegalEntityInvoiceModel) view.getLegalEntityInvoiceDropDown().getSelectedItem();
@@ -190,5 +212,48 @@ public class IncomingInvoiceUpdateController {
             });
 
         }
+    }
+
+    public boolean updateInvoiceInfo() {
+        IncomingLegalEntityInvoiceModel invoiceModel = (IncomingLegalEntityInvoiceModel) view.getLegalEntityInvoiceDropDown().getSelectedItem();
+        String invName = view.getInvoiceNameTextField().getText();
+        double invGrossWeight = Double.parseDouble(view.getGrossWeightTextField().getText());
+        double invNetWeight = Double.parseDouble(view.getNetWeightTextField().getText());
+        double invAbroadReduced = Double.parseDouble(view.getAbroadReducedTextField().getText());
+        double invSalt = Double.parseDouble(view.getSaltTextField().getText());
+        String invDescription = view.getDescriptionTextField().getText();
+
+        invoiceModel.setInvName(invName);
+        invoiceModel.setInvGrossWeight(invGrossWeight);
+        invoiceModel.setInvNetWeight(invNetWeight);
+        invoiceModel.setInvAbroadReduced(invAbroadReduced);
+        invoiceModel.setInvSalt(invSalt);
+        invoiceModel.setInvDescription(invDescription);
+        invoiceModel.setInvDifference(DoubleRounder.round(calculateInvoiceData.differenceGrossNet(invSalt, (invGrossWeight - invNetWeight), invAbroadReduced, invGrossWeight), 3));
+        invoiceModel.setInvTotalLoad(DoubleRounder.round(calculateInvoiceData.calculateTotalLoad(invSalt, (invGrossWeight - invNetWeight), invGrossWeight), 3));
+
+        IncomingInvoiceCertificateModel certModel = incomingInvoiceCertificateService.findByIncomingInvoiceId(invoiceModel.getInvId());
+        certModel.setCertificateNumber(view.getCertificateTextField().getText());
+        certModel.setCertificateId(((CertificateModel) view.getCertificateTypeDropdown().getSelectedItem()).getCertificateId());
+
+        IncomingLegalEntityInvoiceModel updatedInvoiceModel = incomingLegalEntityInvoiceService.saveIncomingInvoice(invoiceModel);
+        IncomingInvoiceCertificateModel updatedCertModel = incomingInvoiceCertificateService.saveIncomingInvoiceCertificate(certModel);
+
+        return updatedCertModel != null && updatedInvoiceModel != null;
+
+    }
+
+    public JTextField[] arrayOfTextFields() {
+        JTextField[] txtFields = {
+            view.getAbroadReducedTextField(),
+            view.getCertificateTextField(),
+            view.getInvoiceNameTextField(),
+            view.getGrossWeightTextField(),
+            view.getNetWeightTextField(),
+            view.getSaltTextField()
+
+        };
+
+        return txtFields;
     }
 }
