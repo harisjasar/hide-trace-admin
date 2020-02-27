@@ -6,12 +6,14 @@
 package com.hidetrace.admin.controller.incominginvoice;
 
 import com.hidetrace.admin.common.CalculateInvoiceData;
+import com.hidetrace.admin.common.MessageDialog;
 import com.hidetrace.admin.model.CertificateModel;
 import com.hidetrace.admin.model.LegalEntityModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceCertificateModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceHideTypeModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingLegalEntityInvoiceModel;
 import com.hidetrace.admin.service.CertificateService;
+import com.hidetrace.admin.service.CompositeService;
 import com.hidetrace.admin.service.LegalEntityService;
 import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceCertificateService;
 import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceHideTypeService;
@@ -19,14 +21,21 @@ import com.hidetrace.admin.service.incominginvoice.IncomingLegalEntityInvoiceSer
 import com.hidetrace.admin.view.incominginvoice.IncomingInvoiceUpdateView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import lombok.Data;
 import org.decimal4j.util.DoubleRounder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 /**
@@ -61,9 +70,18 @@ public class IncomingInvoiceUpdateController {
     @Autowired
     private CalculateInvoiceData calculateInvoiceData;
 
+    @Autowired
+    private CompositeService compositeService;
+
+    @Autowired
+    private MessageDialog messageDialog;
+
     private void initView() {
         view.setResizable(false);
         view.setLocationRelativeTo(null);
+
+        view.getDeleteInvoiceButton().setVisible(false);
+        view.getEnableDeletionMenuItem().setSelected(false);
 
         view.setVisible(true);
 
@@ -78,6 +96,12 @@ public class IncomingInvoiceUpdateController {
         }
         if (view.getUpdateInvoiceInfoButton().getActionListeners().length == 0) {
             view.getUpdateInvoiceInfoButton().addActionListener(appContext.getBean(UpdateInvoiceInfoButtonActionListener.class));
+        }
+        if (view.getEnableDeletionMenuItem().getItemListeners().length == 0) {
+            view.getEnableDeletionMenuItem().addItemListener(appContext.getBean(DeleteInvoiceItemListener.class));
+        }
+        if (view.getDeleteInvoiceButton().getActionListeners().length == 0) {
+            view.getDeleteInvoiceButton().addActionListener(appContext.getBean(DeleteInvoiceButtonActionListener.class));
         }
     }
 
@@ -111,6 +135,46 @@ public class IncomingInvoiceUpdateController {
         view.getCowTextField().setText("");
         view.getBullTextField().setText("");
         view.getCalfTextField().setText("");
+    }
+
+    @Component
+    private static class DeleteInvoiceItemListener implements ItemListener {
+
+        @Autowired
+        private IncomingInvoiceUpdateController controller;
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if (((JCheckBoxMenuItem) e.getSource()).isSelected()) {
+                controller.getDeleteInvoiceButton().setVisible(true);
+            } else {
+                controller.getDeleteInvoiceButton().setVisible(false);
+            }
+        }
+
+    }
+
+    @Component
+    private static class DeleteInvoiceButtonActionListener implements ActionListener {
+
+        @Autowired
+        private IncomingInvoiceUpdateController controller;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            UIManager.put("OptionPane.yesButtonText", "Da");
+            UIManager.put("OptionPane.noButtonText", "Ne");
+            UIManager.put("OptionPane.cancelButtonText", "Otkaži");
+            int dialogButton = 0;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Potvrdite brisanje",
+                    "Potvrda", dialogButton);
+
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                controller.deleteInvoice();
+            }
+
+        }
+
     }
 
     @Component
@@ -150,7 +214,16 @@ public class IncomingInvoiceUpdateController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            incomingInvoiceUpdateHelper.updateInvoice();
+            UIManager.put("OptionPane.yesButtonText", "Da");
+            UIManager.put("OptionPane.noButtonText", "Ne");
+            UIManager.put("OptionPane.cancelButtonText", "Otkaži");
+            int dialogButton = 0;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Potvrdite ažuriranje",
+                    "Potvrda", dialogButton);
+
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                incomingInvoiceUpdateHelper.updateInvoice();
+            }
 
         }
 
@@ -255,5 +328,23 @@ public class IncomingInvoiceUpdateController {
         };
 
         return txtFields;
+    }
+
+    public JButton getDeleteInvoiceButton() {
+        return view.getDeleteInvoiceButton();
+    }
+
+    private void deleteInvoice() {
+        int index = view.getLegalEntityDropDown().getSelectedIndex();
+        IncomingLegalEntityInvoiceModel invModel = (IncomingLegalEntityInvoiceModel) view.getLegalEntityInvoiceDropDown().getSelectedItem();
+        IncomingInvoiceCertificateModel certModel = incomingInvoiceCertificateService.findByIncomingInvoiceId(invModel.getInvId());
+        List<IncomingInvoiceHideTypeModel> hideTypeModels = incomingInvoiceHideTypeService.findAllByIncomingInvoiceId(invModel.getInvId());
+        try {
+            compositeService.removeInvoiceAndCertAndHideTypes(invModel, certModel, hideTypeModels);
+            messageDialog.DeletionSuccessful();
+            view.getLegalEntityDropDown().setSelectedIndex(index);
+        } catch (DataIntegrityViolationException ex) {
+            messageDialog.DeletionNotSuccessful();
+        }
     }
 }
