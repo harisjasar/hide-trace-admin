@@ -7,7 +7,6 @@ package com.hidetrace.admin.service;
 
 import com.hidetrace.admin.model.LegalEntityModel;
 import com.hidetrace.admin.repository.LegalEntityRepository;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -29,9 +28,7 @@ public class LegalEntityService {
 
     @Transactional
     public List<LegalEntityModel> getAllLegalEntities() {
-        List<LegalEntityModel> entities = new ArrayList<>();
-        legalEntityRepo.findAll().forEach(entities::add);
-        return entities;
+        return legalEntityRepo.findAll();
     }
 
     public String getUniqueLegalEntityCode() {
