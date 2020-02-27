@@ -16,4 +16,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IncomingInvoiceCertificateRepository extends JpaRepository<IncomingInvoiceCertificateModel, Integer> {
 
+    IncomingInvoiceCertificateModel findByIncomingInvoiceId(int id);
 }

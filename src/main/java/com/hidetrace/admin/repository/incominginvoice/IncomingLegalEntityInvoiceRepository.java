@@ -6,6 +6,7 @@
 package com.hidetrace.admin.repository.incominginvoice;
 
 import com.hidetrace.admin.model.incominginvoice.IncomingLegalEntityInvoiceModel;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +16,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface IncomingLegalEntityInvoiceRepository extends JpaRepository<IncomingLegalEntityInvoiceModel, Integer> {
+
+    List<IncomingLegalEntityInvoiceModel> findAllByInvLegalEntityId(int id);
 
 }
