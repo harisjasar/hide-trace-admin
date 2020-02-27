@@ -69,4 +69,12 @@ public class MessageDialog {
 
     }
 
+    public void UpdateSuccessful() {
+        showMessageDialog(null, "Ažuriranje uspješno", "Info", 1);
+    }
+
+    public void UpdateUnsuccessful() {
+        showMessageDialog(null, "Ažuriranje nije uspjelo", "Info", 0);
+    }
+
 }
