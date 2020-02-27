@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.Random;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -26,7 +26,6 @@ public class LegalEntityService {
     @Autowired
     private LegalEntityRepository legalEntityRepo;
 
-    @Transactional
     public List<LegalEntityModel> getAllLegalEntities() {
         return legalEntityRepo.findAll();
     }
