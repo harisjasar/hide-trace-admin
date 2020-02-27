@@ -73,7 +73,11 @@ public class IncomingInvoiceUpdateView extends javax.swing.JDialog {
         jSeparator2 = new javax.swing.JSeparator();
         jPanel6 = new javax.swing.JPanel();
         updateInvoiceInfoButton = new javax.swing.JButton();
+        deleteInvoiceButton = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        enableDeletionMenuItem = new javax.swing.JCheckBoxMenuItem();
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setText("Bruto težina");
@@ -324,12 +328,17 @@ public class IncomingInvoiceUpdateView extends javax.swing.JDialog {
 
         updateInvoiceInfoButton.setText("Ažuriraj");
 
+        deleteInvoiceButton.setBackground(new java.awt.Color(255, 0, 0));
+        deleteInvoiceButton.setText("Obriši");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(deleteInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(updateInvoiceInfoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -337,7 +346,9 @@ public class IncomingInvoiceUpdateView extends javax.swing.JDialog {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(updateInvoiceInfoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateInvoiceInfoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -387,6 +398,16 @@ public class IncomingInvoiceUpdateView extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        jMenu3.setText("Tools");
+
+        enableDeletionMenuItem.setSelected(true);
+        enableDeletionMenuItem.setText("Dozvoli brisanje");
+        jMenu3.add(enableDeletionMenuItem);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -420,6 +441,8 @@ public class IncomingInvoiceUpdateView extends javax.swing.JDialog {
     private javax.swing.JTextField NetWeightTextField;
     private javax.swing.JTextField SaltTextField;
     private javax.swing.JComboBox<String> certificateTypeDropdown;
+    private javax.swing.JButton deleteInvoiceButton;
+    private javax.swing.JCheckBoxMenuItem enableDeletionMenuItem;
     private javax.swing.JTextField incomingInvoiceIdTextfield;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -435,6 +458,8 @@ public class IncomingInvoiceUpdateView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -10,11 +10,29 @@
         <Property name="text" type="java.lang.String" value="Bruto te&#x17e;ina"/>
       </Properties>
     </Component>
+    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="jMenu3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Tools"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="enableDeletionMenuItem">
+              <Properties>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="Dozvoli brisanje"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+      </SubComponents>
+    </Menu>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -583,6 +601,8 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="deleteInvoiceButton" min="-2" pref="166" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="updateInvoiceInfoButton" min="-2" pref="166" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -593,7 +613,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="updateInvoiceInfoButton" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="updateInvoiceInfoButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="deleteInvoiceButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -603,6 +626,14 @@
             <Component class="javax.swing.JButton" name="updateInvoiceInfoButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A&#x17e;uriraj"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="deleteInvoiceButton">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Obri&#x161;i"/>
               </Properties>
             </Component>
           </SubComponents>
