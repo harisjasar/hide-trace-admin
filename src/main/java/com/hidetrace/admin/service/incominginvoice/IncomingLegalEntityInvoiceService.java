@@ -10,11 +10,11 @@ import com.hidetrace.admin.model.incominginvoice.IncomingLegalEntityInvoiceModel
 import com.hidetrace.admin.repository.incominginvoice.IncomingLegalEntityInvoiceRepository;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.UnexpectedRollbackException;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -50,5 +50,10 @@ public class IncomingLegalEntityInvoiceService {
     @Transactional
     public List<IncomingLegalEntityInvoiceModel> findByLegalEntityId(int id) {
         return repo.findAllByInvLegalEntityId(id);
+    }
+
+    @Transactional
+    public void removeLegalEntityInvoice(IncomingLegalEntityInvoiceModel model) {
+        repo.delete(model);
     }
 }

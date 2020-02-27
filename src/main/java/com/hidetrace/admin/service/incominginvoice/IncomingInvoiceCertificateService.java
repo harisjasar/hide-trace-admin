@@ -7,9 +7,9 @@ package com.hidetrace.admin.service.incominginvoice;
 
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceCertificateModel;
 import com.hidetrace.admin.repository.incominginvoice.IncomingInvoiceCertificateRepository;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -29,5 +29,10 @@ public class IncomingInvoiceCertificateService {
     @Transactional
     public IncomingInvoiceCertificateModel findByIncomingInvoiceId(int id) {
         return repo.findByIncomingInvoiceId(id);
+    }
+
+    @Transactional
+    public void removeCertificate(IncomingInvoiceCertificateModel model) {
+        repo.delete(model);
     }
 }
