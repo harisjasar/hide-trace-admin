@@ -96,12 +96,11 @@ public class IncomingInvoiceUpdateView extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(LegalEntityInvoiceDropDown, 0, 226, Short.MAX_VALUE)
-                        .addComponent(LegalEntityDropDown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(LegalEntityInvoiceDropDown, 0, 226, Short.MAX_VALUE)
+                    .addComponent(LegalEntityDropDown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -129,22 +128,22 @@ public class IncomingInvoiceUpdateView extends javax.swing.JDialog {
         GrossWeightTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Bruto težina");
+        jLabel3.setText("Bruto težina (kg)");
 
         NetWeightTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Neto težina");
+        jLabel4.setText("Neto težina (kg)");
 
         SaltTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("So");
+        jLabel5.setText("So (%)");
 
         AbroadReducedTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Na terenu odbijeno");
+        jLabel8.setText("Na terenu odbijeno (%)");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Broj fakture");
@@ -270,16 +269,16 @@ public class IncomingInvoiceUpdateView extends javax.swing.JDialog {
         CowTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("Krava");
+        jLabel12.setText("Krava (€)");
 
         BullTextField.setEditable(false);
         BullTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel13.setText("Bik");
+        jLabel13.setText("Bik (€)");
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel14.setText("Tele");
+        jLabel14.setText("Tele (€)");
 
         CalfTextField.setEditable(false);
         CalfTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
