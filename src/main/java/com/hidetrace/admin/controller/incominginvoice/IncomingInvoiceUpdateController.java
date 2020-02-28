@@ -252,7 +252,6 @@ public class IncomingInvoiceUpdateController {
 
             view.getCertificateTypeDropdown().setSelectedIndex(certificateModel.getCertificateId() - 1);
             List<IncomingInvoiceHideTypeModel> hideTypes = incomingInvoiceHideTypeService.findAllByIncomingInvoiceId(model.getInvId());
-            System.out.println(hideTypes);
             hideTypes.forEach((hideType) -> {
                 switch (hideType.getHideTypeId()) {
                     case 1:
@@ -337,14 +336,18 @@ public class IncomingInvoiceUpdateController {
     private void deleteInvoice() {
         int index = view.getLegalEntityDropDown().getSelectedIndex();
         IncomingLegalEntityInvoiceModel invModel = (IncomingLegalEntityInvoiceModel) view.getLegalEntityInvoiceDropDown().getSelectedItem();
-        IncomingInvoiceCertificateModel certModel = incomingInvoiceCertificateService.findByIncomingInvoiceId(invModel.getInvId());
-        List<IncomingInvoiceHideTypeModel> hideTypeModels = incomingInvoiceHideTypeService.findAllByIncomingInvoiceId(invModel.getInvId());
-        try {
-            compositeService.removeInvoiceAndCertAndHideTypes(invModel, certModel, hideTypeModels);
-            messageDialog.DeletionSuccessful();
-            view.getLegalEntityDropDown().setSelectedIndex(index);
-        } catch (DataIntegrityViolationException ex) {
-            messageDialog.DeletionNotSuccessful();
+        if (invModel != null) {
+            IncomingInvoiceCertificateModel certModel = incomingInvoiceCertificateService.findByIncomingInvoiceId(invModel.getInvId());
+            List<IncomingInvoiceHideTypeModel> hideTypeModels = incomingInvoiceHideTypeService.findAllByIncomingInvoiceId(invModel.getInvId());
+            try {
+                compositeService.removeInvoiceAndCertAndHideTypes(invModel, certModel, hideTypeModels);
+                messageDialog.DeletionSuccessful();
+                view.getLegalEntityDropDown().setSelectedIndex(index);
+            } catch (DataIntegrityViolationException ex) {
+                messageDialog.DeletionNotSuccessful();
+            }
+        } else {
+            messageDialog.InvoiceNotSelected();
         }
     }
 }
