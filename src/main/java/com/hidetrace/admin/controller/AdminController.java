@@ -5,6 +5,7 @@
  */
 package com.hidetrace.admin.controller;
 
+import com.hidetrace.admin.controller.incominginvoice.IncomingInvoiceInvoicesListController;
 import com.hidetrace.admin.controller.incominginvoice.IncomingInvoiceUpdateController;
 import com.hidetrace.admin.controller.incominginvoice.NewIncomingInvoiceDialogController;
 import com.hidetrace.admin.controller.legalentity.NewLegalEntityDialogController;
@@ -57,6 +58,9 @@ public class AdminController {
         if (view.getNewAddLegalEntityButton().getActionListeners().length == 0) {
             view.getNewAddLegalEntityButton().addActionListener(appContext.getBean(NewLegalEntityButtonListener.class));
         }
+        if (view.getReviewIncomingInvoicesButton().getActionListeners().length == 0) {
+            view.getReviewIncomingInvoicesButton().addActionListener(appContext.getBean(ReviewIncomingInvoicesButtonListener.class));
+        }
     }
 
     public void start() {
@@ -67,6 +71,18 @@ public class AdminController {
 
     private void initData() {
         view.getCurrentLoggedOnUserLabel().setText("Dobrodošli, " + operModel.getFirstName());
+    }
+
+    @Component
+    private static class ReviewIncomingInvoicesButtonListener implements ActionListener {
+
+        @Autowired
+        private ApplicationContext appContext;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            appContext.getBean(IncomingInvoiceInvoicesListController.class).start();
+        }
     }
 
     @Component
