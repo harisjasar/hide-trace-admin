@@ -288,31 +288,34 @@ public class IncomingInvoiceUpdateController {
 
     public boolean updateInvoiceInfo() {
         IncomingLegalEntityInvoiceModel invoiceModel = (IncomingLegalEntityInvoiceModel) view.getLegalEntityInvoiceDropDown().getSelectedItem();
-        String invName = view.getInvoiceNameTextField().getText();
-        double invGrossWeight = Double.parseDouble(view.getGrossWeightTextField().getText());
-        double invNetWeight = Double.parseDouble(view.getNetWeightTextField().getText());
-        double invAbroadReduced = Double.parseDouble(view.getAbroadReducedTextField().getText());
-        double invSalt = Double.parseDouble(view.getSaltTextField().getText());
-        String invDescription = view.getDescriptionTextField().getText();
+        if (invoiceModel != null) {
+            String invName = view.getInvoiceNameTextField().getText();
+            double invGrossWeight = Double.parseDouble(view.getGrossWeightTextField().getText());
+            double invNetWeight = Double.parseDouble(view.getNetWeightTextField().getText());
+            double invAbroadReduced = Double.parseDouble(view.getAbroadReducedTextField().getText());
+            double invSalt = Double.parseDouble(view.getSaltTextField().getText());
+            String invDescription = view.getDescriptionTextField().getText();
 
-        invoiceModel.setInvName(invName);
-        invoiceModel.setInvGrossWeight(invGrossWeight);
-        invoiceModel.setInvNetWeight(invNetWeight);
-        invoiceModel.setInvAbroadReduced(invAbroadReduced);
-        invoiceModel.setInvSalt(invSalt);
-        invoiceModel.setInvDescription(invDescription);
-        invoiceModel.setInvDifference(DoubleRounder.round(calculateInvoiceData.differenceGrossNet(invSalt, (invGrossWeight - invNetWeight), invAbroadReduced, invGrossWeight), 3));
-        invoiceModel.setInvTotalLoad(DoubleRounder.round(calculateInvoiceData.calculateTotalLoad(invSalt, (invGrossWeight - invNetWeight), invGrossWeight), 3));
+            invoiceModel.setInvName(invName);
+            invoiceModel.setInvGrossWeight(invGrossWeight);
+            invoiceModel.setInvNetWeight(invNetWeight);
+            invoiceModel.setInvAbroadReduced(invAbroadReduced);
+            invoiceModel.setInvSalt(invSalt);
+            invoiceModel.setInvDescription(invDescription);
+            invoiceModel.setInvDifference(DoubleRounder.round(calculateInvoiceData.differenceGrossNet(invSalt, (invGrossWeight - invNetWeight), invAbroadReduced, invGrossWeight), 3));
+            invoiceModel.setInvTotalLoad(DoubleRounder.round(calculateInvoiceData.calculateTotalLoad(invSalt, (invGrossWeight - invNetWeight), invGrossWeight), 3));
 
-        IncomingInvoiceCertificateModel certModel = incomingInvoiceCertificateService.findByIncomingInvoiceId(invoiceModel.getInvId());
-        certModel.setCertificateNumber(view.getCertificateTextField().getText());
-        certModel.setCertificateId(((CertificateModel) view.getCertificateTypeDropdown().getSelectedItem()).getCertificateId());
+            IncomingInvoiceCertificateModel certModel = incomingInvoiceCertificateService.findByIncomingInvoiceId(invoiceModel.getInvId());
+            certModel.setCertificateNumber(view.getCertificateTextField().getText());
+            certModel.setCertificateId(((CertificateModel) view.getCertificateTypeDropdown().getSelectedItem()).getCertificateId());
 
-        IncomingLegalEntityInvoiceModel updatedInvoiceModel = incomingLegalEntityInvoiceService.saveIncomingInvoice(invoiceModel);
-        IncomingInvoiceCertificateModel updatedCertModel = incomingInvoiceCertificateService.saveIncomingInvoiceCertificate(certModel);
-
-        return updatedCertModel != null && updatedInvoiceModel != null;
-
+            IncomingLegalEntityInvoiceModel updatedInvoiceModel = incomingLegalEntityInvoiceService.saveIncomingInvoice(invoiceModel);
+            IncomingInvoiceCertificateModel updatedCertModel = incomingInvoiceCertificateService.saveIncomingInvoiceCertificate(certModel);
+            return updatedCertModel != null && updatedInvoiceModel != null;
+        } else {
+            messageDialog.InvoiceNotSelected();
+        }
+        return false;
     }
 
     public JTextField[] arrayOfTextFields() {
