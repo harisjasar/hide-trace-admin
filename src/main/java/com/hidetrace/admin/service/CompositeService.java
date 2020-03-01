@@ -5,6 +5,7 @@
  */
 package com.hidetrace.admin.service;
 
+import com.hidetrace.admin.model.LegalEntityModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceCertificateModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceHideTypeModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingLegalEntityInvoiceModel;
@@ -33,12 +34,20 @@ public class CompositeService {
     @Autowired
     private IncomingInvoiceHideTypeService incomingInvoiceHideTypeService;
 
+    @Autowired
+    private LegalEntityService legalEntityService;
+
     public void removeInvoiceAndCertAndHideTypes(IncomingLegalEntityInvoiceModel invModel, IncomingInvoiceCertificateModel certModel, List<IncomingInvoiceHideTypeModel> hideTypeModels) {
 
         incomingInvoiceHideTypeService.removeHideTypes(hideTypeModels);
         incomingInvoiceCertificateService.removeCertificate(certModel);
         incomingLegalEntityInvoiceService.removeLegalEntityInvoice(invModel);
 
+    }
+
+    public void removeLegalEntityAndLegalEntityTable(LegalEntityModel model, String tableName) {
+        legalEntityService.removeLegalEntity(model);
+        legalEntityService.deleteLegalEntityTable(tableName);
     }
 
 }
