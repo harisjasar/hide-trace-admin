@@ -15,4 +15,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface LegalEntityRepository extends JpaRepository<LegalEntityModel, Integer> {
+
+    LegalEntityModel findByLegalEntityId(int id);
+
 }
