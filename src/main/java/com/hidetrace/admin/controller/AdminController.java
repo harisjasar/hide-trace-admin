@@ -8,6 +8,7 @@ package com.hidetrace.admin.controller;
 import com.hidetrace.admin.controller.incominginvoice.IncomingInvoiceInvoicesListController;
 import com.hidetrace.admin.controller.incominginvoice.IncomingInvoiceUpdateController;
 import com.hidetrace.admin.controller.incominginvoice.NewIncomingInvoiceDialogController;
+import com.hidetrace.admin.controller.legalentity.LegalEntityUpdateController;
 import com.hidetrace.admin.controller.legalentity.NewLegalEntityDialogController;
 import com.hidetrace.admin.controller.outgoinginvoice.NewOutgoingInvoiceDialogController;
 import com.hidetrace.admin.model.OperatorModel;
@@ -60,6 +61,9 @@ public class AdminController {
         }
         if (view.getReviewIncomingInvoicesButton().getActionListeners().length == 0) {
             view.getReviewIncomingInvoicesButton().addActionListener(appContext.getBean(ReviewIncomingInvoicesButtonListener.class));
+        }
+        if (view.getUpdateLegalEntityButton().getActionListeners().length == 0) {
+            view.getUpdateLegalEntityButton().addActionListener(appContext.getBean(UpdateLegalEntityButtonButtonListener.class));
         }
     }
 
@@ -132,6 +136,20 @@ public class AdminController {
         @Override
         public void actionPerformed(ActionEvent e) {
             appContext.getBean(NewLegalEntityDialogController.class).start();
+
+        }
+
+    }
+
+    @Component
+    private static class UpdateLegalEntityButtonButtonListener implements ActionListener {
+
+        @Autowired
+        private ApplicationContext appContext;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            appContext.getBean(LegalEntityUpdateController.class).start();
 
         }
 
