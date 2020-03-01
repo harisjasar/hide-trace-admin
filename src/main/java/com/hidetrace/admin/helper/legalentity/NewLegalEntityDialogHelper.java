@@ -11,8 +11,8 @@
 package com.hidetrace.admin.helper.legalentity;
 
 import com.hidetrace.admin.common.MessageDialog;
+import com.hidetrace.admin.common.Validation;
 import com.hidetrace.admin.controller.legalentity.NewLegalEntityDialogController;
-import javax.swing.JTextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,9 +29,12 @@ public class NewLegalEntityDialogHelper {
     @Autowired
     MessageDialog messageDialog;
 
+    @Autowired
+    Validation validation;
+
     public void addLegalEntity() {
 
-        boolean emptyField = isFieldEmpty(controller.getAllTextFields());
+        boolean emptyField = validation.isFieldEmpty(controller.getAllTextFields());
 
         if (emptyField) {
             messageDialog.EmptyFieldForbidden();
@@ -43,16 +46,5 @@ public class NewLegalEntityDialogHelper {
                 }
             }
         }
-    }
-
-    private boolean isFieldEmpty(JTextField[] txtFields) {
-        boolean field = false;
-        for (JTextField txtField : txtFields) {
-            if (txtField.getText().isEmpty()) {
-                field = true;
-            }
-        }
-
-        return field;
     }
 }
