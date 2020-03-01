@@ -24,10 +24,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class LegalEntityService {
 
     @Autowired
-    private LegalEntityRepository legalEntityRepo;
+    private LegalEntityRepository repo;
+
+    @Autowired
+    EntityManager entityManager;
 
     public List<LegalEntityModel> getAllLegalEntities() {
-        return legalEntityRepo.findAll();
+        return repo.findAll();
     }
 
     public String getUniqueLegalEntityCode() {
@@ -52,10 +55,8 @@ public class LegalEntityService {
 
     @Transactional
     public LegalEntityModel saveNewLegalEntityModel(LegalEntityModel model) {
-        return legalEntityRepo.save(model);
+        return repo.save(model);
     }
-    @Autowired
-    EntityManager entityManager;
 
     @Transactional
     public void createLegalEntityTable(String tableName) {
@@ -152,5 +153,26 @@ public class LegalEntityService {
         Query query = entityManager.createNativeQuery(formattedQuery);
         query.executeUpdate();
 
+    }
+
+    @Transactional
+    public void deleteLegalEntityTable(String tableName) {
+        String query_ = new StringBuilder()
+                .append("DROP TABLE `%s`")
+                .toString();
+
+        String formattedQuery = String.format(query_, tableName);
+        Query query = entityManager.createNativeQuery(formattedQuery);
+        query.executeUpdate();
+
+    }
+
+    @Transactional
+    public LegalEntityModel findByLegalEntityId(int id) {
+        return repo.findByLegalEntityId(id);
+    }
+
+    public void removeLegalEntity(LegalEntityModel model) {
+        repo.delete(model);
     }
 }
