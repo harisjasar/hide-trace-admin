@@ -26,7 +26,7 @@ public class LegalEntityModel {
 
     @Id
     @Column(name = "LegalEntityID")
-    private int LegalEntityID;
+    private int legalEntityId;
     @Column(name = "Name")
 
     private String name;
