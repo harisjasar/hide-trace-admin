@@ -26,8 +26,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   <Component id="currentLoggedOnUserLabel" min="-2" pref="161" max="-2" attributes="0"/>
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -52,70 +52,67 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="newIncomingInvoiceButton" alignment="1" pref="120" max="32767" attributes="0"/>
-                          <Component id="updateIncomingInvoiceButton" alignment="1" max="32767" attributes="0"/>
-                          <Component id="reviewIncomingInvoicesButton" alignment="1" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel3" min="-2" pref="120" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="newAddLegalEntityButton" min="-2" pref="120" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="updateLegalEntityButton" min="-2" pref="120" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="reviewLegalEntitiesButton" min="-2" pref="120" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel1" min="-2" pref="120" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="newIncomingInvoiceButton" min="-2" pref="120" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="updateIncomingInvoiceButton" min="-2" pref="120" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="reviewIncomingInvoicesButton" min="-2" pref="120" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jLabel1" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabel2" min="-2" pref="120" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="newOutgoingInvoiceButton" min="-2" pref="120" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="newOutgoingInvoiceButton" min="-2" pref="120" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" pref="120" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jSeparator2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel3" min="-2" pref="120" max="-2" attributes="0"/>
-                      <Component id="newAddLegalEntityButton" min="-2" pref="120" max="-2" attributes="0"/>
-                      <Component id="updateLegalEntityButton" min="-2" pref="120" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jSeparator2" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel3" min="-2" pref="48" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="newAddLegalEntityButton" min="-2" pref="48" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="updateLegalEntityButton" min="-2" pref="48" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel1" min="-2" pref="48" max="-2" attributes="0"/>
-                                      <Component id="jLabel2" alignment="0" min="-2" pref="48" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="newOutgoingInvoiceButton" alignment="0" min="-2" pref="48" max="-2" attributes="0"/>
-                                      <Component id="newIncomingInvoiceButton" min="-2" pref="48" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="updateIncomingInvoiceButton" min="-2" pref="48" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="reviewIncomingInvoicesButton" min="-2" pref="48" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jSeparator1" min="-2" pref="357" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel3" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="newAddLegalEntityButton" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="updateLegalEntityButton" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="reviewLegalEntitiesButton" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel1" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="newIncomingInvoiceButton" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="updateIncomingInvoiceButton" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="reviewIncomingInvoicesButton" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jSeparator2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel2" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="newOutgoingInvoiceButton" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -133,7 +130,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="newAddLegalEntityButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Kreiraj"/>
+            <Property name="text" type="java.lang.String" value="Novo pravno lice"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="updateIncomingInvoiceButton">
@@ -142,9 +139,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
-          <Properties>
-            <Property name="orientation" type="int" value="1"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
@@ -165,9 +159,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator2">
-          <Properties>
-            <Property name="orientation" type="int" value="1"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -186,6 +177,11 @@
         <Component class="javax.swing.JButton" name="updateLegalEntityButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="A&#x17e;uriranje"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="reviewLegalEntitiesButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pregled"/>
           </Properties>
         </Component>
       </SubComponents>
