@@ -80,6 +80,8 @@
                           <Component id="jLabel2" min="-2" pref="120" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="newOutgoingInvoiceButton" min="-2" pref="120" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="updateOutgoingInvoiceButton" min="-2" pref="120" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -111,6 +113,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                       <Component id="newOutgoingInvoiceButton" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="updateOutgoingInvoiceButton" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -182,6 +185,11 @@
         <Component class="javax.swing.JButton" name="reviewLegalEntitiesButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pregled"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="updateOutgoingInvoiceButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="A&#x17e;uriranje"/>
           </Properties>
         </Component>
       </SubComponents>

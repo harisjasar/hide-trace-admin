@@ -47,6 +47,7 @@ public class AdminView extends javax.swing.JFrame {
         reviewIncomingInvoicesButton = new javax.swing.JButton();
         updateLegalEntityButton = new javax.swing.JButton();
         reviewLegalEntitiesButton = new javax.swing.JButton();
+        updateOutgoingInvoiceButton = new javax.swing.JButton();
         currentLoggedOnUserLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,6 +78,8 @@ public class AdminView extends javax.swing.JFrame {
 
         reviewLegalEntitiesButton.setText("Pregled");
 
+        updateOutgoingInvoiceButton.setText("Ažuriranje");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -106,7 +109,9 @@ public class AdminView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(newOutgoingInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(newOutgoingInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(updateOutgoingInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -131,7 +136,8 @@ public class AdminView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(newOutgoingInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(newOutgoingInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateOutgoingInvoiceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -177,5 +183,6 @@ public class AdminView extends javax.swing.JFrame {
     private javax.swing.JButton reviewLegalEntitiesButton;
     private javax.swing.JButton updateIncomingInvoiceButton;
     private javax.swing.JButton updateLegalEntityButton;
+    private javax.swing.JButton updateOutgoingInvoiceButton;
     // End of variables declaration//GEN-END:variables
 }
