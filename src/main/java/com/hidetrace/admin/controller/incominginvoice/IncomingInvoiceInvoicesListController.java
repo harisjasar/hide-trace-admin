@@ -137,7 +137,7 @@ public class IncomingInvoiceInvoicesListController {
     private void populateInvoicesTable() {
         LegalEntityModel legalEntityModel = (LegalEntityModel) view.getLegalEntityDropDown().getSelectedItem();
         if (legalEntityModel != null) {
-            List<IncomingLegalEntityInvoiceModel> invoices = incomingLegalEntityInvoiceService.findByLegalEntityId(legalEntityModel.getLegalEntityID());
+            List<IncomingLegalEntityInvoiceModel> invoices = incomingLegalEntityInvoiceService.findByLegalEntityId(legalEntityModel.getLegalEntityId());
 
             DefaultTableModel invoicesTable = (DefaultTableModel) view.getInvoicesTable().getModel();
             invoicesTable.setRowCount(0);
