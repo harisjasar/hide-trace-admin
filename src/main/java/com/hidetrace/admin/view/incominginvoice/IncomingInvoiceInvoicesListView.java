@@ -94,6 +94,7 @@ public class IncomingInvoiceInvoicesListView extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        invoicesTable.setColumnSelectionAllowed(true);
         invoicesTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(invoicesTable);
         invoicesTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
