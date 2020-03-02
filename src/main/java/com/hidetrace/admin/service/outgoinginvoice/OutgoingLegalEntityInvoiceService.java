@@ -8,6 +8,7 @@ package com.hidetrace.admin.service.outgoinginvoice;
 import com.hidetrace.admin.common.SaveException;
 import com.hidetrace.admin.model.outgoinginvoice.OutgoingLegalEntityInvoiceModel;
 import com.hidetrace.admin.repository.outgoinginvoice.OutgoingLegalEntityInvoiceRepository;
+import java.util.List;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -39,5 +40,15 @@ public class OutgoingLegalEntityInvoiceService {
             }
         }
         return null;
+    }
+
+    @Transactional
+    public List<OutgoingLegalEntityInvoiceModel> findByLegalEntityId(int id) {
+        return repo.findByLegalEntityId(id);
+    }
+
+    @Transactional
+    public void removeInvoice(OutgoingLegalEntityInvoiceModel invModel) {
+        repo.delete(invModel);
     }
 }
