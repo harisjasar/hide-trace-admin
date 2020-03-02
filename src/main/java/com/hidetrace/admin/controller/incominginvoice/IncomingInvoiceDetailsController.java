@@ -58,7 +58,6 @@ public class IncomingInvoiceDetailsController {
     }
 
     public void start() {
-        System.out.println(this.invoiceId);
         initListeners();
         initData();
         initView();
