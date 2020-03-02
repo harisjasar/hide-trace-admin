@@ -7,6 +7,7 @@ package com.hidetrace.admin.controller.incominginvoice;
 
 import com.hidetrace.admin.common.CalculateInvoiceData;
 import com.hidetrace.admin.common.MessageDialog;
+import com.hidetrace.admin.helper.incominginvoice.IncomingInvoiceUpdateHelper;
 import com.hidetrace.admin.model.CertificateModel;
 import com.hidetrace.admin.model.LegalEntityModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceCertificateModel;
@@ -343,7 +344,6 @@ public class IncomingInvoiceUpdateController {
     }
 
     private void deleteInvoice() {
-        //int index = view.getLegalEntityDropDown().getSelectedIndex();
         IncomingLegalEntityInvoiceModel invModel = (IncomingLegalEntityInvoiceModel) view.getLegalEntityInvoiceDropDown().getSelectedItem();
         if (invModel != null) {
             IncomingInvoiceCertificateModel certModel = incomingInvoiceCertificateService.findByIncomingInvoiceId(invModel.getInvId());
@@ -351,7 +351,6 @@ public class IncomingInvoiceUpdateController {
             try {
                 compositeService.removeInvoiceAndCertAndHideTypes(invModel, certModel, hideTypeModels);
                 messageDialog.DeletionSuccessful();
-                //view.getLegalEntityDropDown().setSelectedIndex(index);
                 view.getLegalEntityInvoiceDropDown().removeItem(view.getLegalEntityInvoiceDropDown().getSelectedItem());
 
             } catch (DataIntegrityViolationException ex) {
