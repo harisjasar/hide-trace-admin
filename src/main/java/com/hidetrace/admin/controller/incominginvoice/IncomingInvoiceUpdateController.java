@@ -241,8 +241,11 @@ public class IncomingInvoiceUpdateController {
             view.getDescriptionTextField().setText(model.getInvDescription());
 
             IncomingInvoiceCertificateModel certificateModel = incomingInvoiceCertificateService.findByIncomingInvoiceId(model.getInvId());
-            view.getCertificateTextField().setText(certificateModel.getCertificateNumber());
+            if (certificateModel != null) {
+                view.getCertificateTextField().setText(certificateModel.getCertificateNumber());
+                view.getCertificateTypeDropdown().setSelectedIndex(certificateModel.getCertificateId() - 1);
 
+            }
             List<CertificateModel> certificateModels = certificateService.findAll();
             DefaultComboBoxModel certificatesDropdown = (DefaultComboBoxModel) view.getCertificateTypeDropdown().getModel();
             certificatesDropdown.removeAllElements();
@@ -250,7 +253,6 @@ public class IncomingInvoiceUpdateController {
                 certificatesDropdown.addElement(entity);
             });
 
-            view.getCertificateTypeDropdown().setSelectedIndex(certificateModel.getCertificateId() - 1);
             List<IncomingInvoiceHideTypeModel> hideTypes = incomingInvoiceHideTypeService.findAllByIncomingInvoiceId(model.getInvId());
             hideTypes.forEach((hideType) -> {
                 switch (hideType.getHideTypeId()) {
@@ -274,7 +276,7 @@ public class IncomingInvoiceUpdateController {
 
     private void populateLegalEntityInvoiceDropDown() {
         if (view.getLegalEntityDropDown().getSelectedItem() != null) {
-            int legalEntityId = ((LegalEntityModel) view.getLegalEntityDropDown().getSelectedItem()).getLegalEntityID();
+            int legalEntityId = ((LegalEntityModel) view.getLegalEntityDropDown().getSelectedItem()).getLegalEntityId();
             DefaultComboBoxModel model = (DefaultComboBoxModel) view.getLegalEntityInvoiceDropDown().getModel();
             model.removeAllElements();
 
@@ -306,6 +308,10 @@ public class IncomingInvoiceUpdateController {
             invoiceModel.setInvTotalLoad(DoubleRounder.round(calculateInvoiceData.calculateTotalLoad(invSalt, (invGrossWeight - invNetWeight), invGrossWeight), 3));
 
             IncomingInvoiceCertificateModel certModel = incomingInvoiceCertificateService.findByIncomingInvoiceId(invoiceModel.getInvId());
+            if (certModel == null) {
+                certModel = new IncomingInvoiceCertificateModel();
+                certModel.setIncomingInvoiceId(invoiceModel.getInvId());
+            }
             certModel.setCertificateNumber(view.getCertificateTextField().getText());
             certModel.setCertificateId(((CertificateModel) view.getCertificateTypeDropdown().getSelectedItem()).getCertificateId());
 
@@ -337,7 +343,7 @@ public class IncomingInvoiceUpdateController {
     }
 
     private void deleteInvoice() {
-        int index = view.getLegalEntityDropDown().getSelectedIndex();
+        //int index = view.getLegalEntityDropDown().getSelectedIndex();
         IncomingLegalEntityInvoiceModel invModel = (IncomingLegalEntityInvoiceModel) view.getLegalEntityInvoiceDropDown().getSelectedItem();
         if (invModel != null) {
             IncomingInvoiceCertificateModel certModel = incomingInvoiceCertificateService.findByIncomingInvoiceId(invModel.getInvId());
@@ -345,7 +351,9 @@ public class IncomingInvoiceUpdateController {
             try {
                 compositeService.removeInvoiceAndCertAndHideTypes(invModel, certModel, hideTypeModels);
                 messageDialog.DeletionSuccessful();
-                view.getLegalEntityDropDown().setSelectedIndex(index);
+                //view.getLegalEntityDropDown().setSelectedIndex(index);
+                view.getLegalEntityInvoiceDropDown().removeItem(view.getLegalEntityInvoiceDropDown().getSelectedItem());
+
             } catch (DataIntegrityViolationException ex) {
                 messageDialog.DeletionNotSuccessful();
             }
