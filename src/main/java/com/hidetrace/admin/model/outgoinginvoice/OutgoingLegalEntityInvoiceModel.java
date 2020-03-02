@@ -37,4 +37,9 @@ public class OutgoingLegalEntityInvoiceModel {
     @Column(name = "LegalEntityID")
     private int legalEntityId;
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }
