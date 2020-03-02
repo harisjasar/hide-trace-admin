@@ -18,8 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -93,23 +91,6 @@ public class IncomingInvoiceInvoicesListController {
     }
 
     @Component
-    private static class InvoicesTableSelectionListener implements ListSelectionListener {
-
-        @Autowired
-        private IncomingInvoiceInvoicesListController controller;
-
-        @Override
-        public void valueChanged(ListSelectionEvent e) {
-            JTable table = controller.getInvoicesTable();
-            int row = table.getSelectedRow();
-            int col = table.getSelectedColumn();
-            int selectedItem = (int) table.getValueAt(row, 0);
-            System.out.println(selectedItem);
-        }
-
-    };
-
-    @Component
     private static class InvoicesTableMouseSelectionAdapter extends MouseAdapter {
 
         @Autowired
@@ -122,7 +103,6 @@ public class IncomingInvoiceInvoicesListController {
         public void mouseClicked(MouseEvent e) {
             JTable table = controller.getInvoicesTable();
             int row = table.getSelectedRow();
-            int col = table.getSelectedColumn();
             int selectedItem = (int) table.getValueAt(row, 0);
             detailsController.passInvoiceId(selectedItem);
             detailsController.start();
