@@ -241,18 +241,19 @@ public class IncomingInvoiceUpdateController {
             view.getAbroadReducedTextField().setText(String.valueOf(model.getInvAbroadReduced()));
             view.getDescriptionTextField().setText(model.getInvDescription());
 
-            IncomingInvoiceCertificateModel certificateModel = incomingInvoiceCertificateService.findByIncomingInvoiceId(model.getInvId());
-            if (certificateModel != null) {
-                view.getCertificateTextField().setText(certificateModel.getCertificateNumber());
-                view.getCertificateTypeDropdown().setSelectedIndex(certificateModel.getCertificateId() - 1);
-
-            }
             List<CertificateModel> certificateModels = certificateService.findAll();
             DefaultComboBoxModel certificatesDropdown = (DefaultComboBoxModel) view.getCertificateTypeDropdown().getModel();
             certificatesDropdown.removeAllElements();
             certificateModels.forEach((entity) -> {
                 certificatesDropdown.addElement(entity);
             });
+
+            IncomingInvoiceCertificateModel certificateModel = incomingInvoiceCertificateService.findByIncomingInvoiceId(model.getInvId());
+            if (certificateModel != null) {
+                view.getCertificateTextField().setText(certificateModel.getCertificateNumber());
+                view.getCertificateTypeDropdown().setSelectedIndex(certificateModel.getCertificateId() - 1);
+
+            }
 
             List<IncomingInvoiceHideTypeModel> hideTypes = incomingInvoiceHideTypeService.findAllByIncomingInvoiceId(model.getInvId());
             hideTypes.forEach((hideType) -> {
