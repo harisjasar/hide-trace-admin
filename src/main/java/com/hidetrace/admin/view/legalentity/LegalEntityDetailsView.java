@@ -55,10 +55,13 @@ public class LegalEntityDetailsView extends javax.swing.JDialog {
         jLabel3.setText("Br. telefona");
 
         nameTextField.setEditable(false);
+        nameTextField.setBackground(new java.awt.Color(255, 255, 255));
 
         addressTextField.setEditable(false);
+        addressTextField.setBackground(new java.awt.Color(255, 255, 255));
 
         phoneNumberTextfield.setEditable(false);
+        phoneNumberTextfield.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
