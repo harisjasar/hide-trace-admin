@@ -118,7 +118,7 @@ public class NewOutgoingInvoiceDialogController {
         OutgoingLegalEntityInvoiceModel model = new OutgoingLegalEntityInvoiceModel();
         try {
 
-            model.setLegalEntityId(((LegalEntityModel) view.getLegalEntityDropDown().getSelectedItem()).getLegalEntityID());
+            model.setLegalEntityId(((LegalEntityModel) view.getLegalEntityDropDown().getSelectedItem()).getLegalEntityId());
             model.setName(view.getInvoiceIdTextField().getText());
 
             OutgoingLegalEntityInvoiceModel model_ = outgoingLegalEntityInvoiceService.saveOutgoingInvoice(model);
