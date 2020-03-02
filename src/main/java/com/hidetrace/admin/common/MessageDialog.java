@@ -85,4 +85,12 @@ public class MessageDialog {
         showMessageDialog(null, "Brisanje uspjelo", "Info", 1);
     }
 
+    public void InvoiceNotSelected() {
+        showMessageDialog(null, "Brisanje nije uspjelo. Faktura nije odabrana", "Greška", 0);
+    }
+
+    public void LegalEntityNotSelected() {
+        showMessageDialog(null, "Firma nije odabrana", "Greška", 0);
+    }
+
 }
