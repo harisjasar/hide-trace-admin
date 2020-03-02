@@ -206,7 +206,7 @@ public class NewIncomingInvoiceDialogController {
     private IncomingLegalEntityInvoiceModel newInvoiceInfo() {
         IncomingLegalEntityInvoiceModel model = new IncomingLegalEntityInvoiceModel();
         try {
-            int LegalEntityID = ((LegalEntityModel) view.getLegalEntityDropDown().getSelectedItem()).getLegalEntityID();
+            int LegalEntityID = ((LegalEntityModel) view.getLegalEntityDropDown().getSelectedItem()).getLegalEntityId();
             model.setInvLegalEntityId(LegalEntityID);
 
             String InvoiceName = view.getInvoiceIdTextField().getText();
