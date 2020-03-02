@@ -82,6 +82,7 @@ public class IncomingInvoiceDetailsView extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         incomingInvoiceIdTextfield.setEditable(false);
+        incomingInvoiceIdTextfield.setBackground(new java.awt.Color(255, 255, 255));
         incomingInvoiceIdTextfield.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         incomingInvoiceIdTextfield.setFocusCycleRoot(true);
         incomingInvoiceIdTextfield.setFocusable(false);
@@ -90,24 +91,28 @@ public class IncomingInvoiceDetailsView extends javax.swing.JDialog {
         jLabel1.setText("ID");
 
         GrossWeightTextField.setEditable(false);
+        GrossWeightTextField.setBackground(new java.awt.Color(255, 255, 255));
         GrossWeightTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Bruto težina (kg)");
 
         NetWeightTextField.setEditable(false);
+        NetWeightTextField.setBackground(new java.awt.Color(255, 255, 255));
         NetWeightTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Neto težina (kg)");
 
         SaltTextField.setEditable(false);
+        SaltTextField.setBackground(new java.awt.Color(255, 255, 255));
         SaltTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("So (%)");
 
         AbroadReducedTextField.setEditable(false);
+        AbroadReducedTextField.setBackground(new java.awt.Color(255, 255, 255));
         AbroadReducedTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -117,13 +122,13 @@ public class IncomingInvoiceDetailsView extends javax.swing.JDialog {
         jLabel11.setText("Broj fakture");
 
         InvoiceNameTextField.setEditable(false);
+        InvoiceNameTextField.setBackground(new java.awt.Color(255, 255, 255));
         InvoiceNameTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Komentar");
 
         DescriptionTextField.setEditable(false);
-        DescriptionTextField.setBackground(new java.awt.Color(240, 240, 240));
         DescriptionTextField.setColumns(20);
         DescriptionTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         DescriptionTextField.setRows(5);
@@ -202,16 +207,18 @@ public class IncomingInvoiceDetailsView extends javax.swing.JDialog {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         CertificateTextField.setEditable(false);
+        CertificateTextField.setBackground(new java.awt.Color(255, 255, 255));
         CertificateTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Certifikat");
 
         certificateTypeTextField.setEditable(false);
+        certificateTypeTextField.setBackground(new java.awt.Color(255, 255, 255));
         certificateTypeTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -243,12 +250,14 @@ public class IncomingInvoiceDetailsView extends javax.swing.JDialog {
         );
 
         CowTextField.setEditable(false);
+        CowTextField.setBackground(new java.awt.Color(255, 255, 255));
         CowTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Krava (€)");
 
         BullTextField.setEditable(false);
+        BullTextField.setBackground(new java.awt.Color(255, 255, 255));
         BullTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -258,6 +267,7 @@ public class IncomingInvoiceDetailsView extends javax.swing.JDialog {
         jLabel14.setText("Tele (€)");
 
         CalfTextField.setEditable(false);
+        CalfTextField.setBackground(new java.awt.Color(255, 255, 255));
         CalfTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -303,12 +313,14 @@ public class IncomingInvoiceDetailsView extends javax.swing.JDialog {
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         dateTimeTextField.setEditable(false);
+        dateTimeTextField.setBackground(new java.awt.Color(255, 255, 255));
         dateTimeTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Datum");
 
         totalLoadTextField.setEditable(false);
+        totalLoadTextField.setBackground(new java.awt.Color(255, 255, 255));
         totalLoadTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -318,6 +330,7 @@ public class IncomingInvoiceDetailsView extends javax.swing.JDialog {
         jLabel18.setText("Razlika (%)");
 
         differenceTextField.setEditable(false);
+        differenceTextField.setBackground(new java.awt.Color(255, 255, 255));
         differenceTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
