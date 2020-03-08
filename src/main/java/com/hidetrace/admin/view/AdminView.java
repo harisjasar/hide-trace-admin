@@ -50,6 +50,15 @@ public class AdminView extends javax.swing.JFrame {
         updateOutgoingInvoiceButton = new javax.swing.JButton();
         reviewOutgoingInvoiceButton = new javax.swing.JButton();
         currentLoggedOnUserLabel = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu = new javax.swing.JMenu();
+        newHideTypeButton = new javax.swing.JMenuItem();
+        updateHideTypeButton = new javax.swing.JMenuItem();
+        reviewHideTypeButton = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        newCategoryButton = new javax.swing.JMenuItem();
+        updateCategory = new javax.swing.JMenuItem();
+        reviewCategoryButton = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,6 +161,34 @@ public class AdminView extends javax.swing.JFrame {
         currentLoggedOnUserLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         currentLoggedOnUserLabel.setText("Dobrodošli, Haris");
 
+        jMenu.setText("Vrsta");
+
+        newHideTypeButton.setText("Nova vrsta");
+        jMenu.add(newHideTypeButton);
+
+        updateHideTypeButton.setText("Ažuriranje");
+        jMenu.add(updateHideTypeButton);
+
+        reviewHideTypeButton.setText("Pregled");
+        jMenu.add(reviewHideTypeButton);
+
+        jMenuBar1.add(jMenu);
+
+        jMenu1.setText("Kategorija");
+
+        newCategoryButton.setText("Nova kategorija");
+        jMenu1.add(newCategoryButton);
+
+        updateCategory.setText("Ažuriranje");
+        jMenu1.add(updateCategory);
+
+        reviewCategoryButton.setText("Pregled");
+        jMenu1.add(reviewCategoryButton);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,15 +218,24 @@ public class AdminView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton newAddLegalEntityButton;
+    private javax.swing.JMenuItem newCategoryButton;
+    private javax.swing.JMenuItem newHideTypeButton;
     private javax.swing.JButton newIncomingInvoiceButton;
     private javax.swing.JButton newOutgoingInvoiceButton;
+    private javax.swing.JMenuItem reviewCategoryButton;
+    private javax.swing.JMenuItem reviewHideTypeButton;
     private javax.swing.JButton reviewIncomingInvoicesButton;
     private javax.swing.JButton reviewLegalEntitiesButton;
     private javax.swing.JButton reviewOutgoingInvoiceButton;
+    private javax.swing.JMenuItem updateCategory;
+    private javax.swing.JMenuItem updateHideTypeButton;
     private javax.swing.JButton updateIncomingInvoiceButton;
     private javax.swing.JButton updateLegalEntityButton;
     private javax.swing.JButton updateOutgoingInvoiceButton;
