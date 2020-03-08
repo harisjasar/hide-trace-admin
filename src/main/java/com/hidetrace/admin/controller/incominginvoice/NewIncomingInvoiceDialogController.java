@@ -6,34 +6,41 @@
 package com.hidetrace.admin.controller.incominginvoice;
 
 import com.hidetrace.admin.common.*;
-import com.hidetrace.admin.common.incominginvoice.*;
 import com.hidetrace.admin.helper.incominginvoice.NewIncomingInvoiceDialogHelper;
+import com.hidetrace.admin.model.CategoryModel;
+import com.hidetrace.admin.model.CertificateModel;
+import com.hidetrace.admin.model.HideTypeModel;
 import com.hidetrace.admin.model.LegalEntityModel;
 import com.hidetrace.admin.model.incominginvoice.*;
+import com.hidetrace.admin.service.CategoryService;
+import com.hidetrace.admin.service.CertificateService;
+import com.hidetrace.admin.service.CompositeService;
+import com.hidetrace.admin.service.HideTypeService;
+import com.hidetrace.admin.service.IncomingInvoiceHideTypeCategoryService;
 import com.hidetrace.admin.service.LegalEntityService;
 import com.hidetrace.admin.service.incominginvoice.*;
 import com.hidetrace.admin.view.incominginvoice.NewIncomingInvoiceDialogView;
+import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JToggleButton;
 import javax.swing.UIManager;
 import lombok.Data;
 import org.decimal4j.util.DoubleRounder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.UnexpectedRollbackException;
 
 /**
  *
@@ -76,17 +83,27 @@ public class NewIncomingInvoiceDialogController {
     @Autowired
     private CalculateInvoiceData calculateInvoiceData;
 
+    @Autowired
+    private IncomingInvoiceHideTypeCategoryService incomingInvoiceHideTypeCategoryService;
+
+    @Autowired
+    private CompositeService compositeService;
+
+    @Autowired
+    private CertificateService certificateService;
+
+    private int nextY = 0;
+
+    private List<JComboBox> hideTypeComboxList = new ArrayList<>();
+    private List<JComboBox> categoryComboxList = new ArrayList<>();
+    private List<JTextField> priceList = new ArrayList<>();
+    private List<JLabel> labelList = new ArrayList<>();
+
     private void initView() {
-        for (JTextField field : getArticleTextFields()) {
-            field.setEnabled(false);
-        }
+
         for (JTextField field : getAllTextFields()) {
             field.setText("");
         }
-        for (JToggleButton btn : getArticleToggleBtns()) {
-            btn.setSelected(false);
-        }
-
         view.getCommentTextField().setText("");
 
         view.setResizable(false);
@@ -101,13 +118,9 @@ public class NewIncomingInvoiceDialogController {
             view.getAddInvoiceButton().addActionListener(appContext.getBean(AddInvoiceButtonListener.class));
 
         }
-
-        for (JToggleButton tglBtn : getArticleToggleBtns()) {
-            if (tglBtn.getActionListeners().length == 0) {
-                tglBtn.addActionListener(appContext.getBean(ArticleTglButtonActionListener.class));
-            }
+        if (view.getAddNewArticleButton().getActionListeners().length == 0) {
+            view.getAddNewArticleButton().addActionListener(appContext.getBean(AddNewArticleComponentsButtonActionListener.class));
         }
-
         for (JTextField field : getAllTextFields()) {
             if (field != view.getInvoiceIdTextField()) {
                 if (field != view.getCertificateTextField()) {
@@ -140,6 +153,13 @@ public class NewIncomingInvoiceDialogController {
             model.addElement(entity);
         });
 
+        DefaultComboBoxModel certificateDropDown = (DefaultComboBoxModel) view.getCertficateDropDown().getModel();
+        certificateDropDown.removeAllElements();
+
+        List<CertificateModel> certificates = certificateService.findAll();
+        certificates.forEach((certificate) -> {
+            certificateDropDown.addElement(certificate);
+        });
     }
 
     public void start() {
@@ -148,61 +168,19 @@ public class NewIncomingInvoiceDialogController {
         initView();
     }
 
-    public List<IncomingInvoiceHideTypeModel> newIncomingInvoiceHideTypeInfo() {
-        JTextField[] articleTxtFields = getArticleTextFields();
-        JToggleButton[] tglBtns = getArticleToggleBtns();
-
-        HashMap hydeTypeHashMap = new HashMap();
-        for (int i = 0; i < tglBtns.length; i++) {
-            hydeTypeHashMap.put(tglBtns[i], articleTxtFields[i]);
-        }
-
-        List<IncomingInvoiceHideTypeModel> list = new ArrayList<>();
-
-        try {
-            for (JToggleButton tglBtn : tglBtns) {
-                if (tglBtn.isSelected()) {
-                    JTextField field = ((JTextField) hydeTypeHashMap.get(tglBtn));
-                    if (!field.getText().isEmpty()) {
-                        IncomingInvoiceHideTypeModel model = new IncomingInvoiceHideTypeModel();
-                        model.setPrice(Double.parseDouble(field.getText()));
-                        String hideType = tglBtn.getText();
-                        if (hideType.equals(HideTypeEnum.COW.getValue())) {
-                            model.setHideTypeId(HideTypeValues.COW);
-                        } else if (hideType.equals(HideTypeEnum.BULL.getValue())) {
-                            model.setHideTypeId(HideTypeValues.BULL);
-                        } else {
-                            model.setHideTypeId(HideTypeValues.CALF);
-                        }
-
-                        list.add(model);
-                    }
-                }
-            }
-            return list;
-        } catch (NumberFormatException ex) {
-            if (!exception.isRaised()) {
-                messageDialog.WrongFormat();
-                exception.setRaised(true);
-            }
-        }
-        return null;
-    }
-
-    public IncomingInvoiceCertificateModel newIncomingInvoiceCertificateInfo() {
-        IncomingInvoiceCertificateModel model = new IncomingInvoiceCertificateModel();
-        String cert = view.getCertficateDropDown().getSelectedItem().toString();
-        if (cert.equals(IncomingCertificateEnum.ZVUD.getValue())) {
-            model.setCertificateId(IncomingCertificateValues.ZVUD);
-        } else {
-            model.setCertificateId(IncomingCertificateValues.VS_B2);
-        }
-
-        model.setCertificateNumber(view.getCertificateTextField().getText());
-
-        return model;
-    }
-
+//    public IncomingInvoiceCertificateModel newIncomingInvoiceCertificateInfo() {
+//        IncomingInvoiceCertificateModel model = new IncomingInvoiceCertificateModel();
+//        String cert = view.getCertficateDropDown().getSelectedItem().toString();
+//        if (cert.equals(IncomingCertificateEnum.ZVUD.getValue())) {
+//            model.setCertificateId(IncomingCertificateValues.ZVUD);
+//        } else {
+//            model.setCertificateId(IncomingCertificateValues.VS_B2);
+//        }
+//
+//        model.setCertificateNumber(view.getCertificateTextField().getText());
+//
+//        return model;
+//    }
     private IncomingLegalEntityInvoiceModel newInvoiceInfo() {
         IncomingLegalEntityInvoiceModel model = new IncomingLegalEntityInvoiceModel();
         try {
@@ -232,40 +210,65 @@ public class NewIncomingInvoiceDialogController {
             model.setInvTimeStamp(new java.sql.Timestamp(new java.util.Date().getTime()));
             model.setInvTotalLoad(DoubleRounder.round(calculateInvoiceData.calculateTotalLoad(InvSalt, (InvGrossWeight - InvNetWeight), InvGrossWeight), 3));
 
-            IncomingLegalEntityInvoiceModel model_ = incomingLegalEntityInvoiceService.saveIncomingInvoice(model);
-            return model_;
-        } catch (NumberFormatException | UnexpectedRollbackException ex) {
-            if (!exception.isRaised()) {
-                messageDialog.WrongFormat();
-                exception.setRaised(true);
-            }
+            return model;
+        } catch (NumberFormatException ex) {
+            messageDialog.WrongFormat();
+            return null;
         }
-        return null;
     }
 
     public boolean saveInvoice() {
-        List<IncomingInvoiceHideTypeModel> newIncomingInvoiceHideTypeInfo = newIncomingInvoiceHideTypeInfo();
-        IncomingLegalEntityInvoiceModel invoiceModel = null;
-        if (!exception.isRaised()) {
-            invoiceModel = newInvoiceInfo();
-        }
-        int newInvoiceId = invoiceModel != null ? invoiceModel.getInvId() : -1;
-        if (invoiceModel != null) {
-            IncomingInvoiceCertificateModel incomingInvoiceCertModel = newIncomingInvoiceCertificateInfo();
-            incomingInvoiceCertModel.setIncomingInvoiceId(newInvoiceId);
-            incomingInvoiceCertificateService.saveIncomingInvoiceCertificate(incomingInvoiceCertModel);
-            newIncomingInvoiceHideTypeInfo.stream().map((model) -> {
-                model.setIncomingInvoiceId(newInvoiceId);
-                return model;
-            }).forEachOrdered(incomingInvoiceHideTypeService::saveIncomingInvoiceHideType);
+        //Important to check that invoiceModel is not null, hideTypesAndCategories is not null certModel is not null
+        //update certModel is never null
 
-            messageDialog.InvoiceSuccessfullyCreated(invoiceModel.getInvName());
-            return true;
-        } else {
-            messageDialog.ErrorCreatingInvoice();
-            exception.setRaised(false);
+        //Need to get all of the hide type and category info here
+        List<IncomingInvoiceHideTypeCategoryModel> hideTypesAndCategories = getInvoiceHideTypeAndCategoryInfo();
+
+        //Need to get the certificate info here
+        CertificateModel certModel = (CertificateModel) view.getCertficateDropDown().getSelectedItem();
+        IncomingInvoiceCertificateModel incomingInvoiceCertModel = new IncomingInvoiceCertificateModel();
+        incomingInvoiceCertModel.setCertificateId(certModel.getCertificateId());
+        incomingInvoiceCertModel.setCertificateNumber(view.getCertificateTextField().getText());
+
+        //Need to get the invoice info here
+        IncomingLegalEntityInvoiceModel invoiceModel = newInvoiceInfo();
+
+        if (hideTypesAndCategories != null && invoiceModel != null) {
+            return compositeService.saveIncomingInvoiceHideTypeCategory(invoiceModel, hideTypesAndCategories, incomingInvoiceCertModel);
         }
+
         return false;
+    }
+
+    private List<IncomingInvoiceHideTypeCategoryModel> getInvoiceHideTypeAndCategoryInfo() {
+        List<IncomingInvoiceHideTypeCategoryModel> hideTypeAndCategoryList = new ArrayList<>();
+        if (view.getArticleGridBagLayoutPanel().getComponentCount() != 0) {
+            for (int i = 0; i < labelList.size(); i++) {
+                try {
+                    HideTypeModel hideType = (HideTypeModel) hideTypeComboxList.get(i).getSelectedItem();
+                    CategoryModel category = (CategoryModel) categoryComboxList.get(i).getSelectedItem();
+                    if (priceList.get(i).getText().isEmpty()) {
+                        messageDialog.ArticlePriceCannotBeEmpty();
+                        return null;
+                    }
+                    Double price = Double.parseDouble(priceList.get(i).getText());
+
+                    IncomingInvoiceHideTypeCategoryModel model = new IncomingInvoiceHideTypeCategoryModel();
+                    model.setCategoryId(category.getCategoryId());
+                    model.setHideTypeId(hideType.getHideTypeId());
+                    model.setPrice(price);
+                    hideTypeAndCategoryList.add(model);
+                } catch (NumberFormatException ex) {
+                    messageDialog.WrongFormat();
+                    return null;
+                }
+
+            }
+        } else {
+            messageDialog.ArticleNeedsToBeAdded();
+            return null;
+        }
+        return hideTypeAndCategoryList;
     }
 
     @Component
@@ -305,38 +308,89 @@ public class NewIncomingInvoiceDialogController {
     }
 
     @Component
-    private static class ArticleTglButtonActionListener implements ActionListener {
+    private static class AddNewArticleComponentsButtonActionListener implements ActionListener {
 
         @Autowired
         private NewIncomingInvoiceDialogView view;
 
+        @Autowired
+        private NewIncomingInvoiceDialogController controller;
+
+        @Autowired
+        private MessageDialog messagDialog;
+
+        @Autowired
+        private HideTypeService hideTypeService;
+
+        @Autowired
+        private CategoryService categoryService;
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            JToggleButton tglbtn = (JToggleButton) e.getSource();
-            checkSelected(tglbtn, getTextFieldByTglBtn(tglbtn));
-        }
+            if (controller.nextY < 10) {
+                JPanel panel = view.getArticleGridBagLayoutPanel();
+                GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
 
-        private JTextField getTextFieldByTglBtn(JToggleButton tglBtn) {
-            JTextField[] articleTxtFields = {view.getBulltxtField(), view.getCowtxtField(), view.getCalftxtField()};
-            JToggleButton[] tglBtns = {view.getBullArticleTglBtn(), view.getCowArticleTglBtn(), view.getCalfArticleTglBtn()};
+                JComboBox comboBox1 = new JComboBox();
+                List<HideTypeModel> hideTypes = hideTypeService.getAllHideTypes();
+                comboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(hideTypes.toArray()));
+                comboBox1.setPreferredSize(new java.awt.Dimension(120, 30));
+                gridBagConstraints.gridx = 0;
+                gridBagConstraints.gridy = controller.nextY;
+                gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+                gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+                panel.add(comboBox1, gridBagConstraints);
+                controller.hideTypeComboxList.add(comboBox1);
 
-            HashMap hydeTypeHashMap = new HashMap();
-            for (int i = 0; i < tglBtns.length; i++) {
-                hydeTypeHashMap.put(tglBtns[i], articleTxtFields[i]);
+                JComboBox comboBox2 = new JComboBox();
+                List<CategoryModel> categories = categoryService.getAllCategories();
+                comboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(categories.toArray()));
+                comboBox2.setPreferredSize(new java.awt.Dimension(120, 30));
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 1;
+                gridBagConstraints.gridy = controller.nextY;
+                gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+                gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+                panel.add(comboBox2, gridBagConstraints);
+                controller.categoryComboxList.add(comboBox2);
+
+                JTextField field = new JTextField();
+                field.setPreferredSize(new java.awt.Dimension(60, 30));
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 2;
+                gridBagConstraints.gridy = controller.nextY;
+                gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+                gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+                panel.add(field, gridBagConstraints);
+                controller.priceList.add(field);
+
+                JLabel label = new JLabel();
+                label.addMouseListener(new java.awt.event.MouseAdapter() {
+                    @Override
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        controller.removeArticleComponent(evt);
+                    }
+                });
+                label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphics/rsz_stop.png"))); // NOI18N
+                label.setPreferredSize(new java.awt.Dimension(30, 30));
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 3;
+                gridBagConstraints.gridy = controller.nextY;
+                gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+                gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+                panel.add(label, gridBagConstraints);
+                controller.labelList.add(label);
+
+                panel.revalidate();
+                panel.repaint();
+                controller.nextY++;
+            } else {
+                messagDialog.MaxNumberOfArticlesReached();
             }
 
-            return (JTextField) hydeTypeHashMap.get(tglBtn);
-
         }
-    }
 
-    private static void checkSelected(JToggleButton tglbtn, JTextField txtfield) {
-        if (tglbtn.isSelected()) {
-            txtfield.setEnabled(true);
-        } else {
-            txtfield.setEnabled(false);
-            txtfield.setText("");
-        }
     }
 
     private JTextField[] getAllTextFields() {
@@ -346,12 +400,27 @@ public class NewIncomingInvoiceDialogController {
             view.getControlWeightCompanyGrossTextField(),
             view.getControlWeightInvoicegrossTextField(),
             view.getInvoiceIdTextField(),
-            view.getSaltControlTextField(),
-            view.getBulltxtField(),
-            view.getCalftxtField(),
-            view.getCowtxtField()
+            view.getSaltControlTextField()
         };
         return txtFields;
+    }
+
+    public void removeArticleComponent(java.awt.event.MouseEvent evt) {
+        int index = labelList.indexOf(evt.getSource());
+        if (index > -1) {
+            JPanel panel = view.getArticleGridBagLayoutPanel();
+            panel.remove(hideTypeComboxList.get(index));
+            panel.remove(categoryComboxList.get(index));
+            panel.remove(priceList.get(index));
+            panel.remove(labelList.get(index));
+            hideTypeComboxList.remove(index);
+            categoryComboxList.remove(index);
+            priceList.remove(index);
+            labelList.remove(index);
+            nextY--;
+            panel.revalidate();
+            panel.repaint();
+        }
     }
 
     public JTextField[] arrayOfTextFields() {
@@ -367,35 +436,18 @@ public class NewIncomingInvoiceDialogController {
         return txtFields;
     }
 
-    public JToggleButton[] getArticleToggleBtns() {
-        JToggleButton[] tglBtns = {
-            view.getBullArticleTglBtn(), view.getCalfArticleTglBtn(), view.getCowArticleTglBtn()
-        };
-
-        return tglBtns;
-    }
-
-    public JTextField[] getArticleTextFields() {
-        JTextField[] articleTxtFields = {
-            view.getBulltxtField(), view.getCalftxtField(), view.getCowtxtField()
-        };
-
-        return articleTxtFields;
-    }
-
     public void completeSave() {
         for (JTextField field : getAllTextFields()) {
             field.setText("");
         }
-        for (JToggleButton btn : getArticleToggleBtns()) {
-            btn.setSelected(false);
-        }
-        view.getCommentTextField().setText("");
-        view.getBulltxtField().setEnabled(false);
-        view.getCowtxtField().setEnabled(false);
-        view.getCalftxtField().setEnabled(false);
 
-        Thread t1 = new Thread(appContext.getBean(CheckFormatCorrectIncomingInvoice.class), "T1");
+        view.getArticleGridBagLayoutPanel().removeAll();
+        view.getArticleGridBagLayoutPanel().revalidate();
+        view.getArticleGridBagLayoutPanel().repaint();
+        nextY = 0;
+        view.getCommentTextField().setText("");
+        Thread t1 = new Thread(appContext.getBean(CheckFormatCorrectIncomingInvoice.class
+        ), "T1");
         t1.start();
     }
 
@@ -417,18 +469,6 @@ public class NewIncomingInvoiceDialogController {
         map.put("commentLabel", view.getCommentLabel().getText());
         map.put("certificateLabel", view.getCertficateDropDown().getSelectedItem().toString());
         map.put("certificate", view.getCertificateTextField().getText());
-        if (view.getCowArticleTglBtn().isSelected()) {
-            map.put("cowLabel", view.getCowArticleTglBtn().getText());
-            map.put("cow", view.getCowtxtField().getText());
-        }
-        if (view.getBullArticleTglBtn().isSelected()) {
-            map.put("bullLabel", view.getBullArticleTglBtn().getText());
-            map.put("bull", view.getBulltxtField().getText());
-        }
-        if (view.getCalfArticleTglBtn().isSelected()) {
-            map.put("calfLabel", view.getCalfArticleTglBtn().getText());
-            map.put("calf", view.getCalftxtField().getText());
-        }
 
         return map;
     }
@@ -474,6 +514,7 @@ public class NewIncomingInvoiceDialogController {
                 "Potvrda", dialogButton);
 
         return dialogResult == JOptionPane.YES_OPTION;
+
     }
 
     @Component
@@ -487,8 +528,6 @@ public class NewIncomingInvoiceDialogController {
         @Override
         public void run() {
             List<JTextField> list = new ArrayList<>();
-            JTextField[] fields = getArticleTextFields();
-            list.addAll(Arrays.asList(fields));
             list.add(view.getControlWeightCompanyGrossTextField());
             list.add(view.getControlWeightInvoicegrossTextField());
             list.add(view.getAbroadReducedTextField());
@@ -531,6 +570,7 @@ public class NewIncomingInvoiceDialogController {
     }
 
     public void StopCheckFormatCorrect() {
-        appContext.getBean(CheckFormatCorrectIncomingInvoice.class).stop();
+        appContext.getBean(CheckFormatCorrectIncomingInvoice.class
+        ).stop();
     }
 }
