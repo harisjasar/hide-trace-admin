@@ -93,4 +93,31 @@ public class MessageDialog {
         showMessageDialog(null, "Firma nije odabrana", "Greška", 0);
     }
 
+    public void MaxNumberOfArticlesReached() {
+        showMessageDialog(null, "Maksimalan broj artikala odabran", "Greška", 0);
+    }
+
+    public void ArticleNeedsToBeAdded() {
+        showMessageDialog(null, "Dodajte artikal", "Greška", 0);
+    }
+
+    public void ArticlePriceCannotBeEmpty() {
+        showMessageDialog(null, "Cijena artikla ne može biti prazna", "Greška", 0);
+    }
+
+    public void CreationSuccessful() {
+        showMessageDialog(null, "Uspješno kreirano", "Info", 1);
+
+    }
+
+    public void CreationNotSuccessful() {
+        showMessageDialog(null, "Kreiranje nije uspješno", "Info", 1);
+
+    }
+
+    public void HideTypeNotSelected() {
+        showMessageDialog(null, "Vrsta mora biti odabrana", "Greška", 1);
+
+    }
+
 }
