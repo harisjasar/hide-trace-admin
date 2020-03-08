@@ -23,12 +23,12 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "hidetype")
-public class HideTypeModel {
+@Table(name = "category")
+public class CategoryModel {
 
     @Id
-    @Column(name = "HideTypeID")
-    private int hideTypeId;
+    @Column(name = "CategoryID")
+    private int categoryId;
     @Column(name = "Name")
     private String name;
     @Column(name = "Description")
