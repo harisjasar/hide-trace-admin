@@ -5,6 +5,12 @@
  */
 package com.hidetrace.admin.controller;
 
+import com.hidetrace.admin.controller.category.CategoryNewController;
+import com.hidetrace.admin.controller.category.CategoryReviewController;
+import com.hidetrace.admin.controller.category.CategoryUpdateController;
+import com.hidetrace.admin.controller.hidetype.HideTypeNewController;
+import com.hidetrace.admin.controller.hidetype.HideTypeReviewController;
+import com.hidetrace.admin.controller.hidetype.HideTypeUpdateController;
 import com.hidetrace.admin.controller.incominginvoice.IncomingInvoiceInvoicesListController;
 import com.hidetrace.admin.controller.incominginvoice.IncomingInvoiceUpdateController;
 import com.hidetrace.admin.controller.incominginvoice.NewIncomingInvoiceDialogController;
@@ -79,6 +85,24 @@ public class AdminController {
         if (view.getReviewOutgoingInvoiceButton().getActionListeners().length == 0) {
             view.getReviewOutgoingInvoiceButton().addActionListener(appContext.getBean(ReviewOutgoingInvoiceButtonListener.class));
         }
+        if (view.getNewHideTypeButton().getActionListeners().length == 0) {
+            view.getNewHideTypeButton().addActionListener(appContext.getBean(NewHideTypeButtonListener.class));
+        }
+        if (view.getUpdateHideTypeButton().getActionListeners().length == 0) {
+            view.getUpdateHideTypeButton().addActionListener(appContext.getBean(UpdateHideTypeButtonListener.class));
+        }
+        if (view.getNewCategoryButton().getActionListeners().length == 0) {
+            view.getNewCategoryButton().addActionListener(appContext.getBean(NewCategoryButtonListener.class));
+        }
+        if (view.getUpdateCategory().getActionListeners().length == 0) {
+            view.getUpdateCategory().addActionListener(appContext.getBean(UpdateCategoryButtonListener.class));
+        }
+        if (view.getReviewHideTypeButton().getActionListeners().length == 0) {
+            view.getReviewHideTypeButton().addActionListener(appContext.getBean(ReviewHideTypeButtonListener.class));
+        }
+        if (view.getReviewCategoryButton().getActionListeners().length == 0) {
+            view.getReviewCategoryButton().addActionListener(appContext.getBean(ReviewCategoryButtonListener.class));
+        }
     }
 
     public void start() {
@@ -89,6 +113,90 @@ public class AdminController {
 
     private void initData() {
         view.getCurrentLoggedOnUserLabel().setText("Dobrodošli, " + operModel.getFirstName());
+    }
+
+    @Component
+    private static class ReviewCategoryButtonListener implements ActionListener {
+
+        @Autowired
+        private ApplicationContext appContext;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            appContext.getBean(CategoryReviewController.class).start();
+
+        }
+
+    }
+
+    @Component
+    private static class ReviewHideTypeButtonListener implements ActionListener {
+
+        @Autowired
+        private ApplicationContext appContext;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            appContext.getBean(HideTypeReviewController.class).start();
+
+        }
+
+    }
+
+    @Component
+    private static class UpdateCategoryButtonListener implements ActionListener {
+
+        @Autowired
+        private ApplicationContext appContext;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            appContext.getBean(CategoryUpdateController.class).start();
+
+        }
+
+    }
+
+    @Component
+    private static class UpdateHideTypeButtonListener implements ActionListener {
+
+        @Autowired
+        private ApplicationContext appContext;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            appContext.getBean(HideTypeUpdateController.class).start();
+
+        }
+
+    }
+
+    @Component
+    private static class NewCategoryButtonListener implements ActionListener {
+
+        @Autowired
+        private ApplicationContext appContext;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            appContext.getBean(CategoryNewController.class).start();
+
+        }
+
+    }
+
+    @Component
+    private static class NewHideTypeButtonListener implements ActionListener {
+
+        @Autowired
+        private ApplicationContext appContext;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            appContext.getBean(HideTypeNewController.class).start();
+
+        }
+
     }
 
     @Component
