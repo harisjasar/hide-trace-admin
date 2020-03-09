@@ -16,7 +16,6 @@ import com.hidetrace.admin.service.CategoryService;
 import com.hidetrace.admin.service.CertificateService;
 import com.hidetrace.admin.service.CompositeService;
 import com.hidetrace.admin.service.HideTypeService;
-import com.hidetrace.admin.service.IncomingInvoiceHideTypeCategoryService;
 import com.hidetrace.admin.service.LegalEntityService;
 import com.hidetrace.admin.service.incominginvoice.*;
 import com.hidetrace.admin.view.incominginvoice.NewIncomingInvoiceDialogView;
@@ -41,6 +40,7 @@ import org.decimal4j.util.DoubleRounder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.UnexpectedRollbackException;
 
 /**
  *
@@ -93,7 +93,6 @@ public class NewIncomingInvoiceDialogController {
     private CertificateService certificateService;
 
     private int nextY = 0;
-
     private List<JComboBox> hideTypeComboxList = new ArrayList<>();
     private List<JComboBox> categoryComboxList = new ArrayList<>();
     private List<JTextField> priceList = new ArrayList<>();
@@ -168,19 +167,6 @@ public class NewIncomingInvoiceDialogController {
         initView();
     }
 
-//    public IncomingInvoiceCertificateModel newIncomingInvoiceCertificateInfo() {
-//        IncomingInvoiceCertificateModel model = new IncomingInvoiceCertificateModel();
-//        String cert = view.getCertficateDropDown().getSelectedItem().toString();
-//        if (cert.equals(IncomingCertificateEnum.ZVUD.getValue())) {
-//            model.setCertificateId(IncomingCertificateValues.ZVUD);
-//        } else {
-//            model.setCertificateId(IncomingCertificateValues.VS_B2);
-//        }
-//
-//        model.setCertificateNumber(view.getCertificateTextField().getText());
-//
-//        return model;
-//    }
     private IncomingLegalEntityInvoiceModel newInvoiceInfo() {
         IncomingLegalEntityInvoiceModel model = new IncomingLegalEntityInvoiceModel();
         try {
@@ -234,7 +220,11 @@ public class NewIncomingInvoiceDialogController {
         IncomingLegalEntityInvoiceModel invoiceModel = newInvoiceInfo();
 
         if (hideTypesAndCategories != null && invoiceModel != null) {
-            return compositeService.saveIncomingInvoiceHideTypeCategory(invoiceModel, hideTypesAndCategories, incomingInvoiceCertModel);
+            try {
+                return compositeService.saveIncomingInvoiceHideTypeCategory(invoiceModel, hideTypesAndCategories, incomingInvoiceCertModel);
+            } catch (UnexpectedRollbackException ex) {
+                messageDialog.ErrorCreatingInvoice();
+            }
         }
 
         return false;
