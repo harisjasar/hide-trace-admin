@@ -6,8 +6,8 @@
 package com.hidetrace.admin.helper.incominginvoice;
 
 import com.hidetrace.admin.common.MessageDialog;
+import com.hidetrace.admin.common.Validation;
 import com.hidetrace.admin.controller.incominginvoice.IncomingInvoiceUpdateController;
-import javax.swing.JTextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,9 +24,12 @@ public class IncomingInvoiceUpdateHelper {
     @Autowired
     MessageDialog messageDialog;
 
+    @Autowired
+    Validation validation;
+
     public void updateInvoice() {
 
-        boolean emptyField = isFieldEmpty(controller.arrayOfTextFields());
+        boolean emptyField = validation.isFieldEmpty(controller.arrayOfTextFields());
 
         if (emptyField) {
             messageDialog.EmptyFieldForbidden();
@@ -39,16 +42,4 @@ public class IncomingInvoiceUpdateHelper {
         }
 
     }
-
-    private boolean isFieldEmpty(JTextField[] txtFields) {
-        boolean field = false;
-        for (JTextField txtField : txtFields) {
-            if (txtField.getText().isEmpty()) {
-                field = true;
-            }
-        }
-
-        return field;
-    }
-
 }
