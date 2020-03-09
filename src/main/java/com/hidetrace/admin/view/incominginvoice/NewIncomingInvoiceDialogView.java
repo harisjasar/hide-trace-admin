@@ -76,7 +76,7 @@ public class NewIncomingInvoiceDialogView extends javax.swing.JDialog {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        legalEntityLabel.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        legalEntityLabel.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         legalEntityLabel.setText("Firma:");
         legalEntityLabel.setPreferredSize(new java.awt.Dimension(90, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -87,7 +87,7 @@ public class NewIncomingInvoiceDialogView extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(legalEntityLabel, gridBagConstraints);
 
-        invoiceIdLabel.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        invoiceIdLabel.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         invoiceIdLabel.setText("Faktura:");
         invoiceIdLabel.setPreferredSize(new java.awt.Dimension(90, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -121,7 +121,7 @@ public class NewIncomingInvoiceDialogView extends javax.swing.JDialog {
 
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        grossWeightLabel.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        grossWeightLabel.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         grossWeightLabel.setText("Kontrola težine faktura bruto:");
         grossWeightLabel.setPreferredSize(new java.awt.Dimension(200, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -152,7 +152,7 @@ public class NewIncomingInvoiceDialogView extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(controlWeightCompanyGrossTextField, gridBagConstraints);
 
-        netWeightLabel.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        netWeightLabel.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         netWeightLabel.setText("Kontrola težine ulaz bruto:");
         netWeightLabel.setPreferredSize(new java.awt.Dimension(200, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -173,7 +173,7 @@ public class NewIncomingInvoiceDialogView extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(saltControlTextField, gridBagConstraints);
 
-        saltLabel.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        saltLabel.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         saltLabel.setText("Kontrola soli:");
         saltLabel.setPreferredSize(new java.awt.Dimension(200, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -184,7 +184,7 @@ public class NewIncomingInvoiceDialogView extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(saltLabel, gridBagConstraints);
 
-        abroadReducedLabel.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        abroadReducedLabel.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         abroadReducedLabel.setText("Na terenu odbijeno:");
         abroadReducedLabel.setPreferredSize(new java.awt.Dimension(200, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -205,7 +205,7 @@ public class NewIncomingInvoiceDialogView extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(abroadReducedTextField, gridBagConstraints);
 
-        commentLabel.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        commentLabel.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         commentLabel.setText("Komentar:");
         commentLabel.setPreferredSize(new java.awt.Dimension(200, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -287,8 +287,9 @@ public class NewIncomingInvoiceDialogView extends javax.swing.JDialog {
 
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        certficateDropDown.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        certficateDropDown.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         certficateDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ZVUD", "VS-B2" }));
+        certficateDropDown.setPreferredSize(new java.awt.Dimension(60, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -313,7 +314,7 @@ public class NewIncomingInvoiceDialogView extends javax.swing.JDialog {
 
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-        addInvoiceButton.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        addInvoiceButton.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         addInvoiceButton.setText("Dodaj Fakturu");
         addInvoiceButton.setPreferredSize(new java.awt.Dimension(150, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
