@@ -11,6 +11,7 @@ import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceHideTypeCategory
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceHideTypeModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingLegalEntityInvoiceModel;
 import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceCertificateService;
+import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceHideTypeCategoryService;
 import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceHideTypeService;
 import com.hidetrace.admin.service.incominginvoice.IncomingLegalEntityInvoiceService;
 import java.util.List;
@@ -79,5 +80,26 @@ public class CompositeService {
         }
 
     }
+//
+//    @Transactional
+//    public boolean updateIncomingLegalEntityInvoice(List<IncomingInvoiceHideTypeCategoryModel> hideTypeCategoriesToSave, IncomingLegalEntityInvoiceModel updatedInvoiceModel, IncomingInvoiceCertificateModel updatedCertModel) {
+//        try {
+//
+//
+//
+//
+//
+//
+//
+//
+//            List<IncomingInvoiceHideTypeCategoryModel> hideTypeCategoriesToSave = getInvoiceHideTypeAndCategoryInfo();
+//            incomingInvoiceHideTypeCategoryService.saveAll(allArticles);
+//            IncomingLegalEntityInvoiceModel updatedInvoiceModel = incomingLegalEntityInvoiceService.saveIncomingInvoice(invoiceModel);
+//            IncomingInvoiceCertificateModel updatedCertModel = incomingInvoiceCertificateService.saveIncomingInvoiceCertificate(certModel);
+//            return true;
+//        } catch (Exception ex) {
+//            return false;
+//        }
+//    }
 
 }

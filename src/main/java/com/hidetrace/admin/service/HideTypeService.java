@@ -8,6 +8,7 @@ package com.hidetrace.admin.service;
 import com.hidetrace.admin.model.HideTypeModel;
 import com.hidetrace.admin.repository.HideTypeRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,5 +36,10 @@ public class HideTypeService {
     @Transactional
     public void remove(HideTypeModel hideTypeModel) {
         repo.delete(hideTypeModel);
+    }
+
+    public Optional<HideTypeModel> findById(int id) {
+        return repo.findById(id);
+
     }
 }

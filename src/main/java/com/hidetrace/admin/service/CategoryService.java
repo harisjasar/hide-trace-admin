@@ -8,6 +8,7 @@ package com.hidetrace.admin.service;
 import com.hidetrace.admin.model.CategoryModel;
 import com.hidetrace.admin.repository.CategoryRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +32,13 @@ public class CategoryService {
         return repo.save(model);
     }
 
+    @Transactional
     public void remove(CategoryModel catModel) {
         repo.delete(catModel);
     }
+
+    public Optional<CategoryModel> getCategyById(int id) {
+        return repo.findById(id);
+    }
+
 }
