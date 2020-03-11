@@ -33,6 +33,7 @@ public class NewLegalEntityConfirmationMessagePanelView extends javax.swing.JPan
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel1 = new javax.swing.JLabel();
         LegalEntityNameLabel = new javax.swing.JLabel();
@@ -42,79 +43,76 @@ public class NewLegalEntityConfirmationMessagePanelView extends javax.swing.JPan
         LegalEntityPhoneNumberLabel = new javax.swing.JLabel();
         LegalEntityPhoneNumber = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Potvrdite podatke");
-        jLabel1.setPreferredSize(new java.awt.Dimension(300, 40));
+        setPreferredSize(new java.awt.Dimension(300, 300));
+        setLayout(new java.awt.GridBagLayout());
 
-        LegalEntityNameLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Potvrdite podatke");
+        jLabel1.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        add(jLabel1, gridBagConstraints);
+
         LegalEntityNameLabel.setMaximumSize(new java.awt.Dimension(200, 30));
         LegalEntityNameLabel.setMinimumSize(new java.awt.Dimension(200, 30));
-        LegalEntityNameLabel.setPreferredSize(new java.awt.Dimension(200, 30));
+        LegalEntityNameLabel.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        add(LegalEntityNameLabel, gridBagConstraints);
 
-        LegalEntityName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         LegalEntityName.setMaximumSize(new java.awt.Dimension(200, 30));
         LegalEntityName.setMinimumSize(new java.awt.Dimension(200, 30));
-        LegalEntityName.setPreferredSize(new java.awt.Dimension(200, 30));
+        LegalEntityName.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        add(LegalEntityName, gridBagConstraints);
 
-        LegalEntityAddressLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         LegalEntityAddressLabel.setMaximumSize(new java.awt.Dimension(200, 30));
         LegalEntityAddressLabel.setMinimumSize(new java.awt.Dimension(200, 30));
-        LegalEntityAddressLabel.setPreferredSize(new java.awt.Dimension(200, 30));
+        LegalEntityAddressLabel.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        add(LegalEntityAddressLabel, gridBagConstraints);
 
-        LegalEntityAddress.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         LegalEntityAddress.setMaximumSize(new java.awt.Dimension(200, 30));
         LegalEntityAddress.setMinimumSize(new java.awt.Dimension(200, 30));
-        LegalEntityAddress.setPreferredSize(new java.awt.Dimension(200, 30));
+        LegalEntityAddress.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        add(LegalEntityAddress, gridBagConstraints);
 
-        LegalEntityPhoneNumberLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         LegalEntityPhoneNumberLabel.setMaximumSize(new java.awt.Dimension(200, 30));
         LegalEntityPhoneNumberLabel.setMinimumSize(new java.awt.Dimension(200, 30));
-        LegalEntityPhoneNumberLabel.setPreferredSize(new java.awt.Dimension(200, 30));
+        LegalEntityPhoneNumberLabel.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        add(LegalEntityPhoneNumberLabel, gridBagConstraints);
 
-        LegalEntityPhoneNumber.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         LegalEntityPhoneNumber.setMaximumSize(new java.awt.Dimension(200, 30));
         LegalEntityPhoneNumber.setMinimumSize(new java.awt.Dimension(200, 30));
-        LegalEntityPhoneNumber.setPreferredSize(new java.awt.Dimension(200, 30));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(LegalEntityNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(LegalEntityName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(LegalEntityAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(LegalEntityAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(LegalEntityPhoneNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(LegalEntityPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LegalEntityNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LegalEntityName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LegalEntityAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LegalEntityAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LegalEntityPhoneNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LegalEntityPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+        LegalEntityPhoneNumber.setPreferredSize(new java.awt.Dimension(150, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        add(LegalEntityPhoneNumber, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
