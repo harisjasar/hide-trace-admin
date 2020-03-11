@@ -26,4 +26,14 @@ public class CertificateService {
     public List<CertificateModel> findAll() {
         return repo.findAll();
     }
+
+    @Transactional
+    public CertificateModel save(CertificateModel model) {
+        return repo.save(model);
+    }
+
+    @Transactional
+    public void remove(CertificateModel model) {
+        repo.delete(model);
+    }
 }
