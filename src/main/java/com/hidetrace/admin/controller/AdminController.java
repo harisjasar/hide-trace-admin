@@ -8,6 +8,9 @@ package com.hidetrace.admin.controller;
 import com.hidetrace.admin.controller.category.CategoryNewController;
 import com.hidetrace.admin.controller.category.CategoryReviewController;
 import com.hidetrace.admin.controller.category.CategoryUpdateController;
+import com.hidetrace.admin.controller.certificate.CertificateNewController;
+import com.hidetrace.admin.controller.certificate.CertificateReviewController;
+import com.hidetrace.admin.controller.certificate.CertificateUpdateController;
 import com.hidetrace.admin.controller.hidetype.HideTypeNewController;
 import com.hidetrace.admin.controller.hidetype.HideTypeReviewController;
 import com.hidetrace.admin.controller.hidetype.HideTypeUpdateController;
@@ -103,6 +106,16 @@ public class AdminController {
         if (view.getReviewCategoryButton().getActionListeners().length == 0) {
             view.getReviewCategoryButton().addActionListener(appContext.getBean(ReviewCategoryButtonListener.class));
         }
+        if (view.getNewCertificateButton().getActionListeners().length == 0) {
+            view.getNewCertificateButton().addActionListener(appContext.getBean(NewCertificateButtonListener.class));
+        }
+        if (view.getUpdateCertificateButton().getActionListeners().length == 0) {
+            view.getUpdateCertificateButton().addActionListener(appContext.getBean(UpdateCertificateButtonListener.class));
+        }
+        if (view.getReviewCertificateButton().getActionListeners().length == 0) {
+            view.getReviewCertificateButton().addActionListener(appContext.getBean(ReviewCertificateButtonListener.class));
+        }
+
     }
 
     public void start() {
@@ -113,6 +126,48 @@ public class AdminController {
 
     private void initData() {
         view.getCurrentLoggedOnUserLabel().setText("Dobrodošli, " + operModel.getFirstName());
+    }
+
+    @Component
+    private static class ReviewCertificateButtonListener implements ActionListener {
+
+        @Autowired
+        private ApplicationContext appContext;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            appContext.getBean(CertificateReviewController.class).start();
+
+        }
+
+    }
+
+    @Component
+    private static class UpdateCertificateButtonListener implements ActionListener {
+
+        @Autowired
+        private ApplicationContext appContext;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            appContext.getBean(CertificateUpdateController.class).start();
+
+        }
+
+    }
+
+    @Component
+    private static class NewCertificateButtonListener implements ActionListener {
+
+        @Autowired
+        private ApplicationContext appContext;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            appContext.getBean(CertificateNewController.class).start();
+
+        }
+
     }
 
     @Component
