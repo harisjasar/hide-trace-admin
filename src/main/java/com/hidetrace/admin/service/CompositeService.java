@@ -10,10 +10,16 @@ import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceCertificateModel
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceHideTypeCategoryModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceHideTypeModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingLegalEntityInvoiceModel;
+import com.hidetrace.admin.model.outgoinginvoice.OutgoingInvoiceCertificateModel;
+import com.hidetrace.admin.model.outgoinginvoice.OutgoingInvoiceHideTypeCategoryModel;
+import com.hidetrace.admin.model.outgoinginvoice.OutgoingLegalEntityInvoiceModel;
 import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceCertificateService;
 import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceHideTypeCategoryService;
 import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceHideTypeService;
 import com.hidetrace.admin.service.incominginvoice.IncomingLegalEntityInvoiceService;
+import com.hidetrace.admin.service.outgoinginvoice.OutgoingInvoiceCertificateService;
+import com.hidetrace.admin.service.outgoinginvoice.OutgoingInvoiceHideTypeCategoryService;
+import com.hidetrace.admin.service.outgoinginvoice.OutgoingLegalEntityInvoiceService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -42,6 +48,15 @@ public class CompositeService {
     @Autowired
     private IncomingInvoiceHideTypeCategoryService incomingInvoiceHideTypeCategoryService;
 
+    @Autowired
+    private OutgoingLegalEntityInvoiceService outgoingLegalEntityInvoiceService;
+
+    @Autowired
+    private OutgoingInvoiceHideTypeCategoryService outgoingInvoiceHideTypeCategoryService;
+
+    @Autowired
+    private OutgoingInvoiceCertificateService outgoingInvoiceCertificateService;
+
     @Transactional
     public void removeInvoiceAndCertAndHideTypes(IncomingLegalEntityInvoiceModel invModel, IncomingInvoiceCertificateModel certModel, List<IncomingInvoiceHideTypeModel> hideTypeModels) {
 
@@ -65,41 +80,51 @@ public class CompositeService {
                 hideTypesAndCategories.forEach((a) -> {
                     a.setIncomingInvoiceId(newInvoiceModel.getInvId());
                 });
-                incomingInvoiceHideTypeCategoryService.saveAll(hideTypesAndCategories);
-
+                List<IncomingInvoiceHideTypeCategoryModel> newHideTypeCategoryList = incomingInvoiceHideTypeCategoryService.saveAll(hideTypesAndCategories);
+                if (newHideTypeCategoryList == null) {
+                    throw new RuntimeException();
+                }
                 certModel.setIncomingInvoiceId(newInvoiceModel.getInvId());
-                incomingInvoiceCertificateService.saveIncomingInvoiceCertificate(certModel);
+                IncomingInvoiceCertificateModel newCertModel = incomingInvoiceCertificateService.saveIncomingInvoiceCertificate(certModel);
+                if (newCertModel == null) {
+                    throw new RuntimeException();
+                }
+                return true;
+            } else {
+                return false;
+            }
+        } catch (RuntimeException ex) {
+            return false;
+        }
+
+    }
+
+    @Transactional
+    public boolean saveOutgoingInvoiceHideTypeCategory(OutgoingLegalEntityInvoiceModel invoiceModel, List<OutgoingInvoiceHideTypeCategoryModel> hideTypesAndCategories, OutgoingInvoiceCertificateModel certModel) {
+        try {
+            OutgoingLegalEntityInvoiceModel newInvoiceModel = outgoingLegalEntityInvoiceService.saveOutgoingInvoice(invoiceModel);
+            if (newInvoiceModel != null) {
+                hideTypesAndCategories.forEach((a) -> {
+                    a.setOutgoingInvoiceId(newInvoiceModel.getOutgoingInvoiceId());
+                });
+                List<OutgoingInvoiceHideTypeCategoryModel> newHideTypeCategoryList = outgoingInvoiceHideTypeCategoryService.saveAll(hideTypesAndCategories);
+                if (newHideTypeCategoryList == null) {
+                    throw new RuntimeException();
+                }
+                certModel.setOutgoingInvoiceId(newInvoiceModel.getOutgoingInvoiceId());
+                OutgoingInvoiceCertificateModel newCertModel = outgoingInvoiceCertificateService.saveOutgoingInvoiceCertificate(certModel);
+                if (newCertModel == null) {
+                    throw new RuntimeException();
+                }
 
                 return true;
             } else {
                 return false;
             }
-        } catch (Exception ex) {
-            System.out.println(ex);
+        } catch (RuntimeException ex) {
             return false;
         }
 
     }
-//
-//    @Transactional
-//    public boolean updateIncomingLegalEntityInvoice(List<IncomingInvoiceHideTypeCategoryModel> hideTypeCategoriesToSave, IncomingLegalEntityInvoiceModel updatedInvoiceModel, IncomingInvoiceCertificateModel updatedCertModel) {
-//        try {
-//
-//
-//
-//
-//
-//
-//
-//
-//            List<IncomingInvoiceHideTypeCategoryModel> hideTypeCategoriesToSave = getInvoiceHideTypeAndCategoryInfo();
-//            incomingInvoiceHideTypeCategoryService.saveAll(allArticles);
-//            IncomingLegalEntityInvoiceModel updatedInvoiceModel = incomingLegalEntityInvoiceService.saveIncomingInvoice(invoiceModel);
-//            IncomingInvoiceCertificateModel updatedCertModel = incomingInvoiceCertificateService.saveIncomingInvoiceCertificate(certModel);
-//            return true;
-//        } catch (Exception ex) {
-//            return false;
-//        }
-//    }
 
 }

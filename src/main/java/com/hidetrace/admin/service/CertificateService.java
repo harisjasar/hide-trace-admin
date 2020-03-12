@@ -6,7 +6,7 @@
 package com.hidetrace.admin.service;
 
 import com.hidetrace.admin.model.CertificateModel;
-import com.hidetrace.admin.repository.incominginvoice.CertificateRepository;
+import com.hidetrace.admin.repository.CertificateRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
