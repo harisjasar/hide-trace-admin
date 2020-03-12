@@ -14,36 +14,32 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Jashar
  */
-@Entity
-@Table(name = "outgoinginvoice")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Component
-public class OutgoingLegalEntityInvoiceModel {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Entity
+@Table(name = "outgoinginvoice_has_hidetype_has_category")
+public class OutgoingInvoiceHideTypeCategoryModel {
 
     @Id
-    @Column(name = "OutgoingInvoiceID")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name = "OutgoingInvoiceID")
     private int outgoingInvoiceId;
-    @Column(name = "Name")
-    private String name;
-    @Column(name = "LegalEntityID")
-    private int legalEntityId;
-    @Column(name = "Description")
-    private String description;
-    @Column(name = "DateTime")
-    private java.sql.Timestamp dateTime;
-
-    @Override
-    public String toString() {
-        return name;
-    }
-
+    @Column(name = "Price")
+    private double price;
+    @Column(name = "HideTypeID")
+    private int hideTypeId;
+    @Column(name = "CategoryID")
+    private int categoryId;
 }
