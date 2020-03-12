@@ -33,10 +33,12 @@ public class NewIncomingInvoiceDialogHelper {
         if (emptyField) {
             messageDialog.EmptyFieldForbidden();
         } else {
-
             if (controller.confirmData()) {
                 if (controller.saveInvoice()) {
+                    messageDialog.InvoiceSuccessfullyCreated();
                     controller.completeSave();
+                } else {
+                    messageDialog.InvoiceNotSuccessfullyCreated();
                 }
             }
         }
