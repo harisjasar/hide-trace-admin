@@ -34,6 +34,8 @@ public class AdminView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         newIncomingInvoiceButton = new javax.swing.JButton();
         newOutgoingInvoiceButton = new javax.swing.JButton();
@@ -59,6 +61,14 @@ public class AdminView extends javax.swing.JFrame {
         newCategoryButton = new javax.swing.JMenuItem();
         updateCategory = new javax.swing.JMenuItem();
         reviewCategoryButton = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        newCertificateButton = new javax.swing.JMenuItem();
+        updateCertificateButton = new javax.swing.JMenuItem();
+        reviewCertificateButton = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -187,6 +197,19 @@ public class AdminView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setText("Certifikat");
+
+        newCertificateButton.setText("Novi certifikat");
+        jMenu2.add(newCertificateButton);
+
+        updateCertificateButton.setText("Ažuriranje");
+        jMenu2.add(updateCertificateButton);
+
+        reviewCertificateButton.setText("Pregled");
+        jMenu2.add(reviewCertificateButton);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -220,21 +243,27 @@ public class AdminView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton newAddLegalEntityButton;
     private javax.swing.JMenuItem newCategoryButton;
+    private javax.swing.JMenuItem newCertificateButton;
     private javax.swing.JMenuItem newHideTypeButton;
     private javax.swing.JButton newIncomingInvoiceButton;
     private javax.swing.JButton newOutgoingInvoiceButton;
     private javax.swing.JMenuItem reviewCategoryButton;
+    private javax.swing.JMenuItem reviewCertificateButton;
     private javax.swing.JMenuItem reviewHideTypeButton;
     private javax.swing.JButton reviewIncomingInvoicesButton;
     private javax.swing.JButton reviewLegalEntitiesButton;
     private javax.swing.JButton reviewOutgoingInvoiceButton;
     private javax.swing.JMenuItem updateCategory;
+    private javax.swing.JMenuItem updateCertificateButton;
     private javax.swing.JMenuItem updateHideTypeButton;
     private javax.swing.JButton updateIncomingInvoiceButton;
     private javax.swing.JButton updateLegalEntityButton;

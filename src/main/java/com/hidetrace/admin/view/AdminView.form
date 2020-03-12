@@ -2,6 +2,16 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
+    <Component class="javax.swing.JMenuItem" name="jMenuItem1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jMenuItem1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JMenuItem" name="jMenuItem2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jMenuItem2"/>
+      </Properties>
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu">
@@ -42,6 +52,28 @@
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="reviewCategoryButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pregled"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Certifikat"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="newCertificateButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Novi certifikat"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="updateCertificateButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="A&#x17e;uriranje"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="reviewCertificateButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pregled"/>
               </Properties>
