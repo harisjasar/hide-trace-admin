@@ -6,7 +6,7 @@
 package com.hidetrace.admin.service.incominginvoice;
 
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceHideTypeCategoryModel;
-import com.hidetrace.admin.repository.IncomingInvoiceHideTypeCategoryRepository;
+import com.hidetrace.admin.repository.incominginvoice.IncomingInvoiceHideTypeCategoryRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +36,7 @@ public class IncomingInvoiceHideTypeCategoryService {
 
     @Transactional
     public List<IncomingInvoiceHideTypeCategoryModel> saveAll(List<IncomingInvoiceHideTypeCategoryModel> list) {
-        try {
-            repo.saveAll(list);
-        } catch (Exception ex) {
-            System.out.println(ex.getCause());
-        }
-        return null;
+        return repo.saveAll(list);
     }
 
     @Transactional
