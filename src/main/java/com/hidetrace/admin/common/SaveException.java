@@ -5,6 +5,7 @@
  */
 package com.hidetrace.admin.common;
 
+import java.util.ArrayList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,5 +22,10 @@ import org.springframework.stereotype.Component;
 public class SaveException {
 
     private boolean isRaised;
+    private ArrayList<String> errorMessage;
+
+    public void addErrorMessage(String msg) {
+        errorMessage.add(msg);
+    }
 
 }

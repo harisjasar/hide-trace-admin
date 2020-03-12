@@ -43,8 +43,12 @@ public class MessageDialog {
         showMessageDialog(null, "Odaberi vrstu", "Pažnja", 3);
     }
 
-    public void InvoiceSuccessfullyCreated(String invName) {
-        showMessageDialog(null, "Faktura:   " + invName + "   uspješno kreirana", "Poruka", 1);
+    public void InvoiceSuccessfullyCreated() {
+        showMessageDialog(null, "Faktura uspješno kreirana", "Poruka", 1);
+    }
+
+    public void InvoiceNotSuccessfullyCreated() {
+        showMessageDialog(null, "Faktura: nije kreirana\n\nProvjerite log za više informacija", "Poruka", 0);
     }
 
     public void ErrorCreatingInvoice() {
