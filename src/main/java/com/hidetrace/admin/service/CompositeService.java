@@ -8,7 +8,6 @@ package com.hidetrace.admin.service;
 import com.hidetrace.admin.model.LegalEntityModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceCertificateModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceHideTypeCategoryModel;
-import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceHideTypeModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingLegalEntityInvoiceModel;
 import com.hidetrace.admin.model.outgoinginvoice.OutgoingInvoiceCertificateModel;
 import com.hidetrace.admin.model.outgoinginvoice.OutgoingInvoiceHideTypeCategoryModel;
@@ -58,11 +57,25 @@ public class CompositeService {
     private OutgoingInvoiceCertificateService outgoingInvoiceCertificateService;
 
     @Transactional
-    public void removeInvoiceAndCertAndHideTypes(IncomingLegalEntityInvoiceModel invModel, IncomingInvoiceCertificateModel certModel, List<IncomingInvoiceHideTypeModel> hideTypeModels) {
+    public void removeInvoiceAndCertAndHideTypes(IncomingLegalEntityInvoiceModel invModel, IncomingInvoiceCertificateModel certModel, List<IncomingInvoiceHideTypeCategoryModel> hideTypeModels) {
 
-        incomingInvoiceHideTypeService.removeHideTypes(hideTypeModels);
-        incomingInvoiceCertificateService.removeCertificate(certModel);
+        incomingInvoiceHideTypeCategoryService.removeAll(hideTypeModels);
+        if (certModel != null) {
+            incomingInvoiceCertificateService.removeCertificate(certModel);
+        }
         incomingLegalEntityInvoiceService.removeLegalEntityInvoice(invModel);
+
+    }
+
+    @Transactional
+    public void removeOutgoingInvoiceAndCertAndHideTypes(OutgoingLegalEntityInvoiceModel invModel, OutgoingInvoiceCertificateModel certModel, List<OutgoingInvoiceHideTypeCategoryModel> hideTypeModels) {
+
+        outgoingInvoiceHideTypeCategoryService.removeAll(hideTypeModels);
+
+        if (certModel != null) {
+            outgoingInvoiceCertificateService.removeCertificate(certModel);
+        }
+        outgoingLegalEntityInvoiceService.removeLegalEntityInvoice(invModel);
 
     }
 

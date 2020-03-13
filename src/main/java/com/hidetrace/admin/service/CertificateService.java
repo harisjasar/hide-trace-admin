@@ -8,6 +8,7 @@ package com.hidetrace.admin.service;
 import com.hidetrace.admin.model.CertificateModel;
 import com.hidetrace.admin.repository.CertificateRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,5 +36,9 @@ public class CertificateService {
     @Transactional
     public void remove(CertificateModel model) {
         repo.delete(model);
+    }
+
+    public Optional<CertificateModel> findById(int id) {
+        return repo.findById(id);
     }
 }

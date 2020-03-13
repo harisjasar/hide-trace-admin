@@ -53,4 +53,9 @@ public class IncomingInvoiceHideTypeCategoryService {
         return repo.findById(id);
     }
 
+    @Transactional
+    public void removeAll(List<IncomingInvoiceHideTypeCategoryModel> hideTypeModels) {
+        repo.deleteAll(hideTypeModels);
+    }
+
 }

@@ -14,7 +14,6 @@ import com.hidetrace.admin.model.HideTypeModel;
 import com.hidetrace.admin.model.LegalEntityModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceCertificateModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceHideTypeCategoryModel;
-import com.hidetrace.admin.model.incominginvoice.IncomingInvoiceHideTypeModel;
 import com.hidetrace.admin.model.incominginvoice.IncomingLegalEntityInvoiceModel;
 import com.hidetrace.admin.service.CategoryService;
 import com.hidetrace.admin.service.CertificateService;
@@ -481,8 +480,8 @@ public class IncomingInvoiceUpdateController {
             IncomingInvoiceCertificateModel certificateModel = incomingInvoiceCertificateService.findByIncomingInvoiceId(model.getInvId());
             if (certificateModel != null) {
                 view.getCertificateTextField().setText(certificateModel.getCertificateNumber());
-                view.getCertificateTypeDropdown().setSelectedIndex(certificateModel.getCertificateId() - 1);
-
+                CertificateModel cert = certificateService.findById(certificateModel.getCertificateId()).get();
+                view.getCertificateTypeDropdown().setSelectedItem(cert);
             }
 
             //get all articles (hide types and categories)
@@ -538,10 +537,6 @@ public class IncomingInvoiceUpdateController {
 
             return compositeService.saveIncomingInvoiceHideTypeCategory(invoiceModel, hideTypeCategoriesToSave, certModel);
 
-            //incomingInvoiceHideTypeCategoryService.saveAll(allArticles);
-            //IncomingLegalEntityInvoiceModel updatedInvoiceModel = incomingLegalEntityInvoiceService.saveIncomingInvoice(invoiceModel);
-            //IncomingInvoiceCertificateModel updatedCertModel = incomingInvoiceCertificateService.saveIncomingInvoiceCertificate(certModel);
-            //return updatedCertModel != null && updatedInvoiceModel != null;
         } else {
             messageDialog.InvoiceNotSelected();
         }
@@ -570,9 +565,9 @@ public class IncomingInvoiceUpdateController {
         IncomingLegalEntityInvoiceModel invModel = (IncomingLegalEntityInvoiceModel) view.getLegalEntityInvoiceDropDown().getSelectedItem();
         if (invModel != null) {
             IncomingInvoiceCertificateModel certModel = incomingInvoiceCertificateService.findByIncomingInvoiceId(invModel.getInvId());
-            List<IncomingInvoiceHideTypeModel> hideTypeModels = incomingInvoiceHideTypeService.findAllByIncomingInvoiceId(invModel.getInvId());
+            List<IncomingInvoiceHideTypeCategoryModel> hideTypeCategoryModels = incomingInvoiceHideTypeCategoryService.findIncomingInvoiceHideTypeCategoryByIncomingInvoiceId(invModel.getInvId());
             try {
-                compositeService.removeInvoiceAndCertAndHideTypes(invModel, certModel, hideTypeModels);
+                compositeService.removeInvoiceAndCertAndHideTypes(invModel, certModel, hideTypeCategoryModels);
                 messageDialog.DeletionSuccessful();
                 view.getLegalEntityInvoiceDropDown().removeItem(view.getLegalEntityInvoiceDropDown().getSelectedItem());
 
@@ -597,8 +592,7 @@ public class IncomingInvoiceUpdateController {
                     }
                     Double price = Double.parseDouble(priceList.get(i).getText());
 
-                    IncomingInvoiceHideTypeCategoryModel model = new IncomingInvoiceHideTypeCategoryModel();
-                    model.setId(allArticles.get(i).getId());
+                    IncomingInvoiceHideTypeCategoryModel model = allArticles.get(i);
                     model.setCategoryId(category.getCategoryId());
                     model.setHideTypeId(hideType.getHideTypeId());
                     model.setPrice(price);
