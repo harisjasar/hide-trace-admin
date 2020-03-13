@@ -39,7 +39,7 @@ public class OutgoingInvoiceHideTypeCategoryService {
     }
 
     @Transactional
-    public List<OutgoingInvoiceHideTypeCategoryModel> findOutgoingInvoiceHideTypeCategoryByIncomingInvoiceId(int id) {
+    public List<OutgoingInvoiceHideTypeCategoryModel> findOutgoingInvoiceHideTypeCategoryByOutgoingInvoiceId(int id) {
         return repo.findAllByOutgoingInvoiceId(id);
     }
 
@@ -50,6 +50,15 @@ public class OutgoingInvoiceHideTypeCategoryService {
 
     public Optional<OutgoingInvoiceHideTypeCategoryModel> findById(int id) {
         return repo.findById(id);
+    }
+
+    public List<OutgoingInvoiceHideTypeCategoryModel> findAllByOutgoingInvoiceId(int outgoingInvoiceId) {
+        return repo.findAllByOutgoingInvoiceId(outgoingInvoiceId);
+    }
+
+    @Transactional
+    public void removeAll(List<OutgoingInvoiceHideTypeCategoryModel> models) {
+        repo.deleteAll(models);
     }
 
 }

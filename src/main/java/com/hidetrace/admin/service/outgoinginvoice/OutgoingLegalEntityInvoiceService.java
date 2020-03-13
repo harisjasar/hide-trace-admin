@@ -51,4 +51,9 @@ public class OutgoingLegalEntityInvoiceService {
     public void removeInvoice(OutgoingLegalEntityInvoiceModel invModel) {
         repo.delete(invModel);
     }
+
+    @Transactional
+    public void removeLegalEntityInvoice(OutgoingLegalEntityInvoiceModel model) {
+        repo.delete(model);
+    }
 }
