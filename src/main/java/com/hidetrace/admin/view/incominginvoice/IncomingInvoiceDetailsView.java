@@ -305,7 +305,7 @@ public class IncomingInvoiceDetailsView extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel3.add(jLabel15, gridBagConstraints);
 
-        jPanel9.setPreferredSize(new java.awt.Dimension(330, 400));
+        jPanel9.setPreferredSize(new java.awt.Dimension(330, 440));
 
         articleGridBagLayoutPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -351,7 +351,7 @@ public class IncomingInvoiceDetailsView extends javax.swing.JDialog {
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 440, Short.MAX_VALUE)
             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel9Layout.createSequentialGroup()
                     .addComponent(articleGridBagLayoutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
