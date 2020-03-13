@@ -14,7 +14,6 @@ import com.hidetrace.admin.model.outgoinginvoice.OutgoingInvoiceHideTypeCategory
 import com.hidetrace.admin.model.outgoinginvoice.OutgoingLegalEntityInvoiceModel;
 import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceCertificateService;
 import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceHideTypeCategoryService;
-import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceHideTypeService;
 import com.hidetrace.admin.service.incominginvoice.IncomingLegalEntityInvoiceService;
 import com.hidetrace.admin.service.outgoinginvoice.OutgoingInvoiceCertificateService;
 import com.hidetrace.admin.service.outgoinginvoice.OutgoingInvoiceHideTypeCategoryService;
@@ -37,9 +36,6 @@ public class CompositeService {
 
     @Autowired
     private IncomingInvoiceCertificateService incomingInvoiceCertificateService;
-
-    @Autowired
-    private IncomingInvoiceHideTypeService incomingInvoiceHideTypeService;
 
     @Autowired
     private LegalEntityService legalEntityService;

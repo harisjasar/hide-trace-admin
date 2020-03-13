@@ -16,7 +16,6 @@ import com.hidetrace.admin.service.CertificateService;
 import com.hidetrace.admin.service.HideTypeService;
 import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceCertificateService;
 import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceHideTypeCategoryService;
-import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceHideTypeService;
 import com.hidetrace.admin.service.incominginvoice.IncomingLegalEntityInvoiceService;
 import com.hidetrace.admin.view.incominginvoice.IncomingInvoiceDetailsView;
 import java.awt.GridBagConstraints;
@@ -47,9 +46,6 @@ public class IncomingInvoiceDetailsController {
 
     @Autowired
     private CertificateService certificateService;
-
-    @Autowired
-    private IncomingInvoiceHideTypeService incomingInvoiceHideTypeService;
 
     @Autowired
     private IncomingInvoiceHideTypeCategoryService incomingInvoiceHideTypeCategoryService;
@@ -154,31 +150,17 @@ public class IncomingInvoiceDetailsController {
             if (certificateModel != null) {
                 view.getCertificateTextField().setText(certificateModel.getCertificateNumber());
 
-                List<CertificateModel> certificateModels = certificateService.findAll();
-                view.getCertificateTypeTextField().setText(certificateModels.get(certificateModel.getCertificateId() - 1).getName());
+                IncomingInvoiceCertificateModel certModel = incomingInvoiceCertificateService.findByIncomingInvoiceId(invoice.getInvId());
+                CertificateModel cert = certificateService.findById(certModel.getCertificateId()).get();
+                view.getCertificateTypeTextField().setText(cert.getName());
 
+                //List<CertificateModel> certificateModels = certificateService.findAll();
+                //view.getCertificateTypeTextField().setText(certificateModels.get(certificateModel.getCertificateId() - 1).getName());
             }
 
             //get all articles (hide types and categories)
             List<IncomingInvoiceHideTypeCategoryModel> allArticlesList = incomingInvoiceHideTypeCategoryService.findIncomingInvoiceHideTypeCategoryByIncomingInvoiceId(invoice.getInvId());
             populateArticlesData(allArticlesList);
-
-//            List<IncomingInvoiceHideTypeModel> hideTypes = incomingInvoiceHideTypeService.findAllByIncomingInvoiceId(invoice.getInvId());
-//            hideTypes.forEach((hideType) -> {
-//                switch (hideType.getHideTypeId()) {
-//                    case 1:
-//                        view.getCowTextField().setText(String.valueOf(hideType.getPrice()));
-//                        break;
-//                    case 2:
-//                        view.getBullTextField().setText(String.valueOf(hideType.getPrice()));
-//                        break;
-//                    case 3:
-//                        view.getCalfTextField().setText(String.valueOf(hideType.getPrice()));
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            });
         }
     }
 

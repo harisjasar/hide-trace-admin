@@ -22,7 +22,6 @@ import com.hidetrace.admin.service.HideTypeService;
 import com.hidetrace.admin.service.LegalEntityService;
 import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceCertificateService;
 import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceHideTypeCategoryService;
-import com.hidetrace.admin.service.incominginvoice.IncomingInvoiceHideTypeService;
 import com.hidetrace.admin.service.incominginvoice.IncomingLegalEntityInvoiceService;
 import com.hidetrace.admin.view.incominginvoice.IncomingInvoiceUpdateView;
 import java.awt.GridBagConstraints;
@@ -71,9 +70,6 @@ public class IncomingInvoiceUpdateController {
 
     @Autowired
     private IncomingInvoiceCertificateService incomingInvoiceCertificateService;
-
-    @Autowired
-    private IncomingInvoiceHideTypeService incomingInvoiceHideTypeService;
 
     @Autowired
     private IncomingInvoiceHideTypeCategoryService incomingInvoiceHideTypeCategoryService;

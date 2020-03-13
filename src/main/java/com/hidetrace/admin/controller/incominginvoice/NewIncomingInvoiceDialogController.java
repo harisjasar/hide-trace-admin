@@ -69,9 +69,6 @@ public class NewIncomingInvoiceDialogController {
     private IncomingInvoiceCertificateService incomingInvoiceCertificateService;
 
     @Autowired
-    private IncomingInvoiceHideTypeService incomingInvoiceHideTypeService;
-
-    @Autowired
     private SaveException exception;
 
     @Autowired
