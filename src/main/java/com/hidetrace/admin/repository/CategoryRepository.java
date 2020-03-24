@@ -5,7 +5,7 @@
  */
 package com.hidetrace.admin.repository;
 
-import com.hidetrace.admin.model.CategoryModel;
+import com.hidetrace.admin.model.category.CategoryModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

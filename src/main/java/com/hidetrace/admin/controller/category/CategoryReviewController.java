@@ -5,8 +5,8 @@
  */
 package com.hidetrace.admin.controller.category;
 
-import com.hidetrace.admin.model.CategoryModel;
-import com.hidetrace.admin.service.CategoryService;
+import com.hidetrace.admin.model.category.CategoryModel;
+import com.hidetrace.admin.service.category.CategoryService;
 import com.hidetrace.admin.view.category.CategoryReviewView;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

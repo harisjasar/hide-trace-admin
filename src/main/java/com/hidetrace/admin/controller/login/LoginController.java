@@ -46,6 +46,8 @@ public class LoginController {
 
         view.setResizable(false);
         view.setLocationRelativeTo(null);
+        view.toFront();
+        view.setAlwaysOnTop(true);
         view.setVisible(true);
 
     }
@@ -60,7 +62,8 @@ public class LoginController {
             view.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e) {
-                    System.exit(0);
+                    //@TODO figure out the to close the application
+                    // System.exit(0);
                 }
             });
         }

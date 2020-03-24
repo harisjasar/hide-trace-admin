@@ -5,14 +5,14 @@
  */
 package com.hidetrace.admin.controller.outgoinginvoice;
 
-import com.hidetrace.admin.model.CategoryModel;
-import com.hidetrace.admin.model.CertificateModel;
+import com.hidetrace.admin.model.category.CategoryModel;
+import com.hidetrace.admin.model.certificate.CertificateModel;
 import com.hidetrace.admin.model.HideTypeModel;
 import com.hidetrace.admin.model.outgoinginvoice.OutgoingInvoiceCertificateModel;
 import com.hidetrace.admin.model.outgoinginvoice.OutgoingInvoiceHideTypeCategoryModel;
 import com.hidetrace.admin.model.outgoinginvoice.OutgoingLegalEntityInvoiceModel;
-import com.hidetrace.admin.service.CategoryService;
-import com.hidetrace.admin.service.CertificateService;
+import com.hidetrace.admin.service.category.CategoryService;
+import com.hidetrace.admin.service.certificate.CertificateService;
 import com.hidetrace.admin.service.HideTypeService;
 import com.hidetrace.admin.service.outgoinginvoice.OutgoingInvoiceCertificateService;
 import com.hidetrace.admin.service.outgoinginvoice.OutgoingInvoiceHideTypeCategoryService;

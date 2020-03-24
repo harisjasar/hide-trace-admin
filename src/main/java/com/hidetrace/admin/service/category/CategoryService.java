@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hidetrace.admin.service;
+package com.hidetrace.admin.service.category;
 
-import com.hidetrace.admin.model.CategoryModel;
+import com.hidetrace.admin.model.category.CategoryModel;
 import com.hidetrace.admin.repository.CategoryRepository;
 import java.util.List;
 import java.util.Optional;

@@ -5,7 +5,7 @@
  */
 package com.hidetrace.admin.controller.category;
 
-import com.hidetrace.admin.model.CategoryModel;
+import com.hidetrace.admin.model.category.CategoryModel;
 import com.hidetrace.admin.view.category.CategoryDetailsView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

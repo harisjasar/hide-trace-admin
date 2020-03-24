@@ -5,7 +5,7 @@
  */
 package com.hidetrace.admin.controller.certificate;
 
-import com.hidetrace.admin.model.CertificateModel;
+import com.hidetrace.admin.model.certificate.CertificateModel;
 import com.hidetrace.admin.view.certificate.CertificateDetailsView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

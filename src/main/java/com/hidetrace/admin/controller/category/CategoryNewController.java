@@ -6,8 +6,8 @@
 package com.hidetrace.admin.controller.category;
 
 import com.hidetrace.admin.common.MessageDialog;
-import com.hidetrace.admin.model.CategoryModel;
-import com.hidetrace.admin.service.CategoryService;
+import com.hidetrace.admin.model.category.CategoryModel;
+import com.hidetrace.admin.service.category.CategoryService;
 import com.hidetrace.admin.view.category.CategoryNewView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

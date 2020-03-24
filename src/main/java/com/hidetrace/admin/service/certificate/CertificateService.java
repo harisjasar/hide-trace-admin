@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hidetrace.admin.service;
+package com.hidetrace.admin.service.certificate;
 
-import com.hidetrace.admin.model.CertificateModel;
+import com.hidetrace.admin.model.certificate.CertificateModel;
 import com.hidetrace.admin.repository.CertificateRepository;
 import java.util.List;
 import java.util.Optional;

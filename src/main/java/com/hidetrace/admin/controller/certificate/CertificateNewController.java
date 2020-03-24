@@ -6,8 +6,8 @@
 package com.hidetrace.admin.controller.certificate;
 
 import com.hidetrace.admin.common.MessageDialog;
-import com.hidetrace.admin.model.CertificateModel;
-import com.hidetrace.admin.service.CertificateService;
+import com.hidetrace.admin.model.certificate.CertificateModel;
+import com.hidetrace.admin.service.certificate.CertificateService;
 import com.hidetrace.admin.view.certificate.CertificateNewView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

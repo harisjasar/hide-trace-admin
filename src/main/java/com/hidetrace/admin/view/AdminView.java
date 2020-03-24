@@ -34,8 +34,7 @@ public class AdminView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         newIncomingInvoiceButton = new javax.swing.JButton();
         newOutgoingInvoiceButton = new javax.swing.JButton();
@@ -65,10 +64,9 @@ public class AdminView extends javax.swing.JFrame {
         newCertificateButton = new javax.swing.JMenuItem();
         updateCertificateButton = new javax.swing.JMenuItem();
         reviewCertificateButton = new javax.swing.JMenuItem();
-
-        jMenuItem1.setText("jMenuItem1");
-
-        jMenuItem2.setText("jMenuItem2");
+        jMenu3 = new javax.swing.JMenu();
+        incomingCertificatePreviewButton = new javax.swing.JMenuItem();
+        outgoingCertificatePreviewButton = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -210,6 +208,16 @@ public class AdminView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setText("Pregled");
+
+        incomingCertificatePreviewButton.setText("Ulazni certifikati");
+        jMenu3.add(incomingCertificatePreviewButton);
+
+        outgoingCertificatePreviewButton.setText("Izlazni certifikati");
+        jMenu3.add(outgoingCertificatePreviewButton);
+
+        jMenuBar1.add(jMenu3);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,16 +246,17 @@ public class AdminView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel currentLoggedOnUserLabel;
+    private javax.swing.JMenuItem incomingCertificatePreviewButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton newAddLegalEntityButton;
@@ -256,6 +265,7 @@ public class AdminView extends javax.swing.JFrame {
     private javax.swing.JMenuItem newHideTypeButton;
     private javax.swing.JButton newIncomingInvoiceButton;
     private javax.swing.JButton newOutgoingInvoiceButton;
+    private javax.swing.JMenuItem outgoingCertificatePreviewButton;
     private javax.swing.JMenuItem reviewCategoryButton;
     private javax.swing.JMenuItem reviewCertificateButton;
     private javax.swing.JMenuItem reviewHideTypeButton;

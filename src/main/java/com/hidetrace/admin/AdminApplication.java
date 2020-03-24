@@ -43,7 +43,6 @@ public class AdminApplication {
         ConfigurableApplicationContext context = new SpringApplicationBuilder(AdminApplication.class).headless(false).run(args);
         LoginController loginController = context.getBean(LoginController.class);
         loginController.start();
-
     }
 
 }

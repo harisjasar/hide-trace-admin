@@ -11,6 +11,7 @@ import com.hidetrace.admin.controller.category.CategoryUpdateController;
 import com.hidetrace.admin.controller.certificate.CertificateNewController;
 import com.hidetrace.admin.controller.certificate.CertificateReviewController;
 import com.hidetrace.admin.controller.certificate.CertificateUpdateController;
+import com.hidetrace.admin.controller.certificate.certificatepreview.CertificatePreviewController;
 import com.hidetrace.admin.controller.hidetype.HideTypeNewController;
 import com.hidetrace.admin.controller.hidetype.HideTypeReviewController;
 import com.hidetrace.admin.controller.hidetype.HideTypeUpdateController;
@@ -115,6 +116,13 @@ public class AdminController {
         if (view.getReviewCertificateButton().getActionListeners().length == 0) {
             view.getReviewCertificateButton().addActionListener(appContext.getBean(ReviewCertificateButtonListener.class));
         }
+        if (view.getIncomingCertificatePreviewButton().getActionListeners().length == 0) {
+            view.getIncomingCertificatePreviewButton().addActionListener(appContext.getBean(IncomingCertificatePreviewButtonListener.class));
+        }
+
+        if (view.getOutgoingCertificatePreviewButton().getActionListeners().length == 0) {
+            view.getOutgoingCertificatePreviewButton().addActionListener(appContext.getBean(OutgoingCertificatePreviewButtonListener.class));
+        }
 
     }
 
@@ -126,6 +134,38 @@ public class AdminController {
 
     private void initData() {
         view.getCurrentLoggedOnUserLabel().setText("Dobrodošli, " + operModel.getFirstName());
+    }
+
+    @Component
+    private static class OutgoingCertificatePreviewButtonListener implements ActionListener {
+
+        @Autowired
+        private ApplicationContext appContext;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            CertificatePreviewController contro = appContext.getBean(CertificatePreviewController.class);
+            contro.setType(1);
+            contro.start();
+
+        }
+
+    }
+
+    @Component
+    private static class IncomingCertificatePreviewButtonListener implements ActionListener {
+
+        @Autowired
+        private ApplicationContext appContext;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            CertificatePreviewController contro = appContext.getBean(CertificatePreviewController.class);
+            contro.setType(0);
+            contro.start();
+
+        }
+
     }
 
     @Component

@@ -5,7 +5,7 @@
  */
 package com.hidetrace.admin.repository;
 
-import com.hidetrace.admin.model.CertificateModel;
+import com.hidetrace.admin.model.certificate.CertificateModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
