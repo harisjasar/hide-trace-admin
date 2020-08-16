@@ -49,36 +49,46 @@
                     <groupId>org.apache.commons</groupId>
                     <artifactId>commons-lang3</artifactId>
                 </dependency>
+                
+                <dependency>
+                    <groupId>com.kcontroles.controls</groupId>
+                    <artifactId>k-controls</artifactId>
+                    <version>1.0</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.decimal4j</groupId>
+                    <artifactId>decimal4j</artifactId>
+                    <version>1.0.3</version>
+                </dependency>
+                <dependency>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                    <version>27.0.1-jre</version>
+                </dependency>
 	 <dependency>
-	  <groupId>org.decimal4j</groupId>
-	  <artifactId>decimal4j</artifactId>
-	  <version>1.0.3</version>
+	  <groupId>unknown.binary</groupId>
+	  <artifactId>KControls</artifactId>
+	  <version>SNAPSHOT</version>
 	 </dependency>
-	    <dependency>
-	        <groupId>unknown.binary</groupId>
-	        <artifactId>AbsoluteLayout</artifactId>
-	        <version>SNAPSHOT</version>
-	    </dependency>
 	 <dependency>
-	  <groupId>com.google.guava</groupId>
-	  <artifactId>guava</artifactId>
-	  <version>27.0.1-jre</version>
+	  <groupId>unknown.binary</groupId>
+	  <artifactId>AbsoluteLayout</artifactId>
+	  <version>SNAPSHOT</version>
 	 </dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+            </plugins>
 	</build>
-    <repositories>
-        <repository>
-            <id>unknown-jars-temp-repo</id>
-            <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
-            <url>file:${project.basedir}/lib</url>
-        </repository>
-    </repositories>
+        <repositories>
+            <repository>
+                <id>unknown-jars-temp-repo</id>
+                <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
+                <url>file:${project.basedir}/lib</url>
+            </repository>
+        </repositories>
 </project>

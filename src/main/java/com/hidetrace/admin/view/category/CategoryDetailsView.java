@@ -5,7 +5,6 @@
  */
 package com.hidetrace.admin.view.category;
 
-import com.hidetrace.admin.view.hidetype.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.stereotype.Component;
@@ -21,6 +20,9 @@ public class CategoryDetailsView extends javax.swing.JDialog {
 
     /**
      * Creates new form HideTypeDetailsView
+     *
+     * @param parent
+     * @param modal
      */
     public CategoryDetailsView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

@@ -5,6 +5,7 @@
  */
 package com.hidetrace.admin.controller;
 
+import com.hidetrace.admin.common.Utils;
 import com.hidetrace.admin.controller.category.CategoryNewController;
 import com.hidetrace.admin.controller.category.CategoryReviewController;
 import com.hidetrace.admin.controller.category.CategoryUpdateController;
@@ -26,6 +27,13 @@ import com.hidetrace.admin.controller.outgoinginvoice.OutgoingInvoiceInvoicesLis
 import com.hidetrace.admin.controller.outgoinginvoice.OutgoingInvoiceUpdateController;
 import com.hidetrace.admin.model.OperatorModel;
 import com.hidetrace.admin.view.AdminView;
+import com.hidetrace.admin.view.incominginvoice.IncomingInvoiceInvoicesListView;
+import com.hidetrace.admin.view.incominginvoice.IncomingInvoiceUpdateView;
+import com.hidetrace.admin.view.incominginvoice.NewIncomingInvoicePanelView;
+import com.hidetrace.admin.view.outgoinginvoice.NewOutgoingInvoicePanelView;
+import com.hidetrace.admin.view.outgoinginvoice.OutgoingInvoiceInvoicesListView;
+import com.hidetrace.admin.view.outgoinginvoice.OutgoingInvoiceUpdateView;
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,20 +48,19 @@ import org.springframework.stereotype.Component;
 public class AdminController {
 
     @Autowired
-    AdminView view;
+    private AdminView view;
 
     @Autowired
     private ApplicationContext appContext;
 
     @Autowired
-    OperatorModel operModel;
+    private OperatorModel operModel;
 
     public AdminController(AdminView view) {
         this.view = view;
     }
 
     private void initView() {
-        view.setResizable(false);
         view.setLocationRelativeTo(null);
         view.setVisible(true);
     }
@@ -123,6 +130,15 @@ public class AdminController {
         if (view.getOutgoingCertificatePreviewButton().getActionListeners().length == 0) {
             view.getOutgoingCertificatePreviewButton().addActionListener(appContext.getBean(OutgoingCertificatePreviewButtonListener.class));
         }
+        if (view.getLegalEntitySideButton().getActionListeners().length == 0) {
+            view.getLegalEntitySideButton().addActionListener(appContext.getBean(LegalEntitySideButtonListener.class));
+        }
+        if (view.getIncomingLegalEntitySideButton().getActionListeners().length == 0) {
+            view.getIncomingLegalEntitySideButton().addActionListener(appContext.getBean(IncomingLegalEntitySideButtonListener.class));
+        }
+        if (view.getOutgoingLegalEntitySideButton().getActionListeners().length == 0) {
+            view.getOutgoingLegalEntitySideButton().addActionListener(appContext.getBean(OutgoingLegalEntitySideButtonListener.class));
+        }
 
     }
 
@@ -134,6 +150,45 @@ public class AdminController {
 
     private void initData() {
         view.getCurrentLoggedOnUserLabel().setText("Dobrodošli, " + operModel.getFirstName());
+    }
+
+    @Component
+    private static class OutgoingLegalEntitySideButtonListener implements ActionListener {
+
+        @Autowired
+        private AdminView view;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ((CardLayout) view.getPnlCards().getLayout()).show(view.getPnlCards(), "card3");
+        }
+
+    }
+
+    @Component
+    private static class IncomingLegalEntitySideButtonListener implements ActionListener {
+
+        @Autowired
+        private AdminView view;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ((CardLayout) view.getPnlCards().getLayout()).show(view.getPnlCards(), "card2");
+        }
+
+    }
+
+    @Component
+    private static class LegalEntitySideButtonListener implements ActionListener {
+
+        @Autowired
+        private AdminView view;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ((CardLayout) view.getPnlCards().getLayout()).show(view.getPnlCards(), "card1");
+        }
+
     }
 
     @Component
@@ -302,7 +357,21 @@ public class AdminController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            AdminView adminView = appContext.getBean(AdminView.class);
+            IncomingInvoiceInvoicesListView incomingInvoiceListView = appContext.getBean(IncomingInvoiceInvoicesListView.class);
+
+            //@TODO remove commented and the rest
+            //trying to speed up UI with removing all elements first
+            adminView.getAdminViewCardsPanel().removeAll();
+            String randomString = Utils.generateRandomString(8);
+            adminView.getAdminViewCardsPanel().add(incomingInvoiceListView, randomString);
+            ((CardLayout) adminView.getAdminViewCardsPanel().getLayout()).show(adminView.getAdminViewCardsPanel(), randomString);
+
+            adminView.getAdminViewCardsScrollPane().repaint();
+            adminView.getAdminViewCardsScrollPane().revalidate();
+
             appContext.getBean(IncomingInvoiceInvoicesListController.class).start();
+
         }
     }
 
@@ -314,7 +383,20 @@ public class AdminController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            AdminView adminView = appContext.getBean(AdminView.class);
+            IncomingInvoiceUpdateView incomingInvoiceUpdateView = appContext.getBean(IncomingInvoiceUpdateView.class);
+
+            //trying to speed up UI with removing all elements first
+            adminView.getAdminViewCardsPanel().removeAll();
+            String randomString = Utils.generateRandomString(8);
+            adminView.getAdminViewCardsPanel().add(incomingInvoiceUpdateView, randomString);
+            ((CardLayout) adminView.getAdminViewCardsPanel().getLayout()).show(adminView.getAdminViewCardsPanel(), randomString);
+
+            adminView.getAdminViewCardsScrollPane().repaint();
+            adminView.getAdminViewCardsScrollPane().revalidate();
+
             appContext.getBean(IncomingInvoiceUpdateController.class).start();
+
         }
     }
 
@@ -326,7 +408,19 @@ public class AdminController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            AdminView adminView = appContext.getBean(AdminView.class);
+            NewIncomingInvoicePanelView incomingInvoicePanelView = appContext.getBean(NewIncomingInvoicePanelView.class);
+
+            adminView.getAdminViewCardsPanel().removeAll();
+            String randomString = Utils.generateRandomString(8);
+            adminView.getAdminViewCardsPanel().add(incomingInvoicePanelView, randomString);
+            ((CardLayout) adminView.getAdminViewCardsPanel().getLayout()).show(adminView.getAdminViewCardsPanel(), randomString);
+
+            adminView.getAdminViewCardsScrollPane().repaint();
+            adminView.getAdminViewCardsScrollPane().revalidate();
+
             appContext.getBean(NewIncomingInvoiceDialogController.class).start();
+
         }
     }
 
@@ -338,10 +432,48 @@ public class AdminController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            //appContext.getBean(NewOutgoingInvoiceDialogController.class).start();
+            AdminView adminView = appContext.getBean(AdminView.class);
+            NewOutgoingInvoicePanelView outgoingInvoicePanelView = appContext.getBean(NewOutgoingInvoicePanelView.class);
+
+            adminView.getAdminViewCardsPanel1().removeAll();
+
+            String randomString = Utils.generateRandomString(8);
+            adminView.getAdminViewCardsPanel1().add(outgoingInvoicePanelView, randomString);
+            ((CardLayout) adminView.getAdminViewCardsPanel1().getLayout()).show(adminView.getAdminViewCardsPanel1(), randomString);
+
+            adminView.getAdminViewCardsScrollPane1().repaint();
+            adminView.getAdminViewCardsScrollPane1().revalidate();
+
             appContext.getBean(NewOutgoingInvoiceDialogController.class).start();
 
         }
 
+    }
+
+    @Component
+    private static class UpdateOutgoingInvoiceButtonListener implements ActionListener {
+
+        @Autowired
+        private ApplicationContext appContext;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            AdminView adminView = appContext.getBean(AdminView.class);
+            OutgoingInvoiceUpdateView outgoingInvoiceUpdateView = appContext.getBean(OutgoingInvoiceUpdateView.class);
+
+            //trying to speed up UI with removing all elements first
+            adminView.getAdminViewCardsPanel1().removeAll();
+            String randomString = Utils.generateRandomString(8);
+            adminView.getAdminViewCardsPanel1().add(outgoingInvoiceUpdateView, randomString);
+            ((CardLayout) adminView.getAdminViewCardsPanel1().getLayout()).show(adminView.getAdminViewCardsPanel1(), randomString);
+
+            adminView.getAdminViewCardsScrollPane1().repaint();
+            adminView.getAdminViewCardsScrollPane1().revalidate();
+
+            appContext.getBean(OutgoingInvoiceUpdateController.class).start();
+
+        }
     }
 
     @Component
@@ -387,20 +519,6 @@ public class AdminController {
     }
 
     @Component
-    private static class UpdateOutgoingInvoiceButtonListener implements ActionListener {
-
-        @Autowired
-        private ApplicationContext appContext;
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            appContext.getBean(OutgoingInvoiceUpdateController.class).start();
-
-        }
-
-    }
-
-    @Component
     private static class ReviewOutgoingInvoiceButtonListener implements ActionListener {
 
         @Autowired
@@ -408,6 +526,19 @@ public class AdminController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            AdminView adminView = appContext.getBean(AdminView.class);
+            OutgoingInvoiceInvoicesListView incomingInvoiceListView = appContext.getBean(OutgoingInvoiceInvoicesListView.class);
+
+            //@TODO remove commented and the rest
+            //trying to speed up UI with removing all elements first
+            adminView.getAdminViewCardsPanel1().removeAll();
+            String randomString = Utils.generateRandomString(8);
+            adminView.getAdminViewCardsPanel1().add(incomingInvoiceListView, randomString);
+            ((CardLayout) adminView.getAdminViewCardsPanel1().getLayout()).show(adminView.getAdminViewCardsPanel1(), randomString);
+
+            adminView.getAdminViewCardsScrollPane1().repaint();
+            adminView.getAdminViewCardsScrollPane1().revalidate();
+
             appContext.getBean(OutgoingInvoiceInvoicesListController.class).start();
 
         }

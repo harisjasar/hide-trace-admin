@@ -7,18 +7,18 @@ package com.hidetrace.admin.controller.outgoinginvoice;
 
 import com.hidetrace.admin.common.MessageDialog;
 import com.hidetrace.admin.helper.outgoinginvoice.OutgoingInvoiceUpdateHelper;
-import com.hidetrace.admin.model.category.CategoryModel;
-import com.hidetrace.admin.model.certificate.CertificateModel;
 import com.hidetrace.admin.model.HideTypeModel;
 import com.hidetrace.admin.model.LegalEntityModel;
+import com.hidetrace.admin.model.category.CategoryModel;
+import com.hidetrace.admin.model.certificate.CertificateModel;
 import com.hidetrace.admin.model.outgoinginvoice.OutgoingInvoiceCertificateModel;
 import com.hidetrace.admin.model.outgoinginvoice.OutgoingInvoiceHideTypeCategoryModel;
 import com.hidetrace.admin.model.outgoinginvoice.OutgoingLegalEntityInvoiceModel;
-import com.hidetrace.admin.service.category.CategoryService;
-import com.hidetrace.admin.service.certificate.CertificateService;
 import com.hidetrace.admin.service.CompositeService;
 import com.hidetrace.admin.service.HideTypeService;
 import com.hidetrace.admin.service.LegalEntityService;
+import com.hidetrace.admin.service.category.CategoryService;
+import com.hidetrace.admin.service.certificate.CertificateService;
 import com.hidetrace.admin.service.outgoinginvoice.OutgoingInvoiceCertificateService;
 import com.hidetrace.admin.service.outgoinginvoice.OutgoingInvoiceHideTypeCategoryService;
 import com.hidetrace.admin.service.outgoinginvoice.OutgoingLegalEntityInvoiceService;
@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -95,11 +95,7 @@ public class OutgoingInvoiceUpdateController {
     List<OutgoingInvoiceHideTypeCategoryModel> allArticles = new ArrayList<>();
 
     private void initView() {
-        view.setResizable(false);
-        view.setLocationRelativeTo(null);
-
         view.getDeleteInvoiceButton().setVisible(false);
-        view.getEnableDeletionMenuItem().setSelected(false);
         view.setVisible(true);
     }
 
@@ -113,8 +109,8 @@ public class OutgoingInvoiceUpdateController {
         if (view.getUpdateInvoiceInfoButton().getActionListeners().length == 0) {
             view.getUpdateInvoiceInfoButton().addActionListener(appContext.getBean(UpdateInvoiceInfoButtonActionListener.class));
         }
-        if (view.getEnableDeletionMenuItem().getItemListeners().length == 0) {
-            view.getEnableDeletionMenuItem().addItemListener(appContext.getBean(DeleteInvoiceItemListener.class));
+        if (view.getAllowDeletionCheckBox().getItemListeners().length == 0) {
+            view.getAllowDeletionCheckBox().addItemListener(appContext.getBean(DeleteInvoiceItemListener.class));
         }
         if (view.getDeleteInvoiceButton().getActionListeners().length == 0) {
             view.getDeleteInvoiceButton().addActionListener(appContext.getBean(DeleteInvoiceButtonActionListener.class));
@@ -243,7 +239,7 @@ public class OutgoingInvoiceUpdateController {
 
         @Override
         public void itemStateChanged(ItemEvent e) {
-            if (((JCheckBoxMenuItem) e.getSource()).isSelected()) {
+            if (((JCheckBox) e.getSource()).isSelected()) {
                 controller.getDeleteInvoiceButton().setVisible(true);
             } else {
                 controller.getDeleteInvoiceButton().setVisible(false);

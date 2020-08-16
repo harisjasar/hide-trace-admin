@@ -5,7 +5,6 @@
  */
 package com.hidetrace.admin.view;
 
-import java.awt.CardLayout;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.context.annotation.Primary;
@@ -24,11 +23,8 @@ public class AdminView extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame5
      */
-    CardLayout cardLayout;
-
     public AdminView() {
         initComponents();
-        cardLayout = (CardLayout) pnlCards.getLayout();
     }
 
     /**
@@ -70,6 +66,9 @@ public class AdminView extends javax.swing.JFrame {
         newIncomingInvoiceButton = new keeptoo.KButton();
         updateIncomingInvoiceButton = new keeptoo.KButton();
         reviewIncomingInvoicesButton = new keeptoo.KButton();
+        jPanel12 = new javax.swing.JPanel();
+        adminViewCardsScrollPane = new javax.swing.JScrollPane();
+        adminViewCardsPanel = new javax.swing.JPanel();
         pnlCard3 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -77,6 +76,9 @@ public class AdminView extends javax.swing.JFrame {
         newOutgoingInvoiceButton = new keeptoo.KButton();
         updateOutgoingInvoiceButton = new keeptoo.KButton();
         reviewOutgoingInvoiceButton = new keeptoo.KButton();
+        jPanel13 = new javax.swing.JPanel();
+        adminViewCardsScrollPane1 = new javax.swing.JScrollPane();
+        adminViewCardsPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu = new javax.swing.JMenu();
         newHideTypeButton = new javax.swing.JMenuItem();
@@ -196,11 +198,6 @@ public class AdminView extends javax.swing.JFrame {
         legalEntitySideButton.setkSelectedColor(new java.awt.Color(165, 174, 173));
         legalEntitySideButton.setkStartColor(new java.awt.Color(82, 81, 70));
         legalEntitySideButton.setPreferredSize(new java.awt.Dimension(200, 40));
-        legalEntitySideButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                legalEntitySideButtonActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -219,11 +216,6 @@ public class AdminView extends javax.swing.JFrame {
         incomingLegalEntitySideButton.setkSelectedColor(new java.awt.Color(165, 174, 173));
         incomingLegalEntitySideButton.setkStartColor(new java.awt.Color(82, 81, 70));
         incomingLegalEntitySideButton.setPreferredSize(new java.awt.Dimension(200, 40));
-        incomingLegalEntitySideButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                incomingLegalEntitySideButtonActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -263,11 +255,6 @@ public class AdminView extends javax.swing.JFrame {
         outgoingLegalEntitySideButton.setkSelectedColor(new java.awt.Color(165, 174, 173));
         outgoingLegalEntitySideButton.setkStartColor(new java.awt.Color(82, 81, 70));
         outgoingLegalEntitySideButton.setPreferredSize(new java.awt.Dimension(20, 40));
-        outgoingLegalEntitySideButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                outgoingLegalEntitySideButtonActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -336,12 +323,12 @@ public class AdminView extends javax.swing.JFrame {
         newAddLegalEntityButton.setkHoverForeGround(new java.awt.Color(0, 0, 0));
         newAddLegalEntityButton.setkHoverStartColor(new java.awt.Color(161, 200, 200));
         newAddLegalEntityButton.setkStartColor(new java.awt.Color(48, 63, 71));
+        newAddLegalEntityButton.setPreferredSize(null);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 5.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         jPanel7.add(newAddLegalEntityButton, gridBagConstraints);
 
         updateLegalEntityButton.setText("Ažuriranje");
@@ -350,10 +337,11 @@ public class AdminView extends javax.swing.JFrame {
         updateLegalEntityButton.setkHoverForeGround(new java.awt.Color(0, 0, 0));
         updateLegalEntityButton.setkHoverStartColor(new java.awt.Color(161, 200, 200));
         updateLegalEntityButton.setkStartColor(new java.awt.Color(48, 63, 71));
+        updateLegalEntityButton.setPreferredSize(null);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         jPanel7.add(updateLegalEntityButton, gridBagConstraints);
 
         reviewLegalEntitiesButton.setText("Pregled");
@@ -362,11 +350,12 @@ public class AdminView extends javax.swing.JFrame {
         reviewLegalEntitiesButton.setkHoverForeGround(new java.awt.Color(0, 0, 0));
         reviewLegalEntitiesButton.setkHoverStartColor(new java.awt.Color(161, 200, 200));
         reviewLegalEntitiesButton.setkStartColor(new java.awt.Color(48, 63, 71));
+        reviewLegalEntitiesButton.setPreferredSize(null);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         jPanel7.add(reviewLegalEntitiesButton, gridBagConstraints);
 
@@ -412,8 +401,6 @@ public class AdminView extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
         pnlCard2.add(jPanel8, gridBagConstraints);
 
         jPanel9.setBackground(new java.awt.Color(165, 174, 173));
@@ -425,12 +412,12 @@ public class AdminView extends javax.swing.JFrame {
         newIncomingInvoiceButton.setkHoverForeGround(new java.awt.Color(0, 0, 0));
         newIncomingInvoiceButton.setkHoverStartColor(new java.awt.Color(161, 200, 200));
         newIncomingInvoiceButton.setkStartColor(new java.awt.Color(48, 63, 71));
+        newIncomingInvoiceButton.setPreferredSize(null);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 5.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.BASELINE_LEADING;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel9.add(newIncomingInvoiceButton, gridBagConstraints);
 
         updateIncomingInvoiceButton.setText("Ažuriranje");
@@ -439,10 +426,12 @@ public class AdminView extends javax.swing.JFrame {
         updateIncomingInvoiceButton.setkHoverForeGround(new java.awt.Color(0, 0, 0));
         updateIncomingInvoiceButton.setkHoverStartColor(new java.awt.Color(161, 200, 200));
         updateIncomingInvoiceButton.setkStartColor(new java.awt.Color(48, 63, 71));
+        updateIncomingInvoiceButton.setPreferredSize(null);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.BASELINE_LEADING;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel9.add(updateIncomingInvoiceButton, gridBagConstraints);
 
         reviewIncomingInvoicesButton.setText("Pregled");
@@ -451,12 +440,13 @@ public class AdminView extends javax.swing.JFrame {
         reviewIncomingInvoicesButton.setkHoverForeGround(new java.awt.Color(0, 0, 0));
         reviewIncomingInvoicesButton.setkHoverStartColor(new java.awt.Color(161, 200, 200));
         reviewIncomingInvoicesButton.setkStartColor(new java.awt.Color(48, 63, 71));
+        reviewIncomingInvoicesButton.setPreferredSize(null);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.weightx = 5.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.BASELINE_LEADING;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel9.add(reviewIncomingInvoicesButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -464,8 +454,29 @@ public class AdminView extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weighty = 100.0;
         pnlCard2.add(jPanel9, gridBagConstraints);
+
+        jPanel12.setLayout(new java.awt.GridBagLayout());
+
+        adminViewCardsPanel.setLayout(new java.awt.CardLayout());
+        adminViewCardsScrollPane.setViewportView(adminViewCardsPanel);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel12.add(adminViewCardsScrollPane, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 100.0;
+        pnlCard2.add(jPanel12, gridBagConstraints);
 
         pnlCards.add(pnlCard2, "card2");
 
@@ -501,8 +512,6 @@ public class AdminView extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
         pnlCard3.add(jPanel10, gridBagConstraints);
 
         jPanel11.setBackground(new java.awt.Color(165, 174, 173));
@@ -514,12 +523,12 @@ public class AdminView extends javax.swing.JFrame {
         newOutgoingInvoiceButton.setkHoverForeGround(new java.awt.Color(0, 0, 0));
         newOutgoingInvoiceButton.setkHoverStartColor(new java.awt.Color(161, 200, 200));
         newOutgoingInvoiceButton.setkStartColor(new java.awt.Color(48, 63, 71));
+        newOutgoingInvoiceButton.setPreferredSize(null);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 5.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel11.add(newOutgoingInvoiceButton, gridBagConstraints);
 
         updateOutgoingInvoiceButton.setText("Ažuriranje");
@@ -528,10 +537,11 @@ public class AdminView extends javax.swing.JFrame {
         updateOutgoingInvoiceButton.setkHoverForeGround(new java.awt.Color(0, 0, 0));
         updateOutgoingInvoiceButton.setkHoverStartColor(new java.awt.Color(161, 200, 200));
         updateOutgoingInvoiceButton.setkStartColor(new java.awt.Color(48, 63, 71));
+        updateOutgoingInvoiceButton.setPreferredSize(null);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel11.add(updateOutgoingInvoiceButton, gridBagConstraints);
 
         reviewOutgoingInvoiceButton.setText("Pregled");
@@ -540,12 +550,13 @@ public class AdminView extends javax.swing.JFrame {
         reviewOutgoingInvoiceButton.setkHoverForeGround(new java.awt.Color(0, 0, 0));
         reviewOutgoingInvoiceButton.setkHoverStartColor(new java.awt.Color(161, 200, 200));
         reviewOutgoingInvoiceButton.setkStartColor(new java.awt.Color(48, 63, 71));
+        reviewOutgoingInvoiceButton.setPreferredSize(null);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.weightx = 5.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel11.add(reviewOutgoingInvoiceButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -553,8 +564,29 @@ public class AdminView extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weighty = 100.0;
         pnlCard3.add(jPanel11, gridBagConstraints);
+
+        jPanel13.setLayout(new java.awt.GridBagLayout());
+
+        adminViewCardsPanel1.setLayout(new java.awt.CardLayout());
+        adminViewCardsScrollPane1.setViewportView(adminViewCardsPanel1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel13.add(adminViewCardsScrollPane1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        pnlCard3.add(jPanel13, gridBagConstraints);
 
         pnlCards.add(pnlCard3, "card3");
 
@@ -615,75 +647,27 @@ public class AdminView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void legalEntitySideButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_legalEntitySideButtonActionPerformed
-        cardLayout.show(pnlCards, "card1");
-
-    }//GEN-LAST:event_legalEntitySideButtonActionPerformed
-
-    private void incomingLegalEntitySideButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incomingLegalEntitySideButtonActionPerformed
-        cardLayout.show(pnlCards, "card2");
-
-    }//GEN-LAST:event_incomingLegalEntitySideButtonActionPerformed
 
     private void adminProfileSideButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminProfileSideButtonActionPerformed
 
         // TODO add your handling code here:
     }//GEN-LAST:event_adminProfileSideButtonActionPerformed
 
-    private void outgoingLegalEntitySideButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outgoingLegalEntitySideButtonActionPerformed
-        cardLayout.show(pnlCards, "card3");
-        // TODO add your handling code here:
-    }//GEN-LAST:event_outgoingLegalEntitySideButtonActionPerformed
-
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(NewJFrame51.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(NewJFrame51.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(NewJFrame51.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(NewJFrame51.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new NewJFrame51().setVisible(true);
-//            }
-//        });
-//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private keeptoo.KButton adminProfileSideButton;
+    private javax.swing.JPanel adminViewCardsPanel;
+    private javax.swing.JPanel adminViewCardsPanel1;
+    private javax.swing.JScrollPane adminViewCardsScrollPane;
+    private javax.swing.JScrollPane adminViewCardsScrollPane1;
     private javax.swing.JLabel currentLoggedOnUserLabel;
     private javax.swing.JMenuItem incomingCertificatePreviewButton;
     private keeptoo.KButton incomingLegalEntitySideButton;
@@ -700,6 +684,8 @@ public class AdminView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

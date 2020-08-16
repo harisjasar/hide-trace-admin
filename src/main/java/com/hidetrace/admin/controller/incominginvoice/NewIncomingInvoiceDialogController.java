@@ -7,24 +7,22 @@ package com.hidetrace.admin.controller.incominginvoice;
 
 import com.hidetrace.admin.common.*;
 import com.hidetrace.admin.helper.incominginvoice.NewIncomingInvoiceDialogHelper;
-import com.hidetrace.admin.model.category.CategoryModel;
-import com.hidetrace.admin.model.certificate.CertificateModel;
 import com.hidetrace.admin.model.HideTypeModel;
 import com.hidetrace.admin.model.LegalEntityModel;
+import com.hidetrace.admin.model.category.CategoryModel;
+import com.hidetrace.admin.model.certificate.CertificateModel;
 import com.hidetrace.admin.model.incominginvoice.*;
-import com.hidetrace.admin.service.category.CategoryService;
-import com.hidetrace.admin.service.certificate.CertificateService;
 import com.hidetrace.admin.service.CompositeService;
 import com.hidetrace.admin.service.HideTypeService;
 import com.hidetrace.admin.service.LegalEntityService;
+import com.hidetrace.admin.service.category.CategoryService;
+import com.hidetrace.admin.service.certificate.CertificateService;
 import com.hidetrace.admin.service.incominginvoice.*;
-import com.hidetrace.admin.view.incominginvoice.NewIncomingInvoiceDialogView;
+import com.hidetrace.admin.view.incominginvoice.NewIncomingInvoicePanelView;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +49,7 @@ import org.springframework.transaction.UnexpectedRollbackException;
 public class NewIncomingInvoiceDialogController {
 
     @Autowired
-    private NewIncomingInvoiceDialogView view;
+    private NewIncomingInvoicePanelView view;
 
     @Autowired
     private ApplicationContext appContext;
@@ -101,10 +99,6 @@ public class NewIncomingInvoiceDialogController {
             field.setText("");
         }
         view.getCommentTextField().setText("");
-
-        view.setResizable(false);
-        view.setLocationRelativeTo(null);
-
         view.setVisible(true);
 
     }
@@ -125,16 +119,6 @@ public class NewIncomingInvoiceDialogController {
             }
 
         }
-
-        if (view.getWindowListeners().length == 0) {
-            view.addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosed(WindowEvent e) {
-                    appContext.getBean(CheckFormatCorrectIncomingInvoice.class).stop();
-                }
-            });
-        }
-
         appContext.getBean(CheckFormatCorrectIncomingInvoice.class).start();
         Thread t1 = new Thread(appContext.getBean(CheckFormatCorrectIncomingInvoice.class), "T1");
         t1.start();
@@ -262,7 +246,7 @@ public class NewIncomingInvoiceDialogController {
     private static class TextFieldNumberFormat extends KeyAdapter {
 
         @Autowired
-        private NewIncomingInvoiceDialogView view;
+        private NewIncomingInvoicePanelView view;
 
         @Override
         public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -298,7 +282,7 @@ public class NewIncomingInvoiceDialogController {
     private static class AddNewArticleComponentsButtonActionListener implements ActionListener {
 
         @Autowired
-        private NewIncomingInvoiceDialogView view;
+        private NewIncomingInvoicePanelView view;
 
         @Autowired
         private NewIncomingInvoiceDialogController controller;
@@ -508,7 +492,7 @@ public class NewIncomingInvoiceDialogController {
     public class CheckFormatCorrectIncomingInvoice implements Runnable {
 
         @Autowired
-        private NewIncomingInvoiceDialogView view;
+        private NewIncomingInvoicePanelView view;
 
         private volatile boolean correct = false;
 

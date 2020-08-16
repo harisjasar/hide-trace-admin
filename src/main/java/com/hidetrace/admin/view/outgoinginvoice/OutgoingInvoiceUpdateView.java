@@ -16,13 +16,12 @@ import org.springframework.stereotype.Component;
 @Component
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class OutgoingInvoiceUpdateView extends javax.swing.JDialog {
+public class OutgoingInvoiceUpdateView extends javax.swing.JPanel {
 
     /**
-     * Creates new form OutgoingInvoiceUpdateView
+     * Creates new form OutgoingInvoiceUpdatePanel
      */
-    public OutgoingInvoiceUpdateView(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public OutgoingInvoiceUpdateView() {
         initComponents();
     }
 
@@ -36,8 +35,11 @@ public class OutgoingInvoiceUpdateView extends javax.swing.JDialog {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
+        allowDeletionCheckBox = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         LegalEntityInvoiceDropDown = new javax.swing.JComboBox<>();
         LegalEntityDropDown = new javax.swing.JComboBox<>();
@@ -63,25 +65,53 @@ public class OutgoingInvoiceUpdateView extends javax.swing.JDialog {
         articleGridBagLayoutPanel = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         updateInvoiceInfoButton = new javax.swing.JButton();
-        deleteInvoiceButton = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
-        enableDeletionMenuItem = new javax.swing.JCheckBoxMenuItem();
+        deleteInvoiceButton = new keeptoo.KButton();
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        jPanel10.setLayout(new java.awt.GridBagLayout());
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jPanel11.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel11.setMinimumSize(new java.awt.Dimension(111, 22));
+        jPanel11.setPreferredSize(new java.awt.Dimension(20, 40));
+        jPanel11.setLayout(new java.awt.GridBagLayout());
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("Ažuriranje");
+        jLabel8.setPreferredSize(new java.awt.Dimension(101, 22));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel11.add(jLabel8, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
+        jPanel10.add(jPanel11, gridBagConstraints);
 
         jPanel5.setLayout(new java.awt.GridBagLayout());
+
+        allowDeletionCheckBox.setText("Dozvoli brisanje");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.BASELINE_LEADING;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
+        jPanel5.add(allowDeletionCheckBox, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel10.add(jPanel5, gridBagConstraints);
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
@@ -118,9 +148,9 @@ public class OutgoingInvoiceUpdateView extends javax.swing.JDialog {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel5.add(jPanel2, gridBagConstraints);
+        jPanel10.add(jPanel2, gridBagConstraints);
 
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
@@ -240,16 +270,15 @@ public class OutgoingInvoiceUpdateView extends javax.swing.JDialog {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        jPanel5.add(jPanel3, gridBagConstraints);
+        jPanel10.add(jPanel3, gridBagConstraints);
 
         jPanel8.setLayout(new java.awt.GridBagLayout());
 
         addNewArticleButton.setText("Dodaj artikal");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel8.add(addNewArticleButton, gridBagConstraints);
@@ -262,7 +291,7 @@ public class OutgoingInvoiceUpdateView extends javax.swing.JDialog {
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel9Layout.createSequentialGroup()
                     .addComponent(articleGridBagLayoutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,26 +299,24 @@ public class OutgoingInvoiceUpdateView extends javax.swing.JDialog {
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel9Layout.createSequentialGroup()
                     .addComponent(articleGridBagLayoutPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 400, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 3;
         jPanel8.add(jPanel9, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
-        jPanel5.add(jPanel8, gridBagConstraints);
+        jPanel10.add(jPanel8, gridBagConstraints);
 
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
@@ -303,54 +330,43 @@ public class OutgoingInvoiceUpdateView extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         jPanel6.add(updateInvoiceInfoButton, gridBagConstraints);
 
-        deleteInvoiceButton.setBackground(new java.awt.Color(255, 0, 0));
         deleteInvoiceButton.setText("Obriši");
+        deleteInvoiceButton.setkEndColor(new java.awt.Color(204, 0, 51));
+        deleteInvoiceButton.setkHoverEndColor(new java.awt.Color(255, 51, 102));
+        deleteInvoiceButton.setkStartColor(new java.awt.Color(255, 0, 51));
+        deleteInvoiceButton.setMaximumSize(new java.awt.Dimension(90, 30));
+        deleteInvoiceButton.setMinimumSize(new java.awt.Dimension(90, 30));
         deleteInvoiceButton.setPreferredSize(new java.awt.Dimension(90, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 1;
-        gridBagConstraints.ipady = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel6.add(deleteInvoiceButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
-        jPanel5.add(jPanel6, gridBagConstraints);
+        jPanel10.add(jPanel6, gridBagConstraints);
 
-        jMenu3.setText("Tools");
-
-        enableDeletionMenuItem.setSelected(true);
-        enableDeletionMenuItem.setText("Dozvoli brisanje");
-        jMenu3.add(enableDeletionMenuItem);
-
-        jMenuBar1.add(jMenu3);
-
-        setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -360,10 +376,10 @@ public class OutgoingInvoiceUpdateView extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> LegalEntityDropDown;
     private javax.swing.JComboBox<String> LegalEntityInvoiceDropDown;
     private javax.swing.JButton addNewArticleButton;
+    private javax.swing.JCheckBox allowDeletionCheckBox;
     private javax.swing.JPanel articleGridBagLayoutPanel;
     private javax.swing.JComboBox<String> certificateTypeDropdown;
-    private javax.swing.JButton deleteInvoiceButton;
-    private javax.swing.JCheckBoxMenuItem enableDeletionMenuItem;
+    private keeptoo.KButton deleteInvoiceButton;
     private javax.swing.JTextField incomingInvoiceIdTextfield;
     private javax.swing.JTextField incomingInvoiceIdTextfield1;
     private javax.swing.JLabel jLabel1;
@@ -373,9 +389,9 @@ public class OutgoingInvoiceUpdateView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

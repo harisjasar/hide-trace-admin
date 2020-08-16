@@ -16,16 +16,12 @@ import org.springframework.stereotype.Component;
 @Component
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class LoginView extends javax.swing.JDialog {
+public class LoginView extends javax.swing.JFrame {
 
     /**
-     * Creates new form LoginView
-     *
-     * @param parent
-     * @param modal
+     * Creates new form LoginView1
      */
-    public LoginView(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public LoginView() {
         initComponents();
     }
 
@@ -45,7 +41,7 @@ public class LoginView extends javax.swing.JDialog {
         PasswordTextField = new javax.swing.JPasswordField();
         LoginButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("username");
@@ -105,7 +101,6 @@ public class LoginView extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LoginButton;
     private javax.swing.JPasswordField PasswordTextField;

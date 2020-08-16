@@ -1,5 +1,6 @@
 package com.hidetrace.admin;
 
+import com.hidetrace.admin.controller.SplashScreenController;
 import com.hidetrace.admin.controller.login.LoginController;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,6 +41,8 @@ public class AdminApplication {
 
         //</editor-fold>
         //</editor-fold>
+        SplashScreenController.splashScreenThread();
+
         ConfigurableApplicationContext context = new SpringApplicationBuilder(AdminApplication.class).headless(false).run(args);
         LoginController loginController = context.getBean(LoginController.class);
         loginController.start();

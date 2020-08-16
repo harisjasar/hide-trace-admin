@@ -8,20 +8,20 @@ package com.hidetrace.admin.controller.outgoinginvoice;
 import com.hidetrace.admin.common.MessageDialog;
 import com.hidetrace.admin.common.SaveException;
 import com.hidetrace.admin.helper.outgoinginvoice.NewOutgoingInvoiceDialogHelper;
-import com.hidetrace.admin.model.category.CategoryModel;
-import com.hidetrace.admin.model.certificate.CertificateModel;
 import com.hidetrace.admin.model.HideTypeModel;
 import com.hidetrace.admin.model.LegalEntityModel;
+import com.hidetrace.admin.model.category.CategoryModel;
+import com.hidetrace.admin.model.certificate.CertificateModel;
 import com.hidetrace.admin.model.outgoinginvoice.OutgoingInvoiceCertificateModel;
 import com.hidetrace.admin.model.outgoinginvoice.OutgoingInvoiceHideTypeCategoryModel;
 import com.hidetrace.admin.model.outgoinginvoice.OutgoingLegalEntityInvoiceModel;
-import com.hidetrace.admin.service.category.CategoryService;
-import com.hidetrace.admin.service.certificate.CertificateService;
 import com.hidetrace.admin.service.CompositeService;
 import com.hidetrace.admin.service.HideTypeService;
 import com.hidetrace.admin.service.LegalEntityService;
+import com.hidetrace.admin.service.category.CategoryService;
+import com.hidetrace.admin.service.certificate.CertificateService;
 import com.hidetrace.admin.service.outgoinginvoice.OutgoingLegalEntityInvoiceService;
-import com.hidetrace.admin.view.outgoinginvoice.NewOutgoingInvoiceDialogView;
+import com.hidetrace.admin.view.outgoinginvoice.NewOutgoingInvoicePanelView;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -50,8 +50,10 @@ import org.springframework.transaction.UnexpectedRollbackException;
 @Data
 public class NewOutgoingInvoiceDialogController {
 
+    //@Autowired
+    //private NewOutgoingInvoiceDialogView view;
     @Autowired
-    private NewOutgoingInvoiceDialogView view;
+    private NewOutgoingInvoicePanelView view;
 
     @Autowired
     private LegalEntityService legalEntityService;
@@ -88,9 +90,6 @@ public class NewOutgoingInvoiceDialogController {
         view.getCertificateTextField().setText("");
         view.getCommentTextField().setText("");
         view.getInvoiceIdTextField().setText("");
-
-        view.setResizable(false);
-        view.setLocationRelativeTo(null);
 
         view.setVisible(true);
     }
@@ -181,8 +180,11 @@ public class NewOutgoingInvoiceDialogController {
     @Component
     private static class OutgoingInvoiceAddNewArticleComponentsButtonActionListener implements ActionListener {
 
+        //@TOOD remove
+        //@Autowired
+        //private NewOutgoingInvoiceDialogView view;
         @Autowired
-        private NewOutgoingInvoiceDialogView view;
+        private NewOutgoingInvoicePanelView view;
 
         @Autowired
         private NewOutgoingInvoiceDialogController controller;
@@ -256,6 +258,9 @@ public class NewOutgoingInvoiceDialogController {
                 panel.revalidate();
                 panel.repaint();
                 controller.nextY++;
+
+                //@TODO
+                System.out.println("THIS SHOULD BE WORKING");
             } else {
                 messagDialog.MaxNumberOfArticlesReached();
             }

@@ -43,8 +43,8 @@ public class IncomingInvoiceInvoicesListController {
     private IncomingLegalEntityInvoiceService incomingLegalEntityInvoiceService;
 
     private void initView() {
-        view.setResizable(false);
-        view.setLocationRelativeTo(null);
+        // view.setResizable(false); //@TODO
+        // view.setLocationRelativeTo(null); //@TODO
         view.setVisible(true);
 
     }
