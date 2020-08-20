@@ -30,6 +30,9 @@ import com.hidetrace.admin.view.AdminView;
 import com.hidetrace.admin.view.incominginvoice.IncomingInvoiceInvoicesListView;
 import com.hidetrace.admin.view.incominginvoice.IncomingInvoiceUpdateView;
 import com.hidetrace.admin.view.incominginvoice.NewIncomingInvoicePanelView;
+import com.hidetrace.admin.view.legalentity.LegalEntityListView;
+import com.hidetrace.admin.view.legalentity.LegalEntityUpdateView;
+import com.hidetrace.admin.view.legalentity.NewLegalEntityDialogView;
 import com.hidetrace.admin.view.outgoinginvoice.NewOutgoingInvoicePanelView;
 import com.hidetrace.admin.view.outgoinginvoice.OutgoingInvoiceInvoicesListView;
 import com.hidetrace.admin.view.outgoinginvoice.OutgoingInvoiceUpdateView;
@@ -484,6 +487,18 @@ public class AdminController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            AdminView adminView = appContext.getBean(AdminView.class);
+            NewLegalEntityDialogView outgoingInvoiceUpdateView = appContext.getBean(NewLegalEntityDialogView.class);
+
+            //trying to speed up UI with removing all elements first
+            adminView.getAdminViewCardsPanel2().removeAll();
+            String randomString = Utils.generateRandomString(8);
+            adminView.getAdminViewCardsPanel2().add(outgoingInvoiceUpdateView, randomString);
+            ((CardLayout) adminView.getAdminViewCardsPanel2().getLayout()).show(adminView.getAdminViewCardsPanel2(), randomString);
+
+            adminView.getAdminViewCardsScrollPane2().repaint();
+            adminView.getAdminViewCardsScrollPane2().revalidate();
+
             appContext.getBean(NewLegalEntityDialogController.class).start();
 
         }
@@ -498,6 +513,18 @@ public class AdminController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            AdminView adminView = appContext.getBean(AdminView.class);
+            LegalEntityUpdateView outgoingInvoiceUpdateView = appContext.getBean(LegalEntityUpdateView.class);
+
+            //trying to speed up UI with removing all elements first
+            adminView.getAdminViewCardsPanel2().removeAll();
+            String randomString = Utils.generateRandomString(8);
+            adminView.getAdminViewCardsPanel2().add(outgoingInvoiceUpdateView, randomString);
+            ((CardLayout) adminView.getAdminViewCardsPanel2().getLayout()).show(adminView.getAdminViewCardsPanel2(), randomString);
+
+            adminView.getAdminViewCardsScrollPane2().repaint();
+            adminView.getAdminViewCardsScrollPane2().revalidate();
+
             appContext.getBean(LegalEntityUpdateController.class).start();
 
         }
@@ -512,6 +539,18 @@ public class AdminController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            AdminView adminView = appContext.getBean(AdminView.class);
+            LegalEntityListView outgoingInvoiceUpdateView = appContext.getBean(LegalEntityListView.class);
+
+            //trying to speed up UI with removing all elements first
+            adminView.getAdminViewCardsPanel2().removeAll();
+            String randomString = Utils.generateRandomString(8);
+            adminView.getAdminViewCardsPanel2().add(outgoingInvoiceUpdateView, randomString);
+            ((CardLayout) adminView.getAdminViewCardsPanel2().getLayout()).show(adminView.getAdminViewCardsPanel2(), randomString);
+
+            adminView.getAdminViewCardsScrollPane2().repaint();
+            adminView.getAdminViewCardsScrollPane2().revalidate();
+
             appContext.getBean(LegalEntityListController.class).start();
 
         }

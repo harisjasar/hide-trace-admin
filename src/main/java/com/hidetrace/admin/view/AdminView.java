@@ -59,6 +59,9 @@ public class AdminView extends javax.swing.JFrame {
         newAddLegalEntityButton = new keeptoo.KButton();
         updateLegalEntityButton = new keeptoo.KButton();
         reviewLegalEntitiesButton = new keeptoo.KButton();
+        jPanel14 = new javax.swing.JPanel();
+        adminViewCardsScrollPane2 = new javax.swing.JScrollPane();
+        adminViewCardsPanel2 = new javax.swing.JPanel();
         pnlCard2 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -310,8 +313,6 @@ public class AdminView extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
         pnlCard1.add(jPanel2, gridBagConstraints);
 
         jPanel7.setBackground(new java.awt.Color(165, 174, 173));
@@ -328,7 +329,7 @@ public class AdminView extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel7.add(newAddLegalEntityButton, gridBagConstraints);
 
         updateLegalEntityButton.setText("Ažuriranje");
@@ -341,7 +342,7 @@ public class AdminView extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel7.add(updateLegalEntityButton, gridBagConstraints);
 
         reviewLegalEntitiesButton.setText("Pregled");
@@ -356,7 +357,7 @@ public class AdminView extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel7.add(reviewLegalEntitiesButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -364,8 +365,29 @@ public class AdminView extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weighty = 100.0;
         pnlCard1.add(jPanel7, gridBagConstraints);
+
+        jPanel14.setLayout(new java.awt.GridBagLayout());
+
+        adminViewCardsPanel2.setLayout(new java.awt.CardLayout());
+        adminViewCardsScrollPane2.setViewportView(adminViewCardsPanel2);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel14.add(adminViewCardsScrollPane2, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 100.0;
+        pnlCard1.add(jPanel14, gridBagConstraints);
 
         pnlCards.add(pnlCard1, "card1");
 
@@ -666,8 +688,10 @@ public class AdminView extends javax.swing.JFrame {
     private keeptoo.KButton adminProfileSideButton;
     private javax.swing.JPanel adminViewCardsPanel;
     private javax.swing.JPanel adminViewCardsPanel1;
+    private javax.swing.JPanel adminViewCardsPanel2;
     private javax.swing.JScrollPane adminViewCardsScrollPane;
     private javax.swing.JScrollPane adminViewCardsScrollPane1;
+    private javax.swing.JScrollPane adminViewCardsScrollPane2;
     private javax.swing.JLabel currentLoggedOnUserLabel;
     private javax.swing.JMenuItem incomingCertificatePreviewButton;
     private keeptoo.KButton incomingLegalEntitySideButton;
@@ -686,6 +710,7 @@ public class AdminView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

@@ -74,9 +74,6 @@ public class NewLegalEntityDialogController {
     }
 
     private void initView() {
-        view.setResizable(false);
-        view.setLocationRelativeTo(null);
-
         view.setVisible(true);
     }
 

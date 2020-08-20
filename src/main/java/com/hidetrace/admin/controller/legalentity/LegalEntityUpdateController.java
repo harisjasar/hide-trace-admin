@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import javax.persistence.PersistenceException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -53,14 +53,9 @@ public class LegalEntityUpdateController {
     private CompositeService compositeService;
 
     private void initView() {
-        view.setResizable(false);
-        view.setLocationRelativeTo(null);
-
         view.getRemoveLegalEntityButton().setVisible(false);
-        view.getEnableDeletionCheckBox().setSelected(false);
-
+        view.getAllowDeletionCheckBox().setSelected(false);
         view.setVisible(true);
-
     }
 
     private void initListeners() {
@@ -72,8 +67,8 @@ public class LegalEntityUpdateController {
             view.getUpdateLegalEntityButton().addActionListener(appContext.getBean(UpdateLegalEntityInfoButtonActionListener.class));
         }
 
-        if (view.getEnableDeletionCheckBox().getItemListeners().length == 0) {
-            view.getEnableDeletionCheckBox().addItemListener(appContext.getBean(DeleteLegalEntityItemListener.class));
+        if (view.getAllowDeletionCheckBox().getItemListeners().length == 0) {
+            view.getAllowDeletionCheckBox().addItemListener(appContext.getBean(DeleteLegalEntityItemListener.class));
         }
 
         if (view.getRemoveLegalEntityButton().getActionListeners().length == 0) {
@@ -143,7 +138,7 @@ public class LegalEntityUpdateController {
 
         @Override
         public void itemStateChanged(ItemEvent e) {
-            if (((JCheckBoxMenuItem) e.getSource()).isSelected()) {
+            if (((JCheckBox) e.getSource()).isSelected()) {
                 controller.getLegalEntityDeleteButton().setVisible(true);
             } else {
                 controller.getLegalEntityDeleteButton().setVisible(false);

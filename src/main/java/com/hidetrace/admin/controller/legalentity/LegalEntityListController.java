@@ -36,11 +36,7 @@ public class LegalEntityListController {
     ApplicationContext appContext;
 
     private void initView() {
-        view.setResizable(false);
-        view.setLocationRelativeTo(null);
-
         view.setVisible(true);
-
     }
 
     private void initListeners() {
